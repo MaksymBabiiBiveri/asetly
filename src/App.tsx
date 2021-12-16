@@ -8,9 +8,9 @@ function App() {
     <div className="container">
       <div className="main_wrapper">
         <MainTemplate />
-        <div className="contents">
+        <section className="contents">
           <Companies />
-        </div>
+        </section>
       </div>
     </div>
   );

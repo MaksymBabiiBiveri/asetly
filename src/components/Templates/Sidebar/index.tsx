@@ -1,6 +1,21 @@
 import React from 'react';
 import classes from './Sidebar.module.scss';
-import { Dashboard, HideBar, Logo } from '@common';
+import {
+  Asset,
+  Attributes,
+  Companies,
+  Contracts,
+  Dashboard,
+  Departments,
+  Deprecation,
+  HideBar,
+  Locations,
+  Logo,
+  Others,
+  Supplies,
+  Vendors,
+  WorkOrders,
+} from '@common';
 import cl from 'classnames';
 
 interface SidebarProps {}
@@ -17,84 +32,72 @@ const Sidebar: React.FC<SidebarProps> = () => {
           <ul className={classes.list}>
             <li className={classes.list_item}>
               <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
+              <a href="">Dashboard</a>
             </li>
           </ul>
           <h5 className={classes.title_overline}>management</h5>
           <ul className={classes.list}>
             <li className={classes.list_item}>
-              <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
+              <Asset />
+              <a href="">Assets</a>
             </li>
             <li className={classes.list_item}>
-              <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
+              <WorkOrders />
+              <a href="">Work orders</a>
             </li>
             <li className={classes.list_item}>
-              <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
+              <Deprecation />
+              <a href="">Depreciation</a>
             </li>
             <li className={classes.list_item}>
-              <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
+              <Supplies />
+              <a href="">Supplies</a>
             </li>
           </ul>
-          <h5 className={classes.title_overline}>management</h5>
+          <h5 className={classes.title_overline}>properties</h5>
+          <ul className={classes.list}>
+            <li className={classes.list_item}>
+              <Attributes />
+              <a href="">Attributes</a>
+            </li>
+            <li className={classes.list_item}>
+              <Companies />
+              <a href="">Companies</a>
+            </li>
+            <li className={classes.list_item}>
+              <Vendors />
+              <a href="">Vendors</a>
+            </li>
+            <li className={classes.list_item}>
+              <Departments />
+              <a href="">Departments</a>
+            </li>
+            <li className={classes.list_item}>
+              <Locations />
+              <a href="">Locations</a>
+            </li>
+            <li className={classes.list_item}>
+              <Others />
+              <a href="">Other</a>
+            </li>
+            <li className={classes.list_item}>
+              <Contracts />
+              <a href="">Contracts</a>
+            </li>
+          </ul>
+          <h5 className={classes.title_overline}>user</h5>
           <ul className={classes.list}>
             <li className={classes.list_item}>
               <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
+              <a href="">Users</a>
             </li>
             <li className={classes.list_item}>
               <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
+              <a href="">Roles</a>
             </li>
             <li className={classes.list_item}>
               <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
-            </li>
-            <li className={classes.list_item}>
-              <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
-            </li>
-          </ul>
-          <h5 className={classes.title_overline}>management</h5>
-          <ul className={classes.list}>
-            <li className={classes.list_item}>
-              <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
-            </li>
-            <li className={classes.list_item}>
-              <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
-            </li>
-            <li className={classes.list_item}>
-              <Dashboard />
-              <a href="" onClick={(e) => e.preventDefault()}>
-                Dashboard
-              </a>
+              <a href="">Role Authorization</a>
             </li>
           </ul>
         </nav>
