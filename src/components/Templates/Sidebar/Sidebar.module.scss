@@ -3,6 +3,9 @@
   .wrapper {
     padding: 16px 20px 160px 20px;
     background: $main-blue-color;
+    min-height: 870px;
+    max-height: 1024px;
+    height: 100%;
     .logo_box {
       display: flex;
       align-items: center;
@@ -15,7 +18,9 @@
           display: flex;
           align-items: center;
           justify-content: start;
-          padding: 8px;
+          text-align: left;
+          padding: 0 8px;
+          height: 36px;
           transition: background 0.5s ease;
           border-radius: 4px;
           &:hover,
