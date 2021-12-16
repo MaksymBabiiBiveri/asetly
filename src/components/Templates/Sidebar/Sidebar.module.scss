@@ -1,0 +1,43 @@
+@import './src/styles/variables';
+.sidebar {
+  .wrapper {
+    padding: 16px 20px 160px 20px;
+    background: $main-blue-color;
+    .logo_box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 64px;
+    }
+    .navigation {
+      .list {
+        .list_item {
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          padding: 8px;
+          transition: background 0.5s ease;
+          border-radius: 4px;
+          &:hover,
+          &:active,
+          &:focus {
+            background: $button-primary-active;
+          }
+          a {
+            flex-basis: 100%;
+            margin-left: 8px;
+          }
+        }
+      }
+      .title_overline {
+        color: $main-white;
+        letter-spacing: 2px;
+        line-height: 158%;
+        margin: 16px 0;
+        font-size: $overline-fz;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

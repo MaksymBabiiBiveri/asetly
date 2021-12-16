@@ -1,0 +1,69 @@
+@import 'variables';
+
+@mixin adaptive-font($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $addMobSize: $addSize + $addSize * 0.7;
+  @media (max-width: 767px) {
+    font-size: calc(
+      #{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth})
+    );
+  }
+  @media (min-width: 767px) {
+    font-size: calc(#{$mobSize + px} + #{$addSize} * (100vw / #{$maxWidth}));
+  }
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin abs-position($top, $right, $bottom, $left) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin arrow($direction: down, $size: 5px, $color: #555) {
+  width: 0;
+  height: 0;
+  @if ($direction == left) {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+  } @else if ($direction == right) {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  } @else if ($direction == down) {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+  } @else {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+  }
+}
+
+@mixin fade($type) {
+  @if $type== 'hide' {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s;
+  } @else if $type== 'show' {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s, opacity 1s;
+  }
+}

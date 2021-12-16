@@ -1,0 +1,23 @@
+{
+  "extends": ["airbnb-typescript", "prettier"],
+  "plugins": ["import", "prettier"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "react/prop-types": "off",
+    "react/require-default-props": "off",
+    "no-unused-vars": "error",
+    "import/no-extraneous-dependencies": "off",
+    "react/jsx-filename-extension": "off"
+  }
+}
