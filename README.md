@@ -1,4 +1,4 @@
-## use only yarn
+## Use only <code>yarn</code>
 
 
 # Getting Started with Create React App
