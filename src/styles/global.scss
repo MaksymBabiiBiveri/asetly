@@ -1,0 +1,98 @@
+@import 'mixins';
+@import 'nullStyles';
+@import 'variables';
+
+body,
+html {
+  font-family: $font-family;
+  @include adaptive-font($defaultPC-font-size, $defaultMob-font-size);
+  font-weight: $default-font-weight;
+  color: $default-font-color;
+  background: $main-gray-background;
+}
+
+.container {
+  max-width: $maxWidth + 48px;
+  width: 100%;
+  height: 100vh;
+  padding-right: 48px;
+  .main_wrapper {
+    display: grid;
+    grid-template-columns: 318px 1fr;
+    grid-template-rows: 70px 1fr;
+    row-gap: 40px;
+    column-gap: 24px;
+    grid-template-areas:
+      'sidebar header '
+      'sidebar content';
+    width: 100%;
+    height: 100%;
+    .contents {
+      grid-area: content;
+      background: $main-white;
+      border-radius: 4px;
+      height: 100%;
+    }
+    .header {
+      grid-area: header;
+    }
+    .sidebar {
+      grid-area: sidebar;
+    }
+  }
+}
+h1 {
+  @include adaptive-font($h1-fz, 90);
+  font-weight: 700;
+}
+h2 {
+  @include adaptive-font($h2-fz, 55);
+  font-weight: 700;
+}
+h3 {
+  @include adaptive-font($h3-fz, 43);
+  font-weight: 700;
+}
+h4 {
+  @include adaptive-font($h4-fz, 30);
+  font-weight: 600;
+}
+h5 {
+  @include adaptive-font($subtitle-fz-1, 14);
+  font-weight: 700;
+}
+h6 {
+  @include adaptive-font($subtitle-fz-2, 12);
+  font-weight: 700;
+}
+p {
+  @include adaptive-font($body-fz-1, 14);
+  font-weight: 400;
+}
+span {
+  @include adaptive-font($body-fz-2, 12);
+  font-weight: 400;
+}
+label {
+  font-size: $label-fz;
+  font-weight: 500;
+}
+button {
+  @include adaptive-font($button-fz, 14);
+  font-weight: 500;
+}
+ul {
+  li {
+    @include adaptive-font($menu-title-default-fz, 14);
+    font-weight: 500;
+    a {
+      @include adaptive-font($menu-title-default-fz, 15);
+      font-weight: 500;
+      color: $typography-menu-default-color;
+    }
+  }
+}
+input::placeholder {
+  @include adaptive-font($fields-placeholder-fz, 14);
+  font-weight: 400;
+}

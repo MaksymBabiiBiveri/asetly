@@ -1,0 +1,43 @@
+@import './src/styles/variables';
+
+.header {
+  background: $main-white;
+  margin-left: -24px;
+  .header_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 23.5px;
+    .name_page {
+      h4 {
+        color: $typography-headlines-color;
+      }
+    }
+  }
+  .header_actions {
+    display: flex;
+    align-items: center;
+    .simple_actions,
+    .user_actions {
+      display: flex;
+      align-items: center;
+      margin-right: 56px;
+    }
+    .simple_actions {
+      justify-content: center;
+      a:not(:last-child) {
+        margin-right: 32px;
+      }
+    }
+    .user_actions {
+      .avatar_box {
+        display: flex;
+        align-items: center;
+        margin-right: 8px;
+        img {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
