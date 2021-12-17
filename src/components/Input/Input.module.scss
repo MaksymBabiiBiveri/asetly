@@ -1,85 +1,81 @@
 @import './src/styles/variables';
 
 .block {
-    width: 371px;
-    margin: 40px;
+  width: 371px;
+  margin: 40px;
 
-    &__title {
-        font-family: Inter;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 16px;
-        color: $forms-fill;
+  &__title {
+    color: $forms-fill;
 
-        span {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        span > span {
-            display: inline;
-            color: red;
-        }
-
-        &:focus-within {
-            color: $forms-default;
-        }
-
-        &_req:focus-within {
-            color: $forms-focus;
-        }
-
-        &_error {
-            color: $forms-error;
-
-            input {
-                border-color: $forms-error;
-                color: $forms-error;
-                background-color: transparent;
-    
-                &::placeholder {
-                    color: $forms-error;
-                }
-        
-                &:focus {
-                    border-color: $forms-error;
-                    color: $forms-error;
-                }
-            }
-        }
-
-        &_disabled {
-            color: $form-disabled;
-
-            span > span {
-                color: $form-disabled;
-            }
-
-            input {
-                border-color: $form-disabled;
-                color: $form-disabled;
-                background-color: transparent;
-            }
-        }
+    span {
+      display: block;
+      margin-bottom: 8px;
     }
 
-    &__input {
-        width: 100%;
-        background-color: $form-background-mint;
-        border: 1px solid transparent;
-        padding: 8px 16px;
-        color: $forms-fill;
-        font-size: 16px;
-        border-radius: 4px;
-
-            &::placeholder {
-                color: $forms-default;
-            }
-
-            &:focus {
-                border-color: $forms-focus;
-                color: $forms-focus;
-                background-color: transparent;
-            }
+    span > span {
+      display: inline;
+      color: red;
     }
+
+    &:focus-within {
+      color: $forms-default;
+    }
+
+    &_req:focus-within {
+      color: $forms-focus;
+    }
+
+    &_error {
+      color: $forms-error;
+
+      input {
+        border-color: $forms-error;
+        color: $forms-error;
+        background-color: transparent;
+
+        &::placeholder {
+          color: $forms-error;
+        }
+
+        &:focus {
+          border-color: $forms-error;
+          color: $forms-error;
+        }
+      }
+    }
+
+    &_disabled {
+      color: $form-disabled;
+
+      span > span {
+        color: $form-disabled;
+      }
+
+      input {
+        border-color: $form-disabled;
+        color: $form-disabled;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &__input {
+    width: 100%;
+    background-color: $form-background-mint;
+    border: 1px solid transparent;
+    padding: 8px 16px;
+    color: $forms-fill;
+    font-size: 16px;
+    border-radius: 4px;
+
+    &::placeholder {
+      color: $forms-default;
+    }
+
+    &:focus {
+      border-color: $forms-focus;
+      color: $forms-focus;
+      background-color: transparent;
+    }
+  }
 }

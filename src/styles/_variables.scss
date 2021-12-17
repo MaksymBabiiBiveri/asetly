@@ -27,22 +27,25 @@ $fields-placeholder-fz: 16;
 $fields-title-fz: 12;
 $fields-description-fz: 12;
 
-// Colors
+// COLORS
+/*
+ Main
+ */
 $main-blue-color: #032f5c;
 $main-default-color: #264f7a;
 $main-gray-background: #f6f6f6;
 $main-white: #ffffff;
+/*
+ Typography
+ */
 $typography-menu-default-color: #f7f7f7;
 $typography-menu-active-color: #ffffff;
 $typography-primary-color: #374957;
 $typography-headlines-color: #032f5c;
 $typography-disable-color: #60788b;
-$button-primary-default: #032f5c;
-$button-primary-active: #001c37;
-$button-primary-text: #ffffff;
-$button-primary-hover: #00458a;
-$button-primary-disabled: #d2d2d2;
-$button-primary-pressed: #97d5ff;
+/*
+  Form
+ */
 $forms-default: #697288;
 $forms-fill: #374957;
 $forms-focus: #032f5c;
@@ -50,3 +53,28 @@ $forms-error: #d10000;
 $form-disabled: #bdbdbd;
 $form-background-mint: #edf6ff;
 $form-background-white: #ffffff;
+/*
+  Buttons
+ */
+// Primary
+$button-primary-default: #032f5c;
+$button-primary-active: #001c37;
+$button-primary-text: #ffffff;
+$button-primary-hover: #00458a;
+$button-primary-disabled: #d2d2d2;
+$button-primary-pressed: #97d5ff;
+// Secondary
+$button-secondary-default: #e3effd;
+$button-secondary-active: #bdd4ed;
+$button-secondary-text: #032f5c;
+$button-secondary-hover: #4798e9;
+$button-secondary-disabled: #d2d2d2;
+$button-secondary-pressed: #74aaea;
+// Outline
+$button-outline-default: #032f5c;
+$button-outline-active: #4798e9;
+$button-outline-text: #032f5c;
+$button-outline-hover: #00458a;
+$button-outline-disabled: #d2d2d2;
+$button-outline-pressed: #97d5ff;
+$button-outline-fill: transparent;

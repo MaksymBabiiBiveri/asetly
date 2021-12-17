@@ -73,6 +73,10 @@ span {
   @include adaptive-font($body-fz-2, 12);
   font-weight: 400;
 }
+label {
+  font-size: $label-fz;
+  font-weight: 500;
+}
 button {
   @include adaptive-font($button-fz, 14);
   font-weight: 500;
