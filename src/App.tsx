@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/global.scss';
-import { Companies } from '@pages/Companies';
+// import { Companies } from '@pages/Companies/Companies';
+import { CreateCompany } from '@pages/Companies/CreateCompany'
 import { MainTemplate } from '@components';
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
       <div className="main_wrapper">
         <MainTemplate />
         <section className="contents">
-          <Companies />
+          {/* <Companies /> */}
+          <CreateCompany />
         </section>
       </div>
     </div>

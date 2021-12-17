@@ -14,7 +14,7 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = (props) => {
   const { title, placeholder, required, type, name, id, disabled } = props;
-  const req: string = required ? '*' : '';
+  const req: string = required ? ' *' : '';
   const reqClass: string = required ? classes.block__title_req : '';
   const disClass: string = disabled ? classes.block__title_disabled : '';
 
