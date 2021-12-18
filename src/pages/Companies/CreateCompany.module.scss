@@ -1,0 +1,57 @@
+@import './src/styles/variables';
+
+.block {
+    padding: 42px 32px 106px 72px;
+
+        &__header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__title {
+            color: $typography-headlines-color;
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 132%;
+        }
+
+        &__buttons {
+            display: flex;
+
+                :first-child {
+                    margin-right: 36.5px
+                }
+        }
+
+        &__main {
+            margin-top: 64.5px;
+            max-width: 918px;
+            width: 100%;
+        }
+}
+
+.main {
+    &__top {
+        border-bottom: 1px solid $typography-primary-color;
+        padding-bottom: 83.5px;
+    }
+
+    &__inputs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    &__bottom {
+        display: flex;
+        padding-top: 32px;
+    }
+
+    &__title {
+        color: $typography-primary-color;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 138%;
+        letter-spacing: 0.0075em;
+    }
+}
