@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import classes from './Sidebar.module.scss';
 import {
   Asset,
@@ -106,4 +106,4 @@ const Sidebar: React.FC<SidebarProps> = () => {
   );
 };
 
-export default Sidebar;
+export default memo(Sidebar);

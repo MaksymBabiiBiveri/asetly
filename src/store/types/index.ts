@@ -1,5 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 
+export type Concat<S1 extends string, S2 extends string> = `${S1}${S2}`;
+
 export type Api<Data = undefined> = {
   url: string;
   method: 'GET' | 'POST' | 'PATCH' | 'DELETE';

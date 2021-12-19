@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import classes from './Header.module.scss';
 import cl from 'classnames';
 import avatar from '@image/avatar.png';
 import { Bell, DropArrow, Info, Search } from '@common';
 
 interface HeaderProps {}
-// const avatar = 'ss';
+
 const Header: React.FC<HeaderProps> = () => {
   return (
     <header className={cl(classes.header, 'header')}>
@@ -37,4 +37,4 @@ const Header: React.FC<HeaderProps> = () => {
     </header>
   );
 };
-export default Header;
+export default memo(Header);

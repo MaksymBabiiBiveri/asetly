@@ -1,5 +1,6 @@
 import { ApplicationActions, ApplicationState } from '../types/application';
-import { GET_TOKEN, THROW_ERROR } from '../actionTypes';
+import { FAIL, GET_TOKEN, SUCCESS } from '../actionTypes';
+import { concatActions } from '@helpers/functions';
 
 const initialState: ApplicationState = {
   token: '',
@@ -11,16 +12,16 @@ export const ApplicationReducer = (
   action: ApplicationActions
 ): ApplicationState => {
   switch (action.type) {
-    case GET_TOKEN:
+    case concatActions(GET_TOKEN, SUCCESS):
       localStorage.setItem('token', action.response.token);
       return {
         ...state,
         token: action.response.token,
       };
-    case THROW_ERROR:
+    case concatActions(GET_TOKEN, FAIL):
       return {
         ...state,
-        error: action.response,
+        error: action.error.message,
       };
     default:
       return {
