@@ -1,7 +1,6 @@
 import React from 'react';
-import Sidebar from '@component/Templates/Sidebar';
-import Header from '@component/Templates/Header';
-// import classes from './MainTemplate.module.scss';
+import Sidebar from '../Sidebar';
+import Header from '../Header';
 
 interface MainTemplateProps {}
 
