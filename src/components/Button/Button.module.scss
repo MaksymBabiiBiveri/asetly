@@ -47,7 +47,7 @@
 }
 .button_outline {
   color: $button-outline-text;
-  border: 2px solid $button-outline-default;
+  border: 1px solid $button-outline-default;
   background: $button-outline-fill;
   &:hover {
     border-color: $button-outline-hover;

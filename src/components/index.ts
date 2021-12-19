@@ -1,5 +1,4 @@
-import MainTemplate from '@component/Templates/MainTemplate';
-import Input from '@component/Input';
-import Button from '@component/Button';
+import Input from './Input';
+import Button from './Button';
 
-export { MainTemplate, Input, Button };
+export { Input, Button };
