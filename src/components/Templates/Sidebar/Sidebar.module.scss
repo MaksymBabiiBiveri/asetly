@@ -4,7 +4,7 @@
     padding: 16px 20px 160px 20px;
     background: $main-blue-color;
     min-height: 870px;
-    max-height: 1024px;
+    max-height: 1100px;
     height: 100%;
     .logo_box {
       display: flex;
@@ -15,22 +15,50 @@
     .navigation {
       .list {
         .list_item {
+          position: relative;
           display: flex;
           align-items: center;
-          justify-content: start;
+          justify-content: flex-start;
           text-align: left;
           padding: 0 8px;
           height: 36px;
-          transition: background 0.5s ease;
-          border-radius: 4px;
-          &:hover,
-          &:active,
-          &:focus {
-            background: $button-primary-active;
+          transition: $transition;
+          &:not(:last-child) {
+            margin-bottom: 5px;
+          }
+          svg {
+            position: relative;
+            z-index: 2;
+          }
+          &:hover a:before,
+          &:active a:before,
+          &:focus a:before {
+            opacity: 1;
           }
           a {
             flex-basis: 100%;
             margin-left: 8px;
+            transition: $transition;
+            span {
+              position: relative;
+              z-index: 2;
+            }
+            &:before {
+              content: '';
+              position: absolute;
+              z-index: 1;
+              transition: $transition;
+              border-radius: 4px;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              background: $button-primary-active;
+              opacity: 0;
+            }
+          }
+          .activeLink:before {
+            opacity: 1;
           }
         }
       }

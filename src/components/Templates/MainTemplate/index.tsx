@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Sidebar from '../Sidebar';
 import Header from '../Header';
 
@@ -12,4 +12,4 @@ const MainTemplate: React.FC<MainTemplateProps> = () => {
     </>
   );
 };
-export default MainTemplate;
+export default memo(MainTemplate);

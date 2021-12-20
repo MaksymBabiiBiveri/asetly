@@ -11,7 +11,7 @@ const api: Middleware = () => (next: Dispatch) => (action: ActionsTypes) => {
     return next(action);
   }
   next(action);
-
+  console.log({ ...action });
   return axios
     .request({
       ...action.api,

@@ -1,21 +1,29 @@
 import React, { useEffect } from 'react';
 import './styles/global.scss';
-import { MainTemplate } from '@templates';
-import { Companies } from '@pages/Companies';
+
 import { useDispatch } from 'react-redux';
-import { getToken } from './store/actions/application.action';
+import { GetToken } from './store/actions/application.action';
+
+import { MainTemplate } from '@templates';
+import { Route, Routes } from 'react-router-dom';
+import Company from '@pages/Company';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getToken());
+    if (!localStorage.getItem('token')) {
+      dispatch(GetToken());
+    }
   }, []);
+
   return (
     <div className="container">
       <div className="main_wrapper">
         <MainTemplate />
         <section className="contents">
-          <Companies />
+          <Routes>
+            <Route path="companies/*" element={<Company />} />
+          </Routes>
         </section>
       </div>
     </div>

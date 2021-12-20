@@ -1,40 +1,58 @@
 import React from 'react';
+
 import classes from './Input.module.scss';
 import cl from 'classnames';
 
+enum InputType {
+  button,
+  checkbox,
+  file,
+  password,
+  radio,
+  text,
+  submit,
+}
+
 interface InputProps {
-  title: string;
-  placeholder: string;
-  type: string;
-  name: string;
   id: string;
+  placeholder: string;
+  label: string;
+  type: keyof typeof InputType;
+  name: string;
   required?: boolean;
   disabled?: boolean;
+  error?: boolean;
 }
 
 const Input: React.FC<InputProps> = (props) => {
-  const { title, placeholder, required, type, name, id, disabled } = props;
-  const req: string = required ? '*' : '';
-  const reqClass: string = required ? classes.block__title_req : '';
-  const disClass: string = disabled ? classes.block__title_disabled : '';
+  const {
+    id,
+    name,
+    placeholder,
+    label,
+    type = 'text',
+    required = false,
+    disabled = false,
+    error = false,
+  } = props;
+
+  const InputIsRequired = required ? '*' : '';
+  const InputError = error ? classes.input_error : '';
 
   return (
-    <div className={cl(classes.block)}>
-      <label className={cl(classes.block__title, reqClass, disClass)}>
-        <span>
-          {title}
-          <span>{req}</span>
-        </span>
-
-        <input
-          className={classes.block__input}
-          required={required}
-          placeholder={placeholder}
-          type={type}
-          name={name}
-          id={id}
-          disabled={disabled}
-        />
+    <div className={cl(classes.input_wrapper, InputError)}>
+      <input
+        className={classes.input}
+        placeholder={placeholder}
+        id={id}
+        type={type}
+        name={name}
+        required={required}
+        disabled={disabled}
+      />
+      <label htmlFor={id} className={classes.label_input}>
+        {label}
+        <span>{InputIsRequired}</span>
       </label>
     </div>
   );

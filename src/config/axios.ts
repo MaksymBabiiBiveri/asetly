@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 export default axios.create({
-  withCredentials: true,
-  baseURL: 'http://api.asetly.com/api',
+  baseURL: process.env.REACT_APP_API_URL,
+  headers: {
+    'Content-type': 'application/json',
+  },
 });
