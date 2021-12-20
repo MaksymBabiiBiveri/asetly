@@ -3,15 +3,14 @@ import classes from './Button.module.scss';
 import cl from 'classnames';
 
 interface ButtonProps {
-  type: 'button' | 'submit' | 'reset';
   color: 'primary' | 'secondary' | 'outline';
+  type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
-  children: JSX.Element | string;
   onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { children, type, color, disabled = false, onClick } = props;
+  const { children, color, type = 'button', disabled = false, onClick } = props;
   const styleButton =
     color === 'primary'
       ? classes.button_primary

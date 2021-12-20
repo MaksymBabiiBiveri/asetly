@@ -1,0 +1,50 @@
+@import 'src/styles/variables';
+.createNewCompany {
+  &_wrapper {
+    padding: 24px 25px 50px 72px;
+    .header_box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .button_box {
+        display: flex;
+        align-items: center;
+        button:first-child {
+          margin-right: 35px;
+        }
+      }
+    }
+    form {
+      max-width: 918px;
+      .input_groups {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        .input_group {
+          position: relative;
+          .input_group_title {
+            position: absolute;
+            top: -32px;
+            left: 0;
+            color: $typography-primary-color;
+          }
+          div {
+            margin-top: 32px;
+          }
+          &:first-child {
+            margin-right: 8%;
+          }
+        }
+        &:first-child {
+          margin-top: 97px;
+        }
+      }
+      .divider {
+        width: 100%;
+        height: 2px;
+        background: #374957;
+        margin: 80px 0 80px 0;
+      }
+    }
+  }
+}

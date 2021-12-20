@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import classes from './Header.module.scss';
 import cl from 'classnames';
 import avatar from '@image/avatar.png';
@@ -9,10 +9,7 @@ interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
   const { pathname } = useLocation();
-  const [title, setTitle] = useState<string>(pathname);
-
-  console.log('header render', pathname);
-  console.log('header render title', title);
+  const [title, setTitle] = useState<string>();
   const pathSlice = () => {
     const findIndex = pathname.split('').reduce((a, e, i) => {
       if (e === '/') {
@@ -25,7 +22,6 @@ const Header: React.FC<HeaderProps> = () => {
       .slice(findIndex[0] + 1, findIndex[1])
       .join('');
     setTitle(filterStr);
-    console.log('run fun');
   };
 
   useEffect(() => {
@@ -62,4 +58,4 @@ const Header: React.FC<HeaderProps> = () => {
     </header>
   );
 };
-export default Header;
+export default memo(Header);

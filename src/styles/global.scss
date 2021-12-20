@@ -5,7 +5,7 @@
 body,
 html {
   font-family: $font-family;
-  @include adaptive-font($defaultPC-font-size, $defaultMob-font-size);
+  font-size: $defaultPC-font-size;
   font-weight: $default-font-weight;
   color: $default-font-color;
   background: $main-gray-background;
@@ -43,6 +43,13 @@ html {
     }
   }
 }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: $typography-headlines-color;
+}
 h1 {
   @include adaptive-font($h1-fz, 90);
   font-weight: 700;
@@ -60,7 +67,7 @@ h4 {
   font-weight: 600;
 }
 h5 {
-  @include adaptive-font($subtitle-fz-1, 14);
+  @include adaptive-font($h5-fz, 14);
   font-weight: 700;
 }
 h6 {

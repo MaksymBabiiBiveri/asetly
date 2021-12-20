@@ -3,9 +3,8 @@ import './styles/global.scss';
 
 import { useDispatch } from 'react-redux';
 import { GetToken } from './store/actions/application.action';
-
-import { MainTemplate } from '@templates';
 import { Route, Routes } from 'react-router-dom';
+import { MainTemplate } from '@templates';
 import Company from '@pages/Company';
 
 function App() {

@@ -8,11 +8,13 @@ interface CompaniesProps {}
 
 const Company: React.FC<CompaniesProps> = () => {
   return (
-    <Routes>
-      <Route path="/" element={<CompanyList />} />
-      <Route path="newCompany" element={<NewCompany />} />
-      <Route path="editCompany" element={<EditCompany />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<CompanyList />} />
+        <Route path="newCompany" element={<NewCompany />} />
+        <Route path="editCompany" element={<EditCompany />} />
+      </Routes>
+    </>
   );
 };
 export default Company;
