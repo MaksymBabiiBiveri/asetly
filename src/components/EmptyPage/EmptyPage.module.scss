@@ -1,0 +1,27 @@
+@import '../../styles/variables';
+
+.emptyPage {
+  position: relative;
+  height: 100%;
+  &_wrapper {
+    padding: 24px 25px 0 0;
+  }
+  &_button_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  &_info {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    h5 {
+      color: $main-blue-color;
+      &:first-child {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

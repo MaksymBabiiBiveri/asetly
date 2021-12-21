@@ -5,12 +5,12 @@ import Search from './Search';
 import Info from './Info';
 import Bell from './Bell';
 import DropArrow from './DropArrow';
-import Deprecation from './Deprecation';
+import Depreciation from './Depreciation';
 import Supplies from './Supplies';
 import Asset from './Asset';
 import WorkOrders from './WorkOrders';
 import Locations from './Location';
-import Others from './Others';
+import Other from './Other';
 import Vendors from './Vendors';
 import Companies from './Companies';
 import Contracts from './Contracts';
@@ -25,12 +25,12 @@ export {
   Info,
   Bell,
   DropArrow,
-  Deprecation,
+  Depreciation,
   Supplies,
   Asset,
   WorkOrders,
   Locations,
-  Others,
+  Other,
   Vendors,
   Companies,
   Contracts,

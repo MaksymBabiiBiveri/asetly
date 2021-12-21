@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const Search: React.FC = () => {
   return (
@@ -16,4 +16,4 @@ const Search: React.FC = () => {
     </svg>
   );
 };
-export default Search;
+export default memo(Search);

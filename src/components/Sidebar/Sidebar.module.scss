@@ -1,0 +1,81 @@
+@import '../../styles/variables';
+.sidebar {
+  transition: all 1s ease;
+  max-height: 1140px;
+  min-height: 935px;
+  .wrapper {
+    padding: 16px 20px 40px 20px;
+    background: $main-blue-color;
+    width: 316px;
+    height: 100%;
+    .logo_box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 34px;
+      .button_show {
+        background: transparent;
+      }
+    }
+    .navigation {
+      .list {
+        .list_item {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          text-align: left;
+          padding: 0 8px;
+          height: 36px;
+          transition: $transition;
+          &:not(:last-child) {
+            margin-bottom: 5px;
+          }
+          svg {
+            position: relative;
+            z-index: 2;
+          }
+          &:hover a:before,
+          &:active a:before,
+          &:focus a:before {
+            opacity: 1;
+          }
+          a {
+            flex-basis: 100%;
+            margin-left: 8px;
+            transition: $transition;
+            span {
+              position: relative;
+              z-index: 2;
+            }
+            &:before {
+              content: '';
+              position: absolute;
+              z-index: 1;
+              transition: $transition;
+              border-radius: 4px;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              background: $button-primary-active;
+              opacity: 0;
+            }
+          }
+          .activeLink:before {
+            opacity: 1;
+          }
+        }
+      }
+      .title_overline {
+        color: $main-white;
+        letter-spacing: 2px;
+        line-height: 158%;
+        margin: 16px 0 10px 0;
+        font-size: $overline-fz;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

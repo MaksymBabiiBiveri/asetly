@@ -1,11 +1,5 @@
 import { createTheme } from '@mui/material';
 
-declare module '@mui/material/Button' {
-  interface ButtonPropsVariantOverrides {
-    secondary: true;
-  }
-}
-
 const theme = createTheme({
   components: {
     MuiButton: {
@@ -45,6 +39,11 @@ const theme = createTheme({
       },
       defaultProps: {
         disableRipple: true,
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {},
       },
     },
   },
