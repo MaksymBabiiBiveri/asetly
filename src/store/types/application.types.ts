@@ -9,13 +9,7 @@ export interface ApplicationState {
   token: string;
   error: string | null;
 }
-export interface GetToken extends BaseAction<typeof GET_TOKEN> {
-  payload: {
-    userMail: string;
-    password: string;
-    siteId: number;
-  };
-}
+export interface GetToken extends BaseAction<typeof GET_TOKEN> {}
 export interface GetTokenSuccess
   extends BaseAction<Concat<typeof GET_TOKEN, typeof SUCCESS>> {
   response: {

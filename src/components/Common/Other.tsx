@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Others: React.FC = () => {
+const Other: React.FC = () => {
   return (
     <svg
       width="24"
@@ -25,4 +25,4 @@ const Others: React.FC = () => {
   );
 };
 
-export default Others;
+export default Other;

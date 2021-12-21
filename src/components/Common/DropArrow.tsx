@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface DropArrowProps {
   color: 'white' | 'blue';
@@ -31,4 +31,4 @@ const DropArrow: React.FC<DropArrowProps> = ({ color }) => {
     </svg>
   );
 };
-export default DropArrow;
+export default memo(DropArrow);

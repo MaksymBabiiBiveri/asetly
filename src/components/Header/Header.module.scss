@@ -1,8 +1,7 @@
-@import './src/styles/variables';
+@import '../../styles/variables';
 
 .header {
   background: $main-white;
-  margin-left: -24px;
   .header_box {
     display: flex;
     align-items: center;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const Bell: React.FC = () => {
   return (
@@ -17,4 +17,4 @@ const Bell: React.FC = () => {
   );
 };
 
-export default Bell;
+export default memo(Bell);

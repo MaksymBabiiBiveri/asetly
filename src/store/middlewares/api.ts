@@ -11,12 +11,14 @@ const api: Middleware = () => (next: Dispatch) => (action: ActionsTypes) => {
     return next(action);
   }
   next(action);
-
   return axios
     .request({
       ...action.api,
       params: {
         ...action.api.params,
+      },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     })
     .then((response: AxiosResponse) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Deprecation: React.FC = () => {
+const Depreciation: React.FC = () => {
   return (
     <svg
       width="20"
@@ -17,4 +17,4 @@ const Deprecation: React.FC = () => {
   );
 };
 
-export default Deprecation;
+export default Depreciation;

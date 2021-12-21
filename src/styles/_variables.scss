@@ -5,12 +5,19 @@ $defaultPC-font-size: 16px;
 $defaultMob-font-size: 12px;
 $default-font-weight: 400;
 $default-font-color: #000;
+/*
+  Button default options
+ */
+$button-width: 151px;
+$button-height: 40px;
+$transition: all 0.5s ease;
 
 // Font-size
 $h1-fz: 96;
 $h2-fz: 60;
 $h3-fz: 48;
 $h4-fz: 34;
+$h5-fz: 28;
 $subtitle-fz-1: 16;
 $subtitle-fz-2: 14;
 $body-fz-1: 16;
@@ -23,9 +30,9 @@ $menu-title-default-fz: 16;
 $menu-title-active-fz: 16;
 $menu-subtitle-default-fz: 15;
 $menu-subtitle-active-fz: 15;
-$fields-placeholder-fz: 16;
-$fields-title-fz: 12;
-$fields-description-fz: 12;
+$form-placeholder-fz: 16;
+$form-title-fz: 12;
+$form-description-fz: 12;
 
 // COLORS
 /*
@@ -38,21 +45,23 @@ $main-white: #ffffff;
 /*
  Typography
  */
-$typography-menu-default-color: #f7f7f7;
-$typography-menu-active-color: #ffffff;
+$typography-default-color: #f7f7f7;
+$typography-active-color: #ffffff;
 $typography-primary-color: #374957;
 $typography-headlines-color: #032f5c;
 $typography-disable-color: #60788b;
 /*
   Form
  */
-$forms-default: #697288;
-$forms-fill: #374957;
-$forms-focus: #032f5c;
-$forms-error: #d10000;
+$form-default: #697288;
+$form-fill: #374957;
+$form-focus: #032f5c;
+$form-error: #d10000;
 $form-disabled: #bdbdbd;
 $form-background-mint: #edf6ff;
 $form-background-white: #ffffff;
+$form-required-star: #d10000;
+$form-placeholder: #60788b;
 /*
   Buttons
  */
