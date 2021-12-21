@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetCompanyList } from '../../store/actions/company.action';
-import { CompanyTypes } from '../../store/types/company.types';
+import { GetCompanyList } from '../../../store/actions/company.action';
+import { CompanyTypes } from '../../../store/types/company.types';
 import classes from './CompanyList.module.scss';
 import { Button, EmptyPage } from '@components';
-import { RootState } from '../../store';
+import { RootState } from '../../../store';
 
 interface CompanyListProps {}
 

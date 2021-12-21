@@ -1,22 +1,6 @@
 import { BaseAction, Concat } from './index';
 import { GET_COMPANY_LIST, SUCCESS } from '../actionTypes';
-
-export type Country = {
-  countryId: number;
-  twoCharCountryCode: null | string;
-  name: string;
-  phoneCode: null | string;
-  //TODO: как узнаем тип массива изменить any
-  cities: any[];
-};
-
-export type City = {
-  cityId: number;
-  name: string;
-  countryId: number;
-  orderId: number;
-  country: Country;
-};
+import { City } from './definition.types';
 
 export type CompanyTypes = {
   partnerId: number;

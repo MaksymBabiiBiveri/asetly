@@ -1,16 +1,21 @@
-@import './src/styles/variables';
+@import '../../styles/variables';
 .sidebar {
+  transition: all 1s ease;
+  max-height: 1140px;
+  min-height: 935px;
   .wrapper {
-    padding: 16px 20px 0 20px;
+    padding: 16px 20px 40px 20px;
     background: $main-blue-color;
-    min-height: 870px;
-    max-height: 1100px;
+    width: 316px;
     height: 100%;
     .logo_box {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 34px;
+      .button_show {
+        background: transparent;
+      }
     }
     .navigation {
       .list {
@@ -66,7 +71,7 @@
         color: $main-white;
         letter-spacing: 2px;
         line-height: 158%;
-        margin: 16px 0;
+        margin: 16px 0 10px 0;
         font-size: $overline-fz;
         font-weight: 400;
         text-transform: uppercase;

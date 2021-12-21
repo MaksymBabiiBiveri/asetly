@@ -14,7 +14,6 @@ module.exports = {
           '@image': './src/assets/images',
           '@components': './src/components',
           '@common': './src/components/Common',
-          '@templates': './src/components/Templates',
           '@helpers': './src/helpers',
         },
       },

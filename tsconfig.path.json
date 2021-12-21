@@ -2,7 +2,6 @@
   "compilerOptions": {
     "paths": {
       "@common": ["./src/components/Common"],
-      "@templates": ["./src/components/Templates"],
       "@components": ["./src/components"],
 
       "@assets/*": ["./src/assets/*"],

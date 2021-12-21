@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import classes from './Sidebar.module.scss';
 import {
   Asset,
@@ -96,12 +96,23 @@ const linkListUser: LinkListType[] = [
 ];
 
 const Sidebar: React.FC<SidebarProps> = () => {
+  const [visibility, setVisibility] = useState(false);
+
   return (
-    <aside className={cl(classes.sidebar, 'sidebar')}>
+    <aside
+      className={cl(classes.sidebar, 'sidebar', {
+        [classes.sidebar_show]: visibility,
+      })}
+    >
       <div className={classes.wrapper}>
         <div className={classes.logo_box}>
           <Logo />
-          <HideBar />
+          <button
+            className={classes.button_show}
+            onClick={() => setVisibility(!visibility)}
+          >
+            <HideBar />
+          </button>
         </div>
         <nav className={classes.navigation}>
           <ul className={classes.list}>

@@ -1,12 +1,16 @@
 @import 'src/styles/variables';
-.createNewCompany {
+
+.newCompany {
   &_wrapper {
-    padding: 24px 25px 50px 72px;
+    position: relative;
+    padding: 24px 25px 40px 72px;
     .header_box {
       display: flex;
       align-items: center;
       justify-content: space-between;
       .button_box {
+        position: absolute;
+        right: 25px;
         display: flex;
         align-items: center;
         button:first-child {
@@ -16,34 +20,34 @@
     }
     form {
       max-width: 918px;
+      width: 100%;
       .input_groups {
         display: flex;
-        align-items: flex-start;
         justify-content: space-between;
-        .input_group {
-          position: relative;
-          .input_group_title {
-            position: absolute;
-            top: -32px;
-            left: 0;
-            color: $typography-primary-color;
-          }
-          div {
-            margin-top: 32px;
-          }
-          &:first-child {
-            margin-right: 8%;
-          }
+        align-items: flex-start;
+        margin-top: 64px;
+        &:last-child {
+          margin-top: 0;
         }
-        &:first-child {
-          margin-top: 97px;
+        .input_box {
+          .input_group {
+            position: relative;
+
+            div:not(:first-child) {
+              margin-top: 30px;
+            }
+          }
+          .input_group_title {
+            color: $typography-primary-color;
+            margin-bottom: 25px;
+          }
         }
       }
       .divider {
         width: 100%;
         height: 2px;
         background: #374957;
-        margin: 80px 0 80px 0;
+        margin: 70px 0 30px 0;
       }
     }
   }

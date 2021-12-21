@@ -17,23 +17,22 @@ interface InputProps {
   id: string;
   placeholder: string;
   label: string;
-  type: keyof typeof InputType;
-  name: string;
+  type?: keyof typeof InputType;
   required?: boolean;
   disabled?: boolean;
   error?: boolean;
 }
 
-const Input: React.FC<InputProps> = (props) => {
+const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     id,
-    name,
     placeholder,
     label,
     type = 'text',
     required = false,
     disabled = false,
     error = false,
+    ...rest
   } = props;
 
   const InputIsRequired = required ? '*' : '';
@@ -46,9 +45,10 @@ const Input: React.FC<InputProps> = (props) => {
         placeholder={placeholder}
         id={id}
         type={type}
-        name={name}
         required={required}
         disabled={disabled}
+        ref={ref}
+        {...rest}
       />
       <label htmlFor={id} className={classes.label_input}>
         {label}
@@ -56,6 +56,6 @@ const Input: React.FC<InputProps> = (props) => {
       </label>
     </div>
   );
-};
+});
 
 export default Input;
