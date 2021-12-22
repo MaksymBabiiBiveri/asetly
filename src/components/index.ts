@@ -1,8 +1,6 @@
-import Input from './CustomInput';
-import Button from './Button';
 import EmptyPage from './EmptyPage';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import CustomSelect from './CustomSelect';
+import Form from './Form';
 
-export { Input, Button, EmptyPage, Header, Sidebar, CustomSelect };
+export { EmptyPage, Header, Sidebar, Form };

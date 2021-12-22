@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './styles/global.scss';
 
 import { useDispatch } from 'react-redux';
-import { GetToken } from './store/actions/application.action';
+import { GetToken } from '@Actions/application.action';
 import { Route, Routes } from 'react-router-dom';
 import Company from '@pages/Company';
 import { Header, Sidebar } from '@components';

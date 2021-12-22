@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './EmptyPage.module.scss';
-import { Button } from '@components';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@UiKitComponents';
 
 interface EmptyPageProps {
   textButton: 'Company' | 'Vendor';

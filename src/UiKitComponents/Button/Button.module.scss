@@ -1,4 +1,4 @@
-@import './src/styles/variables';
+@import '../../styles/variables';
 
 .button {
   height: $button-height;
@@ -25,7 +25,6 @@
   }
   &:disabled {
     background: $button-primary-disabled !important;
-    color: $button-primary-disabled !important;
   }
 }
 .button_secondary {

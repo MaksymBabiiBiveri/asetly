@@ -3,12 +3,16 @@
     "paths": {
       "@common": ["./src/components/Common"],
       "@components": ["./src/components"],
+      "@UiKitComponents": ["./src/UiKitComponents"],
+      "@RootStateType": ["./src/store"],
 
       "@assets/*": ["./src/assets/*"],
       "@pages/*": ["./src/pages/*"],
       "@icons/*": ["./src/assets/icons/*"],
       "@image/*": ["./src/assets/images/*"],
-      "@helpers/*": ["./src/helpers/*"]
+      "@helpers/*": ["./src/helpers/*"],
+      "@Types/*": ["./src/store/types/*"],
+      "@Actions/*": ["./src/store/actions/*"]
     }
   }
 }

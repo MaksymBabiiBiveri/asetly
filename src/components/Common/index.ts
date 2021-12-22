@@ -16,8 +16,10 @@ import Companies from './Companies';
 import Contracts from './Contracts';
 import Attributes from './Attributes';
 import Departments from './Departments';
+import Loader from './Loader';
 
 export {
+  Loader,
   Logo,
   HideBar,
   Dashboard,

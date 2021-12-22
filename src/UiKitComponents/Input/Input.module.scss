@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 
 .input_wrapper {
+  position: relative;
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
@@ -12,6 +13,15 @@
       margin-left: 3px;
       color: $form-required-star;
     }
+  }
+  .errorText {
+    position: absolute;
+    text-align: center;
+    bottom: -18px;
+    right: 0;
+    left: 0;
+    font-size: $body-fz-2;
+    color: $form-error;
   }
   .input {
     width: 355px;
