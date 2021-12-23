@@ -4,8 +4,10 @@ import './styles/global.scss';
 import { useDispatch } from 'react-redux';
 import { GetToken } from '@Actions/application.action';
 import { Route, Routes } from 'react-router-dom';
-import Company from '@pages/Company';
 import { Header, Sidebar } from '@components';
+import { Loader } from '@common';
+
+const Company = React.lazy(() => import('@pages/Company'));
 
 function App() {
   const dispatch = useDispatch();
@@ -22,9 +24,11 @@ function App() {
         <div className="content_wrapper">
           <Header />
           <section className="contents">
-            <Routes>
-              <Route path="companies/*" element={<Company />} />
-            </Routes>
+            <React.Suspense fallback={<Loader />}>
+              <Routes>
+                <Route path="companies/*" element={<Company />} />
+              </Routes>
+            </React.Suspense>
           </section>
         </div>
       </div>

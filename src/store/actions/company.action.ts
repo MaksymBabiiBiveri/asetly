@@ -4,7 +4,7 @@ import { GET_COMPANY_LIST, POST_NEW_COMPANY } from '../actionTypes';
 export const GetCompanyList = (): CompanyActions => ({
   type: GET_COMPANY_LIST,
   api: {
-    url: '/Company/GetCompanyList',
+    url: '/Firm/GetCompaniesList',
     method: 'GET',
   },
 });
@@ -14,7 +14,7 @@ export const postNewCompany = (
 ): CompanyActions => ({
   type: POST_NEW_COMPANY,
   api: {
-    url: '/Company/AddCompany',
+    url: '/Firm/AddFirm',
     method: 'POST',
     data: {
       ...newCompany,

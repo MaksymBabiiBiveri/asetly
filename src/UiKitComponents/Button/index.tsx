@@ -7,6 +7,7 @@ interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   onClick?: () => void;
+  formSubmit?: string;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {

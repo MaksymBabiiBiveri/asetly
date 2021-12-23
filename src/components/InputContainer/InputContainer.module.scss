@@ -1,0 +1,14 @@
+.inputContainer {
+  max-width: 918px;
+  width: 100%;
+
+  &_title {
+    margin: 35px 0 25px 0;
+  }
+  &_box {
+    display: grid;
+    grid-template-columns: 355px 355px;
+    grid-row-gap: 30px;
+    justify-content: space-between;
+  }
+}

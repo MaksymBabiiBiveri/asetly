@@ -1,36 +1,29 @@
 import React from 'react';
-
-import classes from './Input.module.scss';
 import cl from 'classnames';
+import classes from './InputBase.module.scss';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
-enum InputType {
-  button,
-  file,
-  password,
-  text,
-  submit,
-  number,
-}
-
-interface InputProps {
+interface InputBaseProps {
+  label: string;
   id: string;
   placeholder: string;
-  label: string;
+  type?: 'text' | 'number' | 'password';
   errorText?: string;
-  type?: keyof typeof InputType;
   required?: boolean;
   disabled?: boolean;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+const InputBase = React.forwardRef<
+  HTMLInputElement,
+  Partial<UseFormRegisterReturn> & InputBaseProps
+>((props, ref) => {
   const {
-    id,
-    placeholder,
     label,
     errorText,
+    id,
+    required,
+    placeholder,
     type = 'text',
-    required = false,
-    disabled = false,
     ...rest
   } = props;
 
@@ -41,11 +34,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     <div className={cl(classes.input_wrapper, InputError)}>
       <p className={classes.errorText}>{errorText}</p>
       <input
-        className={classes.input}
-        placeholder={placeholder}
-        id={id}
         type={type}
-        disabled={disabled}
+        id={id}
+        placeholder={placeholder}
         ref={ref}
         {...rest}
       />
@@ -56,5 +47,4 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     </div>
   );
 });
-
-export default Input;
+export default InputBase;

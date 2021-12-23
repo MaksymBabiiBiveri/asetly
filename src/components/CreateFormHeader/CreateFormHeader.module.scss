@@ -1,0 +1,12 @@
+.header_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .button_box {
+    display: flex;
+    align-items: center;
+    button:first-child {
+      margin-right: 35px;
+    }
+  }
+}

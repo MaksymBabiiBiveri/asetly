@@ -1,6 +1,7 @@
 import EmptyPage from './EmptyPage';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Form from './Form';
+import CreateFormHeader from './CreateFormHeader';
+import InputContainer from './InputContainer';
 
-export { EmptyPage, Header, Sidebar, Form };
+export { EmptyPage, Header, Sidebar, CreateFormHeader, InputContainer };

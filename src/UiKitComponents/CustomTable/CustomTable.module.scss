@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.customTable {
+  & > div {
+    table {
+      thead {
+        tr {
+          th {
+            color: $main-default-color;
+          }
+        }
+      }
+    }
+  }
+}
