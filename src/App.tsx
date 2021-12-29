@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { GetToken } from './store/actions/application.action';
 import { Route, Routes } from 'react-router-dom';
 import Company from '@pages/Company';
+import Vendors from '@pages/Vendors';
 import { Header, Sidebar } from '@components';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <section className="contents">
             <Routes>
               <Route path="companies/*" element={<Company />} />
+              <Route path="vendors/*" element={<Vendors />} />
             </Routes>
           </section>
         </div>

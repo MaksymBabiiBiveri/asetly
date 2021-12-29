@@ -19,6 +19,9 @@ const CompanyList: React.FC<CompanyListProps> = () => {
     }
   }, []);
 
+  console.log(companyList);
+  
+
   if (companyList && companyList.length) {
     return (
       <EmptyPage textButton="Company" redirectPath="newCompany">

@@ -4,7 +4,7 @@ import { GET_COMPANY_LIST } from '../actionTypes';
 export const GetCompanyList = (): CompanyActions => ({
   type: GET_COMPANY_LIST,
   api: {
-    url: '/Company/GetCompanyList',
+    url: '/Firm/GetCompaniesList',
     method: 'GET',
   },
 });
