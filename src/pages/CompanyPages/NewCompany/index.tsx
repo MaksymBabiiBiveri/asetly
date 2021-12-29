@@ -77,6 +77,7 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
                     id="TXN"
                     placeholder="TXN"
                     label="TXN"
+                    required
                     {...register('taxNumber')}
                   />
                 </InputContainer>
@@ -89,6 +90,7 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
                       placeholder="Choose city"
                       label="City"
                       type="number"
+                      required
                       {...register('cityId', { valueAsNumber: true })}
                     />
 

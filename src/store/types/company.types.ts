@@ -1,31 +1,30 @@
 import { BaseAction, Concat } from './index';
 import { GET_COMPANY_LIST, POST_NEW_COMPANY, SUCCESS } from '../actionTypes';
-import { City } from './definition.types';
+import { City } from '@Types/definition.types';
 
 export type CompanyTypes = {
-  partnerId: number;
-  partnerCode: string;
+  companyId: number;
+  companyCode: string;
   name: string;
-  email: string;
-  isInsurancePartner: null | string;
-  isSupplierPartner: null | string;
   cityId: number;
   address: string;
-  taxNumber: string;
+  taxNumber: number;
   taxOffice: string;
+  contactName: string;
   phone: string;
-  secondPhone: null | string;
+  secondPhone: string;
   description: string;
   createdDate: string;
   creatorId: number;
-  modifiedDate: null | string;
-  modifiedId: null | string;
-  isValid: boolean;
-  //TODO: как узнаем тип массива изменить any
-  contracts: any[];
-  nonCurrAssetsPartner: any[];
-  nonCurrAssetsInsurancePartner: any[];
+  modifiedDate: string;
+  modifiedId: number;
+  isActive: boolean;
   city: City;
+  //TODO: как узнаем тип массива изменить any
+  logo: any;
+  contracts: any[];
+  companyMenus: any[];
+  userAuthorizedCompanies: any[];
 };
 
 export type NewCompanyTypes = {

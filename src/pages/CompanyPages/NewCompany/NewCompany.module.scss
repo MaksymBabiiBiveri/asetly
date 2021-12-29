@@ -5,7 +5,8 @@
     position: relative;
     padding: 24px 25px 40px 72px;
     .form_box {
-      width: 918px;
+      max-width: 918px;
+      width: 100%;
     }
     .helper_box {
       display: grid;

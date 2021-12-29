@@ -13,7 +13,7 @@ const Loader: React.FC<LoaderProps> = () => {
         left: 0,
         right: 0,
         margin: 'auto',
-        background: 'rgb(255, 255, 255)',
+        background: 'transparent',
         display: 'block',
         shapeRendering: 'auto',
       }}

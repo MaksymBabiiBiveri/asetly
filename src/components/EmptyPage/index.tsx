@@ -18,7 +18,7 @@ const EmptyPage: React.FC<EmptyPageProps> = (props) => {
     <div className={classes.emptyPage}>
       <div className={classes.emptyPage_wrapper}>
         <div className={classes.emptyPage_button_wrapper}>
-          <Button type="button" color="primary" onClick={onClick}>
+          <Button type="button" variant="primary" onClick={onClick}>
             New {textButton}
           </Button>
         </div>

@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+
+.custom_checkbox.rs-checkbox-checked {
+  .rs-checkbox-wrapper {
+    .rs-checkbox-inner {
+      &:before {
+        border-color: $checkbox-main-color;
+        background: transparent;
+      }
+      &:after {
+        border-color: $checkbox-main-color;
+      }
+    }
+  }
+}
+.custom_checkbox {
+  .rs-checkbox-wrapper {
+    &:hover {
+      .rs-checkbox-inner {
+        &:before {
+          border-color: $checkbox-main-color;
+        }
+      }
+    }
+  }
+}

@@ -35,6 +35,11 @@
             position: relative;
             z-index: 2;
           }
+          &:hover a,
+          &:active a,
+          &:focus a {
+            color: $typography-default-color;
+          }
           &:hover a:before,
           &:active a:before,
           &:focus a:before {

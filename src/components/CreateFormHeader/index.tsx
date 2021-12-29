@@ -19,11 +19,11 @@ const CreateFormHeader: React.FC<CreateFormHeaderProps> = (props) => {
     <div className={classes.header_box}>
       <h5>{title}</h5>
       <div className={classes.button_box}>
-        <Button color="outline" onClick={backPageHandler}>
+        <Button variant="outline" onClick={backPageHandler}>
           Cancel
         </Button>
         <Button
-          color="primary"
+          variant="primary"
           type="submit"
           disabled={!!Object.keys(errors).length && true}
         >

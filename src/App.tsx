@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './styles/global.scss';
 
 import { useDispatch } from 'react-redux';
 import { GetToken } from '@Actions/application.action';

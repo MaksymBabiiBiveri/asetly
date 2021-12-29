@@ -1,105 +1,134 @@
-import React from 'react';
-import {
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  styled,
-  TableCell,
-  tableCellClasses,
-  TableBody,
-  tableRowClasses,
-  Checkbox,
-} from '@mui/material';
-import classes from './CustomTable.module.scss';
-import { RootState } from '@RootStateType';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { Pagination, Table } from 'rsuite';
+import { DataKeyType } from '@Types/application.types';
+import { CheckboxCell } from '@UiKitComponents';
+import './CustomTable.scss';
 
-interface CustomTableProps {}
+type DataType = {
+  [k: string]: any;
+  activeStatus?: 'ACTIVE' | null;
+};
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.white,
-    color: '#264f7a',
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-const StyledTableCellHead = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.white,
-    color: '#264f7a',
-    textTransform: 'uppercase',
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-const StyledTableRow = styled(TableRow)(() => ({
-  '&:nth-of-type(even)': {
-    backgroundColor: '#fff',
-  },
-  '&:nth-of-type(odd)': {
-    backgroundColor: '#EDF6FF',
-  },
-  ':hover': {
-    backgroundColor: '#EDF6FF',
-  },
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-  [`&.${tableRowClasses.root}`]: {
-    transition: 'all 0.5s ease',
-    cursor: 'pointer',
-  },
-}));
+interface CustomTableProps {
+  data: DataType[];
+  dataKey: DataKeyType[];
+  dataKeyCheckbox: string;
+  setCheckedItemsList(state: string[] | number[]): void;
+}
 
-const getStateCompanyList = (state: RootState) =>
-  state.CompanyReducer.companyList;
+const CustomTable: React.FC<CustomTableProps> = (props) => {
+  const { data, dataKey, dataKeyCheckbox, setCheckedItemsList } = props;
 
-const CustomTable: React.FC<CustomTableProps> = () => {
-  const companyList = useSelector(getStateCompanyList);
+
+  const [sortColumn, setSortColumn] = React.useState<string>();
+  const [sortType, setSortType] = React.useState<'desc' | 'asc'>();
+  const [loading, setLoading] = React.useState(false);
+
+  const [checkedKeys, setCheckedKeys] = React.useState<any[]>([]);
+  const [limitPage, setLimitPage] = useState(15);
+  const [page, setPage] = useState(1);
+
+  const handleChangeLimit = (key: number) => {
+    setPage(1);
+    setLimitPage(key);
+  };
+
+  const filteredData = data.filter((v, i) => {
+    const start = limitPage * (page - 1);
+    const end = start + limitPage;
+    return i >= start && i < end;
+  });
+
+  const handleCheck = (value?: string | number, checked?: boolean) => {
+    const keys = checked
+      ? [...checkedKeys, value]
+      : checkedKeys.filter((item: any) => item !== value);
+    setCheckedItemsList(keys);
+    setCheckedKeys(keys);
+  };
+
+  const getData = () => {
+    if (sortColumn && sortType) {
+      return filteredData.sort((a, b) => {
+        let x = a[sortColumn];
+        let y = b[sortColumn];
+
+        if (typeof x === 'string') {
+          x = x.charCodeAt(0);
+        }
+        if (typeof y === 'string') {
+          y = y.charCodeAt(0);
+        }
+        if (sortType === 'asc') {
+          return x - y;
+        } else {
+          return y - x;
+        }
+      });
+    }
+    return filteredData;
+  };
+
+  const handleSortColumn = (
+    sortColumns: string,
+    sortTypes?: 'desc' | 'asc'
+  ) => {
+    setLoading(true);
+    setSortColumn(sortColumns);
+    setSortType(sortTypes);
+    setLoading(false);
+  };
 
   return (
-    <div className={classes.customTable}>
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell padding="checkbox">
-                <Checkbox
-                  color="primary"
-                  inputProps={{
-                    'aria-label': 'select all desserts',
-                  }}
-                />
-              </TableCell>
-              <StyledTableCellHead>COMPANY NAME</StyledTableCellHead>
-              <StyledTableCellHead align="right">TXN</StyledTableCellHead>
-              <StyledTableCellHead align="right">PHONE</StyledTableCellHead>
-              <StyledTableCellHead align="right">CITY</StyledTableCellHead>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {companyList.map((company) => (
-              <StyledTableRow key={company.name}>
-                <TableCell padding="checkbox">
-                  <Checkbox color="primary" />
-                </TableCell>
-                <StyledTableCell>{company.name}</StyledTableCell>
-                <StyledTableCell align="right">
-                  {company.createdDate}
-                </StyledTableCell>
-                <StyledTableCell align="right">{company.name}</StyledTableCell>
-                <StyledTableCell align="right">
-                  {company.address}
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+    <div className="table_wrapper">
+      <Table
+        hover={false}
+        height={670}
+        sortColumn={sortColumn}
+        sortType={sortType}
+        onSortColumn={handleSortColumn}
+        loading={loading}
+        data={getData()}
+        rowClassName="custom_row"
+      >
+        <Table.Column width={50} align="center">
+          <Table.HeaderCell style={{ padding: 0 }}>
+            <div> </div>
+          </Table.HeaderCell>
+          <CheckboxCell
+            dataKey={dataKeyCheckbox}
+            checkedKeys={checkedKeys}
+            onChange={handleCheck}
+          />
+        </Table.Column>
+
+        {dataKey.map((dataItem) => {
+          const { key, label, ...rest } = dataItem;
+          return (
+            <Table.Column {...rest} key={key}>
+              <Table.HeaderCell>{label}</Table.HeaderCell>
+              <Table.Cell dataKey={key} />
+            </Table.Column>
+          );
+        })}
+      </Table>
+      <div className="pagination_wrapper">
+        <Pagination
+          prev
+          next
+          ellipsis
+          boundaryLinks
+          maxButtons={2}
+          size="sm"
+          layout={['limit', 'pager']}
+          total={data.length}
+          limitOptions={[10, 15]}
+          limit={limitPage}
+          activePage={page}
+          onChangePage={setPage}
+          onChangeLimit={handleChangeLimit}
+        />
+      </div>
     </div>
   );
 };

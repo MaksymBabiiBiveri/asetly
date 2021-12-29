@@ -1,18 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import classes from './CompanyList.module.scss';
-
 import { GetCompanyList } from '@Actions/company.action';
 import { CompanyState } from '@Types/company.types';
 import { RootState } from '@RootStateType';
-
-import { EmptyPage } from '@components';
-import { Button, CustomTable } from '@UiKitComponents';
+import { EmptyPage, TableHeaderActions } from '@components';
+import { CustomTable } from '@UiKitComponents';
 import { Loader } from '@common';
-import { useNavigate } from 'react-router-dom';
+import { DataKeyType } from '@Types/application.types';
 
 interface CompanyListProps {}
+
+const dataKeyCompanyList: DataKeyType[] = [
+  {
+    key: 'companyId',
+    label: 'Company Id',
+    align: 'center',
+    width: 110,
+    sortable: true,
+  },
+  {
+    key: 'name',
+    label: 'Company Name',
+    align: 'center',
+    flexGrow: 1,
+    sortable: true,
+  },
+
+  {
+    key: 'companyCode',
+    label: 'Company Code',
+    align: 'center',
+    flexGrow: 1,
+  },
+  {
+    key: 'address',
+    label: 'Address',
+    align: 'center',
+    flexGrow: 1,
+    sortable: true,
+  },
+];
 
 const getCompanyState = (state: RootState) => state.CompanyReducer;
 
@@ -20,8 +48,10 @@ const CompanyList: React.FC<CompanyListProps> = () => {
   const { companyList, loadingCompany } = useSelector<RootState, CompanyState>(
     getCompanyState
   );
+  const [checkedItemsList, setCheckedItemsList] = useState<number[] | string[]>(
+    []
+  );
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!companyList.length) {
@@ -45,20 +75,16 @@ const CompanyList: React.FC<CompanyListProps> = () => {
   return (
     <div className={classes.companyList}>
       <div className={classes.companyList_wrapper}>
-        <div className={classes.button_wrapper}>
-          <Button
-            color="primary"
-            onClick={() => navigate('/Companies/newCompany')}
-          >
-            test
-          </Button>
-        </div>
-        {/*<div className={classes.companyList_table_wrapper}>*/}
-        {/*  {companyList.map((el) => (*/}
-        {/*    <div key={el.name}>{el.name}</div>*/}
-        {/*  ))}*/}
-        {/*</div>*/}
-        <CustomTable />
+        <TableHeaderActions
+          checkedItemsList={checkedItemsList}
+          pageCreatingUrl="/Companies/newCompany"
+        />
+        <CustomTable
+          data={companyList}
+          dataKey={dataKeyCompanyList}
+          dataKeyCheckbox="companyId"
+          setCheckedItemsList={setCheckedItemsList}
+        />
       </div>
     </div>
   );
