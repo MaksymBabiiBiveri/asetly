@@ -9,6 +9,9 @@ export type DataKeyType = {
   width?: number;
   sortable?: boolean;
 };
+export type UnknownDataType = {
+  [key: string]: any;
+};
 
 export type ErrorType = {
   [key: string]: string;

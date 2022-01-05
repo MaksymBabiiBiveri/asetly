@@ -2,7 +2,7 @@ import { BaseAction, Concat } from './index';
 import { GET_COMPANY_LIST, POST_NEW_COMPANY, SUCCESS } from '../actionTypes';
 import { City } from '@Types/definition.types';
 
-export type CompanyTypes = {
+export type CompanyType = {
   companyId: number;
   companyCode: string;
   name: string;
@@ -27,13 +27,13 @@ export type CompanyTypes = {
   userAuthorizedCompanies: any[];
 };
 
-export type NewCompanyTypes = {
-  partnerCode: string;
+export type NewCompanyType = {
+  companyCode: string;
   name: string;
   address: string;
   phone: string;
-  email?: string;
   cityId: number;
+  contactName?: string;
   taxNumber?: string;
   taxOffice?: string;
   secondPhone?: string;
@@ -41,7 +41,7 @@ export type NewCompanyTypes = {
 };
 
 export interface CompanyState {
-  companyList: CompanyTypes[] | [];
+  companyList: CompanyType[] | [];
   loadingCompany: boolean;
 }
 
@@ -50,7 +50,7 @@ export interface GetCompanyListSuccess
   extends BaseAction<Concat<typeof GET_COMPANY_LIST, typeof SUCCESS>> {
   response: {
     resultStatus: boolean;
-    resultObject: CompanyTypes[];
+    resultObject: CompanyType[];
   };
 }
 
@@ -58,7 +58,7 @@ export interface PostNewCompany extends BaseAction<typeof POST_NEW_COMPANY> {}
 export interface PostNewCompanySuccess
   extends BaseAction<Concat<typeof POST_NEW_COMPANY, typeof SUCCESS>> {
   response: {
-    resultObject: CompanyTypes;
+    resultObject: CompanyType;
   };
 }
 

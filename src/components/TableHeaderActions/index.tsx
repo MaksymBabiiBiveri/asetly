@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './ListHeaderActions.module.scss';
 import { Button, SearchInput } from '@UiKitComponents';
 import { useNavigate } from 'react-router-dom';
-import { Export, FilterBtn, Import } from '@common';
+import { Export, Import } from '@common';
 
 interface TableHeaderActionsProps {
   pageCreatingUrl: string;
@@ -30,9 +30,6 @@ const TableHeaderActions: React.FC<TableHeaderActionsProps> = (props) => {
       <div className={classes.button_wrapper}>
         {!checkedItemsList.length ? (
           <>
-            <Button variant="icon">
-              <FilterBtn />
-            </Button>
             <Button
               variant="secondary"
               onClick={actionButtonExport}

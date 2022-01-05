@@ -15,14 +15,14 @@ const dataKeyCompanyList: DataKeyType[] = [
   {
     key: 'companyId',
     label: 'Company Id',
-    align: 'center',
+    align: 'left',
     width: 110,
     sortable: true,
   },
   {
     key: 'name',
     label: 'Company Name',
-    align: 'center',
+    align: 'left',
     flexGrow: 1,
     sortable: true,
   },
@@ -30,13 +30,13 @@ const dataKeyCompanyList: DataKeyType[] = [
   {
     key: 'companyCode',
     label: 'Company Code',
-    align: 'center',
+    align: 'left',
     flexGrow: 1,
   },
   {
     key: 'address',
     label: 'Address',
-    align: 'center',
+    align: 'left',
     flexGrow: 1,
     sortable: true,
   },
@@ -57,7 +57,7 @@ const CompanyList: React.FC<CompanyListProps> = () => {
     if (!companyList.length) {
       dispatch(GetCompanyList());
     }
-  }, []);
+  }, [companyList]);
 
   if (loadingCompany) {
     return <Loader />;
@@ -82,7 +82,7 @@ const CompanyList: React.FC<CompanyListProps> = () => {
         <CustomTable
           data={companyList}
           dataKey={dataKeyCompanyList}
-          dataKeyCheckbox="companyId"
+          currentDataKey="companyId"
           setCheckedItemsList={setCheckedItemsList}
         />
       </div>
