@@ -1,50 +1,59 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { UnknownDataType } from '@Types/application.types';
 
-type DataType<T> = {
-  [KeyType in keyof T]: T[KeyType];
+type OptionsType = {
+  loading: boolean;
+  sortColumn?: string;
+  sortType?: 'desc' | 'asc';
 };
 
-type ReturnedData<T> = {
-  loading?: boolean;
-  sortedData: T[];
-  sortColumnMethod: (column: string, type: 'desc' | 'asc') => void;
-};
+const useSortDataTable = (
+  data: UnknownDataType[]
+): [
+  sortedData: UnknownDataType,
+  options: OptionsType,
+  handleSortColumn: (sortColumn: string, sortType?: 'desc' | 'asc') => void
+] => {
+  const [sortedData, setSortedData] = useState<UnknownDataType[]>(data);
+  const [sortColumn, setSortColumn] = useState<string | undefined>();
+  const [sortType, setSortType] = useState<'desc' | 'asc' | undefined>();
+  const [loading, setLoading] = useState(false);
 
-export function useSortDataTable<T>(data: DataType<T>[]): ReturnedData<T> {
-  const [sortColumn, setSortColumn] = useState<string>();
-  const [sortType, setSortType] = React.useState<'desc' | 'asc'>();
-  const [loading, setLoading] = React.useState(false);
-
-  const getData = () => {
+  const sortColumns = () => {
     if (sortColumn && sortType) {
-      return data.sort(
-        (a: { [key: string]: any }, b: { [key: string]: any }) => {
-          let x = a[sortColumn];
-          let y = b[sortColumn];
+      return data.sort((a, b) => {
+        let x = a[sortColumn];
+        let y = b[sortColumn];
 
-          if (typeof x === 'string') {
-            x = x.charCodeAt(0);
-          }
-          if (typeof y === 'string') {
-            y = y.charCodeAt(0);
-          }
-          if (sortType === 'asc') {
-            return x - y;
-          } else {
-            return y - x;
-          }
+        if (typeof x === 'string') {
+          x = x.charCodeAt(0);
         }
-      );
+        if (typeof y === 'string') {
+          y = y.charCodeAt(0);
+        }
+        if (sortType === 'asc') {
+          return x - y;
+        } else {
+          return y - x;
+        }
+      });
     }
     return data;
   };
-  const sortedData = getData();
-  const handleSortColumn = (column: string, type: 'desc' | 'asc') => {
+  const handleSortColumn = (sortColumn: string, sortType?: 'desc' | 'asc') => {
     setLoading(true);
-    setSortColumn(column);
-    setSortType(type);
+    setSortColumn(sortColumn);
+    setSortType(sortType);
+    setSortedData(sortColumns());
     setLoading(false);
   };
 
-  return { sortedData, loading, sortColumnMethod: handleSortColumn };
-}
+  const options = {
+    loading,
+    sortColumn,
+    sortType,
+  };
+  return [sortedData, options, handleSortColumn];
+};
+
+export default useSortDataTable;

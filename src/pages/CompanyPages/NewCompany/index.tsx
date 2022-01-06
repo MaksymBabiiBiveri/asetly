@@ -4,9 +4,8 @@ import classes from './NewCompany.module.scss';
 import { RootState } from '@RootStateType';
 import { getCitiesList } from '@Actions/definition.action';
 import { InputBase, Form, Divider } from '@UiKitComponents';
-import { NewCompanyTypes } from '@Types/company.types';
+import { NewCompanyType } from '@Types/company.types';
 import { postNewCompany } from '@Actions/company.action';
-import { useNavigate } from 'react-router-dom';
 import { Loader } from '@common';
 import { schemaNewCompany } from '@helpers/yupSchemas';
 import { CreateFormHeader, InputContainer } from '@components';
@@ -21,13 +20,9 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
   const { citiesList, loadingDefinition } = useSelector(getDefinitionState);
   const loadingCompany = useSelector(getLoadingCompany);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const onSubmit = (newCompany: NewCompanyTypes) => {
-    dispatch(postNewCompany(newCompany));
-    if (!loadingCompany) {
-      navigate('/Companies');
-    }
+  const onSubmit = (newCompany: NewCompanyType) => {
+    dispatch(postNewCompany(newCompany, '/Companies'));
   };
 
   useEffect(() => {
@@ -43,7 +38,7 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
   return (
     <div className={classes.newCompany}>
       <div className={classes.newCompany_wrapper}>
-        <Form<NewCompanyTypes> onSubmit={onSubmit} yupSchema={schemaNewCompany}>
+        <Form<NewCompanyType> onSubmit={onSubmit} yupSchema={schemaNewCompany}>
           {({ register, formState: { errors } }) => (
             <>
               <CreateFormHeader title="New Company" errors={errors} />
@@ -58,12 +53,12 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
                     {...register('name')}
                   />
                   <InputBase
-                    errorText={errors.partnerCode?.message}
+                    errorText={errors.companyCode?.message}
                     id="CompanyCode"
                     placeholder="Company code"
-                    label="Partner code"
+                    label="Company code"
                     required
-                    {...register('partnerCode')}
+                    {...register('companyCode')}
                   />
                   <InputBase
                     errorText={errors.taxOffice?.message}
@@ -78,7 +73,7 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
                     placeholder="TXN"
                     label="TXN"
                     required
-                    {...register('taxNumber')}
+                    {...register('taxNumber', { valueAsNumber: true })}
                   />
                 </InputContainer>
                 <Divider margin="50px 0 30px 0" />
@@ -105,11 +100,12 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
                   </InputContainer>
                   <InputContainer title="Contacts">
                     <InputBase
-                      errorText={errors.email?.message}
+                      errorText={errors.contactName?.message}
                       id="Email"
                       placeholder="Email"
                       label="Email"
-                      {...register('email')}
+                      required
+                      {...register('contactName')}
                     />
                     <InputBase
                       errorText={errors.phone?.message}

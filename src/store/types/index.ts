@@ -10,7 +10,6 @@ export type Api<Data = undefined> = {
 };
 
 export type Redirect = {
-  history: any;
   path: string;
 };
 

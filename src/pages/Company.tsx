@@ -12,7 +12,7 @@ const Company: React.FC<CompaniesProps> = () => {
       <Routes>
         <Route path="/" element={<CompanyList />} />
         <Route path="newCompany" element={<NewCompany />} />
-        <Route path="editCompany" element={<EditCompany />} />
+        <Route path=":idCompany" element={<EditCompany />} />
       </Routes>
     </>
   );
