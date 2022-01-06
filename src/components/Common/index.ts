@@ -16,8 +16,15 @@ import Companies from './Companies';
 import Contracts from './Contracts';
 import Attributes from './Attributes';
 import Departments from './Departments';
+import Loader from './Loader';
+import FilterBtn from './FilterBtn';
+import Export from './Export';
+import Import from './Import';
 
 export {
+  Import,
+  Export,
+  Loader,
   Logo,
   HideBar,
   Dashboard,
@@ -36,4 +43,5 @@ export {
   Contracts,
   Attributes,
   Departments,
+  FilterBtn,
 };

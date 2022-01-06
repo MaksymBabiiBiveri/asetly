@@ -2,10 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eab7ad4-2e29-48e7-86e4-5e061ccb3b19" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CheckboxCell/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomCheckbox/CustomCheckbox.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomCheckbox/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomTable/CustomTable.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomTableRS/CustomTableRs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomTableRS/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/SearchInput/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Common/Export.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Common/FilterBtn.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Common/Import.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TableHeaderActions/ListHeaderActions.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TableHeaderActions/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/useSortDataTable.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/Button/Button.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/Button/Button.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/Button/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/Button/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomTable/CustomTable.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomTable/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Common/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Common/Dashboard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Common/Departments.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Common/Departments.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Common/Depreciation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Common/Depreciation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Common/Loader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Common/Loader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Common/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Common/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateFormHeader/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateFormHeader/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EmptyPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EmptyPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/functions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/functions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/CompanyList/CompanyList.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/CompanyList/CompanyList.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/CompanyList/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/CompanyList/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/NewCompany/NewCompany.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/NewCompany/NewCompany.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/NewCompany/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/NewCompany/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/types/application.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/types/application.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/types/company.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/types/company.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/_variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +71,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="company_pages" />
-                    <option name="lastUsedInstant" value="1640085123" />
+                    <option name="lastUsedInstant" value="1640087277" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="dev" />
+                    <option name="lastUsedInstant" value="1640086026" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
@@ -60,13 +102,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../eject_esetly" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="ts.external.directory.path" value="D:\Makiaveli\Biveri\asetly\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -74,6 +116,9 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Makiaveli\Biveri\asetly\src\UiKitComponents" />
+      <recent name="D:\Makiaveli\Biveri\asetly\src" />
+      <recent name="D:\Makiaveli\Biveri\asetly\src\components\UiKit" />
       <recent name="$PROJECT_DIR$/src/assets/image" />
     </key>
   </component>
@@ -90,7 +135,17 @@
       <workItem from="1640084613065" duration="6000" />
       <workItem from="1640084631798" duration="1000" />
       <workItem from="1640084702649" duration="53000" />
-      <workItem from="1640084765477" duration="990000" />
+      <workItem from="1640084765477" duration="2108000" />
+      <workItem from="1640087753351" duration="1793000" />
+      <workItem from="1640089589830" duration="28798000" />
+      <workItem from="1640175591719" duration="15794000" />
+      <workItem from="1640199419247" duration="14577000" />
+      <workItem from="1640255220958" duration="5536000" />
+      <workItem from="1640282969809" duration="2295000" />
+      <workItem from="1640332226081" duration="12714000" />
+      <workItem from="1640425797605" duration="15003000" />
+      <workItem from="1640455404135" duration="12515000" />
+      <workItem from="1640517973035" duration="13925000" />
     </task>
     <servers />
   </component>

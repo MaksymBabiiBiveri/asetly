@@ -1,6 +1,7 @@
-@import './src/styles/variables';
+@import '../../styles/variables';
 
 .button {
+  position: relative;
   height: $button-height;
   width: $button-width;
   font-size: $button-fz;
@@ -10,10 +11,38 @@
   text-align: center;
   border-radius: 4px;
   transition: $transition;
+  .icon {
+    display: inline-block;
+    margin-right: 5px;
+    svg {
+      path {
+        fill: $button-primary-default;
+        stroke: $button-primary-default;
+      }
+    }
+  }
+  &:disabled {
+    .icon {
+      svg {
+        path {
+          fill: #fff;
+          stroke: #fff;
+        }
+      }
+    }
+  }
 }
 .button_primary {
   color: $button-primary-text;
   background: $button-primary-default;
+  .icon {
+    svg {
+      path {
+        fill: #fff;
+        stroke: #fff;
+      }
+    }
+  }
   &:hover {
     background: $button-primary-hover;
   }
@@ -25,7 +54,6 @@
   }
   &:disabled {
     background: $button-primary-disabled !important;
-    color: $button-primary-disabled !important;
   }
 }
 .button_secondary {
@@ -63,5 +91,43 @@
   &:disabled {
     border-color: $button-outline-disabled !important;
     color: $button-outline-disabled !important;
+  }
+}
+.button_icon {
+  background: transparent;
+  width: 50px;
+  svg {
+    width: 25px;
+    height: 25px;
+    path {
+      fill: $main-blue-color;
+    }
+  }
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    margin: 0 auto;
+    border-radius: 50%;
+    transition: box-shadow 0.5s ease;
+  }
+  &:hover {
+    &:before {
+      box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+    }
+  }
+  &:active {
+    &:before {
+      box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px 0 inset;
+    }
+  }
+  &:disabled {
+    svg {
+      path {
+        fill: #949494;
+      }
+    }
   }
 }

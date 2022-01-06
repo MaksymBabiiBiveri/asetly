@@ -24,6 +24,7 @@ export type City = {
 
 export interface DefinitionState {
   citiesList: City[];
+  loadingDefinition: boolean;
 }
 
 export interface GetCitiesList extends BaseAction<typeof GET_CITIES_LIST> {}

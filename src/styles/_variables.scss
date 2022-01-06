@@ -13,26 +13,27 @@ $button-height: 40px;
 $transition: all 0.5s ease;
 
 // Font-size
-$h1-fz: 96;
-$h2-fz: 60;
-$h3-fz: 48;
-$h4-fz: 34;
-$h5-fz: 28;
-$subtitle-fz-1: 16;
-$subtitle-fz-2: 14;
-$body-fz-1: 16;
-$body-fz-2: 14;
-$button-fz: 16;
-$caption-fz: 12;
-$overline-fz: 10;
-$label-fz: 12;
-$menu-title-default-fz: 16;
-$menu-title-active-fz: 16;
-$menu-subtitle-default-fz: 15;
-$menu-subtitle-active-fz: 15;
-$form-placeholder-fz: 16;
-$form-title-fz: 12;
-$form-description-fz: 12;
+$h1-fz: 96px;
+$h2-fz: 60px;
+$h3-fz: 48px;
+$h4-fz: 34px;
+$h5-fz: 28px;
+$subtitle-fz-1: 16px;
+$subtitle-fz-2: 14px;
+$body-fz-1: 16px;
+$body-fz-2: 14px;
+$button-fz: 16px;
+$caption-fz: 12px;
+$overline-fz: 10px;
+$label-fz: 12px;
+$menu-title-default-fz: 16px;
+$menu-title-active-fz: 16px;
+$menu-subtitle-default-fz: 15px;
+$menu-subtitle-active-fz: 15px;
+$form-placeholder-fz: 16px;
+$form-title-fz: 12px;
+$form-description-fz: 12px;
+$table-cell-fz: 16px;
 
 // COLORS
 /*
@@ -87,3 +88,11 @@ $button-outline-hover: #00458a;
 $button-outline-disabled: #d2d2d2;
 $button-outline-pressed: #97d5ff;
 $button-outline-fill: transparent;
+// Table
+$cell-odd-background: #edf6ff;
+$cell-even-background: #fff;
+$cell-color: #374957;
+$header-table-background: #fff;
+$header-table-color: #60788b;
+// Checkbox
+$checkbox-main-color: #032f5c;

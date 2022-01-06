@@ -1,0 +1,55 @@
+@import '../../styles/variables';
+
+.table_wrapper {
+  .rs-table-body-row-wrapper {
+    .custom_row {
+      &:nth-of-type(odd) {
+        background-color: $cell-odd-background;
+      }
+      &:nth-of-type(even) {
+        background-color: $cell-even-background;
+      }
+      .rs-table-cell {
+        background-color: transparent;
+        .rs-table-cell-content {
+          font-size: $table-cell-fz;
+          color: $cell-color;
+        }
+      }
+    }
+  }
+  .pagination_wrapper {
+    .rs-pagination-group {
+      .rs-pagination-group-limit {
+        order: 1;
+        .rs-picker.rs-picker-select {
+          .rs-picker-toggle-value {
+            span {
+              &:last-child {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+      .rs-pagination {
+        margin: 0 auto;
+        .rs-pagination-symbol {
+          svg {
+            width: 1rem;
+            height: 1rem;
+          }
+        }
+        .rs-pagination-btn.rs-pagination-btn-active {
+          border: 1px solid $form-background-mint;
+          background: $form-background-mint;
+          color: $typography-primary-color;
+          font-weight: 700;
+        }
+        .rs-pagination-btn {
+          color: $typography-primary-color;
+        }
+      }
+    }
+  }
+}

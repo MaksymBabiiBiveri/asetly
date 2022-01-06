@@ -1,123 +1,134 @@
-import React, { useEffect } from 'react';
-import classes from './NewVendor.module.scss';
-import { Button, Input } from '@components';
-import { useForm } from 'react-hook-form';
+import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../store';
-import { City } from '../../../store/types/definition.types';
-import { getCitiesList } from '../../../store/actions/definition.action';
+import classes from './NewVendor.module.scss';
+import { RootState } from '@RootStateType';
+import { getCitiesList } from '@Actions/definition.action';
+import { InputBase, Form, Divider } from '@UiKitComponents';
+import { NewVendorTypes } from '@Types/vendor.types';
+import { postNewVendor } from '@Actions/vendor.action';
+import { useNavigate } from 'react-router-dom';
+import { Loader } from '@common';
+import { schemaNewCompany } from '@helpers/yupSchemas';
+import { CreateFormHeader, InputContainer } from '@components';
 
 interface NewVendorProps {}
 
-const newVendor: React.FC<NewVendorProps> = () => {
-    const { register, handleSubmit } = useForm();
-    const onSubmit = (data: any) => console.log(data);
-    const citiesList = useSelector<RootState, City[]>(
-        (state) => state.DefinitionReducer.citiesList
-    );
+const getDefinitionState = (state: RootState) => 
+  state.DefinitionReducer;
+const getLoadingVendor = (state: RootState) => 
+  state.VendorReducer.loadingVendor;
+
+  const NewVendor: React.FC<NewVendorProps> = () => {
+    const { citiesList, loadingDefinition } = useSelector(getDefinitionState);
+    const loadingVendor = useSelector(getLoadingVendor);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+  
+  const onSubmit = (newVendor: NewVendorTypes) => {
+    dispatch(postNewVendor(newVendor));
+    if (!loadingVendor) {
+      navigate('/Vendors');
+    }
+  };
 
-    useEffect(() => {
-        if (!citiesList.length) {
-            dispatch(getCitiesList());
-        }
-    });
+  useEffect(() => {
+    if (!citiesList.length && !loadingDefinition) {
+      dispatch(getCitiesList());
+    }
+  });
 
-    return (
-        <div className={classes.newVendor}>
-          <div className={classes.newVendor_wrapper}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className={classes.header_box}>
-                <h5>New Vendor</h5>
-                <div className={classes.button_box}>
-                  <Button color="outline">Cancel</Button>
-                  <Button color="primary" type="submit">
-                    Save
-                  </Button>
-                </div>
-              </div>
-              <div className={classes.input_groups}>
-                <div className={classes.input_box}>
-                  <h5 className={classes.input_group_title}>Summary</h5>
-                  <div className={classes.input_group}>
-                    <Input
-                      id="VendorName"
-                      placeholder="Vendor name"
-                      label="Vendor name"
+  if (loadingVendor || loadingDefinition) {
+    return <Loader />;
+  }
+
+  return (
+    <div className={classes.newVendor}>
+      <div className={classes.newVendor_wrapper}>
+        <Form<NewVendorTypes> onSubmit={onSubmit} yupSchema={schemaNewCompany}>
+          {({ register, formState: { errors } }) => (
+            <>
+              <CreateFormHeader title="New Vendor" errors={errors} />
+              <div className={classes.form_box}>
+                <InputContainer title="Summary">
+                  <InputBase
+                    errorText={errors.name?.message}
+                    id="VendorName"
+                    placeholder="Vendor name"
+                    label="Vendor name"
+                    required
+                    {...register('name')}
+                  />
+                  <InputBase
+                    errorText={errors.partnerCode?.message}
+                    id="VendorCode"
+                    placeholder="Vendor code"
+                    label="Partner code"
+                    required
+                    {...register('partnerCode')}
+                  />
+                  <InputBase
+                    errorText={errors.taxOffice?.message}
+                    id="TaxOffice"
+                    placeholder="Tax Office"
+                    label="Tax Office"
+                    {...register('taxOffice')}
+                  />
+                  <InputBase
+                    errorText={errors.taxNumber?.message}
+                    id="TXN"
+                    placeholder="TXN"
+                    label="TXN"
+                    required
+                    {...register('taxNumber')}
+                  />
+                </InputContainer>
+                <Divider margin="50px 0 30px 0" />
+                <div className={classes.helper_box}>
+                  <InputContainer title="Location">
+                    <InputBase
+                      errorText={errors.cityId?.message}
+                      id="City"
+                      placeholder="Choose city"
+                      label="City"
+                      type="number"
                       required
-                      {...register('name')}
+                      {...register('cityId', { valueAsNumber: true })}
                     />
-                    <Input
-                      id="VendorCode"
-                      placeholder="Vendor code"
-                      label="Vendor code"
-                      required
-                      {...register('vendorCode')}
-                    />
-                  </div>
-                </div>
-                <div
-                  className={classes.input_box}
-                  style={{ alignSelf: 'flex-end' }}
-                >
-                  <div className={classes.input_group}>
-                    <Input
-                      id="TaxOffice"
-                      placeholder="Tax Office"
-                      label="Tax Office"
-                      {...register('taxOffice')}
-                    />
-                    <Input
-                      id="TXN"
-                      placeholder="TXN"
-                      label="TXN"
-                      {...register('taxNumber')}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className={classes.divider} />
-              <div className={classes.input_groups}>
-                <div className={classes.input_box}>
-                  <h5 className={classes.input_group_title}>Location</h5>
-                  <div className={classes.input_group}>
-                    <Input
-                      id="Country"
-                      placeholder="Choose country"
-                      label="Country"
-                    />
-                    <Input id="City" placeholder="Choose city" label="City" />
-    
-                    <Input
+
+                    <InputBase
+                      errorText={errors.address?.message}
                       id="Address"
                       placeholder="Add address"
                       label="Address"
+                      required
                       {...register('address')}
                     />
-                  </div>
-                </div>
-                <div className={classes.input_box}>
-                  <h5 className={classes.input_group_title}>Contacts</h5>
-                  <div className={classes.input_group}>
-                    <Input
+                  </InputContainer>
+                  <InputContainer title="Contacts">
+                    <InputBase
+                      errorText={errors.email?.message}
                       id="Email"
                       placeholder="Email"
                       label="Email"
-                      {...register('contactName')}
+                      {...register('email')}
                     />
-                    <Input
+                    <InputBase
+                      errorText={errors.phone?.message}
                       id="PhoneNumber"
                       placeholder="Phone number"
                       label="Phone number"
+                      required
                       {...register('phone')}
                     />
-                  </div>
+                  </InputContainer>
                 </div>
               </div>
-            </form>
-          </div>
-        </div>
-      );
-}
+            </>
+          )}
+        </Form>
+      </div>
+    </div>
+  );
+};
 
-export default newVendor;
+export default memo(NewVendor);

@@ -1,28 +1,69 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetCompanyList } from '../../../store/actions/company.action';
-import { CompanyTypes } from '../../../store/types/company.types';
 import classes from './CompanyList.module.scss';
-import { Button, EmptyPage } from '@components';
-import { RootState } from '../../../store';
+import { GetCompanyList } from '@Actions/company.action';
+import { CompanyState } from '@Types/company.types';
+import { RootState } from '@RootStateType';
+import { EmptyPage, TableHeaderActions } from '@components';
+import { CustomTable } from '@UiKitComponents';
+import { Loader } from '@common';
+import { DataKeyType } from '@Types/application.types';
 
 interface CompanyListProps {}
 
+const dataKeyCompanyList: DataKeyType[] = [
+  {
+    key: 'companyId',
+    label: 'Company Id',
+    align: 'center',
+    width: 110,
+    sortable: true,
+  },
+  {
+    key: 'name',
+    label: 'Company Name',
+    align: 'center',
+    flexGrow: 1,
+    sortable: true,
+  },
+
+  {
+    key: 'companyCode',
+    label: 'Company Code',
+    align: 'center',
+    flexGrow: 1,
+  },
+  {
+    key: 'address',
+    label: 'Address',
+    align: 'center',
+    flexGrow: 1,
+    sortable: true,
+  },
+];
+
+const getCompanyState = (state: RootState) => state.CompanyReducer;
+
 const CompanyList: React.FC<CompanyListProps> = () => {
-  const dispatch = useDispatch();
-  const companyList = useSelector<RootState, CompanyTypes[]>(
-    (state) => state.CompanyReducer.companyList
+  const { companyList, loadingCompany } = useSelector<RootState, CompanyState>(
+    getCompanyState
   );
+  const [checkedItemsList, setCheckedItemsList] = useState<number[] | string[]>(
+    []
+  );
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (!companyList.length) {
       dispatch(GetCompanyList());
     }
   }, []);
 
-  console.log(companyList);
-  
+  if (loadingCompany) {
+    return <Loader />;
+  }
 
-  if (companyList && companyList.length) {
+  if (companyList && !companyList.length) {
     return (
       <EmptyPage textButton="Company" redirectPath="newCompany">
         <h5>You don`t have companies yet</h5>
@@ -34,14 +75,16 @@ const CompanyList: React.FC<CompanyListProps> = () => {
   return (
     <div className={classes.companyList}>
       <div className={classes.companyList_wrapper}>
-        <div className={classes.button_wrapper}>
-          <Button color="primary">test</Button>
-        </div>
-        <div className={classes.companyList_table_wrapper}>
-          {companyList.map((el) => (
-            <div key={el.partnerId}>{el.email}</div>
-          ))}
-        </div>
+        <TableHeaderActions
+          checkedItemsList={checkedItemsList}
+          pageCreatingUrl="/Companies/newCompany"
+        />
+        <CustomTable
+          data={companyList}
+          dataKey={dataKeyCompanyList}
+          dataKeyCheckbox="companyId"
+          setCheckedItemsList={setCheckedItemsList}
+        />
       </div>
     </div>
   );

@@ -3,21 +3,32 @@ import classes from './Button.module.scss';
 import cl from 'classnames';
 
 interface ButtonProps {
-  color: 'primary' | 'secondary' | 'outline';
+  variant: 'primary' | 'secondary' | 'outline' | 'icon';
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  formSubmit?: string;
+  iconElement?: React.ReactElement;
   onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { children, color, type = 'button', disabled = false, onClick } = props;
+  const {
+    children,
+    variant,
+    iconElement,
+    type = 'button',
+    disabled = false,
+    onClick,
+  } = props;
   const styleButton =
-    color === 'primary'
+    variant === 'primary'
       ? classes.button_primary
-      : color === 'secondary'
+      : variant === 'secondary'
       ? classes.button_secondary
-      : color === 'outline'
+      : variant === 'outline'
       ? classes.button_outline
+      : variant === 'icon'
+      ? classes.button_icon
       : '';
 
   return (
@@ -27,6 +38,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       type={type}
       onClick={onClick}
     >
+      {iconElement ? <span className={classes.icon}>{iconElement}</span> : null}
       {children}
     </button>
   );

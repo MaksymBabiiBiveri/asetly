@@ -1,7 +1,4 @@
-import {
-  ApplicationActions,
-  ApplicationState,
-} from '../types/application.types';
+import { ApplicationActions, ApplicationState } from '@Types/application.types';
 import { FAIL, GET_TOKEN, SUCCESS } from '../actionTypes';
 import { concatActions } from '@helpers/functions';
 

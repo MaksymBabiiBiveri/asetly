@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 
 .input_wrapper {
+  position: relative;
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
@@ -13,7 +14,16 @@
       color: $form-required-star;
     }
   }
-  .input {
+  .errorText {
+    position: absolute;
+    text-align: center;
+    bottom: -18px;
+    right: 0;
+    left: 0;
+    font-size: $body-fz-2;
+    color: $form-error;
+  }
+  input {
     width: 355px;
     color: $typography-primary-color;
     background: $form-background-mint;
@@ -49,7 +59,7 @@
   }
 }
 .input_error {
-  .input {
+  input {
     border-color: $form-error;
     background: transparent;
     color: $form-error;

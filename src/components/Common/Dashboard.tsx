@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const Dashboard: React.FC = () => {
   return (
@@ -48,4 +48,4 @@ const Dashboard: React.FC = () => {
     </svg>
   );
 };
-export default Dashboard;
+export default memo(Dashboard);
