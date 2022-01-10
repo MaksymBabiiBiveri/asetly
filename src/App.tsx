@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-
 import { useDispatch } from 'react-redux';
 import { GetToken } from '@Actions/application.action';
 import { Route, Routes } from 'react-router-dom';
 import { Header, Sidebar } from '@components';
 import { Loader } from '@common';
 
-const Company = React.lazy(() => import('@pages/Company'));
+const Company = React.lazy(() => import('@pages/CompanyPages/Company'));
 
 function App() {
   const dispatch = useDispatch();

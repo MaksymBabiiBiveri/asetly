@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export let schemaNewCompany = yup.object({
+export const schemaCompany = yup.object({
   name: yup.string().required('This field is required'),
   companyCode: yup
     .string()
@@ -14,7 +14,6 @@ export let schemaNewCompany = yup.object({
     .required('This field is required')
     .positive('The field is not valid. Only positive numbers')
     .truncate(),
-
   address: yup.string().required('This field is required'),
   contactName: yup
     .string()

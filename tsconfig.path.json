@@ -5,12 +5,14 @@
       "@components": ["./src/components"],
       "@UiKitComponents": ["./src/UiKitComponents"],
       "@RootStateType": ["./src/store"],
+      "@hooks": ["./src/hooks"],
 
       "@assets/*": ["./src/assets/*"],
       "@pages/*": ["./src/pages/*"],
       "@icons/*": ["./src/assets/icons/*"],
       "@image/*": ["./src/assets/images/*"],
       "@helpers/*": ["./src/helpers/*"],
+      "@schema/*": ["./src/schemas/*"],
       "@Types/*": ["./src/store/types/*"],
       "@Actions/*": ["./src/store/actions/*"]
     }

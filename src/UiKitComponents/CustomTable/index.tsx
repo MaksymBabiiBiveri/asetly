@@ -27,7 +27,16 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
   const [sortedData, options, handleSortColumn] = useSortDataTable(data);
   const navigate = useNavigate();
   const { height } = useWindowDimensions();
-
+  const heightTable = () => {
+    if (height) {
+      if (height <= 1110 && height > 950) {
+        return height - 300;
+      } else if (height <= 950) {
+        return 550;
+      }
+    }
+    return 780;
+  };
   const handleChangeLimit = (key: number) => {
     setPage(1);
     setLimitPage(key);
@@ -55,7 +64,7 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
     <div className="table_wrapper">
       <Table
         onRowClick={onRowClick}
-        height={height && height <= 1110 ? height - 280 : 780}
+        height={heightTable()}
         sortColumn={options.sortColumn}
         sortType={options.sortType}
         onSortColumn={handleSortColumn}
