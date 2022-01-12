@@ -10,8 +10,12 @@ export type Api<Data = undefined> = {
 };
 
 export type Redirect = {
-  history: any;
   path: string;
+};
+
+export type ResponseApi<T> = {
+  resultObject: T;
+  resultStatus: boolean;
 };
 
 export interface BaseAction<Type> {

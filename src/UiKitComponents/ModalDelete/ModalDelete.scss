@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+
+.modal_delete {
+  max-width: 500px;
+  margin: 0 auto;
+  .rs-modal-content {
+    padding: 40px 56px;
+    top: 250px;
+  }
+  .rs-modal-body {
+    margin: 32px 0;
+    p {
+      line-height: 150%;
+      letter-spacing: 0.0168em;
+      span {
+        color: $typography-primary-color;
+        font-size: $body-fz-1;
+      }
+    }
+  }
+  .rs-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eab7ad4-2e29-48e7-86e4-5e061ccb3b19" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
@@ -33,7 +31,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="company_pages" />
-                    <option name="lastUsedInstant" value="1640085123" />
+                    <option name="lastUsedInstant" value="1640087277" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="dev" />
+                    <option name="lastUsedInstant" value="1640086026" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
@@ -60,21 +62,29 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="settings.editor.selected.configurable" value="inlay.hints.TypeScript" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/components/CreateFormHeader" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/assets/image" />
+      <recent name="$PROJECT_DIR$/src/pages/CompanyPages" />
+      <recent name="$PROJECT_DIR$/src/pages/CompanyPages/CompanyList" />
+      <recent name="$PROJECT_DIR$/src/assets/icons" />
+      <recent name="D:\Makiaveli\Biveri\asetly\src\UiKitComponents" />
+      <recent name="D:\Makiaveli\Biveri\asetly\src" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -90,7 +100,29 @@
       <workItem from="1640084613065" duration="6000" />
       <workItem from="1640084631798" duration="1000" />
       <workItem from="1640084702649" duration="53000" />
-      <workItem from="1640084765477" duration="990000" />
+      <workItem from="1640084765477" duration="2108000" />
+      <workItem from="1640087753351" duration="1793000" />
+      <workItem from="1640089589830" duration="28798000" />
+      <workItem from="1640175591719" duration="15794000" />
+      <workItem from="1640199419247" duration="14577000" />
+      <workItem from="1640255220958" duration="5536000" />
+      <workItem from="1640282969809" duration="2295000" />
+      <workItem from="1640332226081" duration="12714000" />
+      <workItem from="1640425797605" duration="15003000" />
+      <workItem from="1640455404135" duration="12515000" />
+      <workItem from="1640517973035" duration="13925000" />
+      <workItem from="1641057389406" duration="354000" />
+      <workItem from="1641198107215" duration="6380000" />
+      <workItem from="1641217388264" duration="7280000" />
+      <workItem from="1641289125412" duration="1199000" />
+      <workItem from="1641299466032" duration="3387000" />
+      <workItem from="1641321339939" duration="2806000" />
+      <workItem from="1641373991660" duration="30000" />
+      <workItem from="1641374049235" duration="1824000" />
+      <workItem from="1641375974138" duration="137000" />
+      <workItem from="1641376142010" duration="2634000" />
+      <workItem from="1641400664397" duration="40078000" />
+      <workItem from="1641853414094" duration="5817000" />
     </task>
     <servers />
   </component>
@@ -107,7 +139,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

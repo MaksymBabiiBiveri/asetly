@@ -1,0 +1,45 @@
+@import '../../styles/variables';
+.searchInput {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 312px;
+  width: 100%;
+  input {
+    width: 100%;
+    padding: 10px 35px 5px 5px;
+    border-bottom: 1px solid #626262;
+    transition: all 0.5s ease;
+    &::placeholder {
+      color: #626262;
+    }
+    &:active,
+    &:focus {
+      border-bottom-color: $main-blue-color;
+      &::placeholder {
+        color: $main-blue-color;
+      }
+      & + .searchInput_icon {
+        svg {
+          path {
+            fill: $main-blue-color;
+            stroke: $main-blue-color;
+          }
+        }
+      }
+    }
+  }
+
+  .searchInput_icon {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    svg {
+      path {
+        transition: all 0.5s ease;
+        fill: #626262;
+        stroke: #626262;
+      }
+    }
+  }
+}

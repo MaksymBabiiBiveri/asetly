@@ -1,10 +1,46 @@
-import { CompanyActions } from '../types/company.types';
-import { GET_COMPANY_LIST } from '../actionTypes';
+import { CompanyActions, NewCompany, PutCompany } from '@Types/company.types';
+import {
+  GET_COMPANY_LIST,
+  GET_ONE_COMPANY,
+  POST_NEW_COMPANY,
+  PUT_COMPANY,
+} from '../actionTypes';
 
 export const GetCompanyList = (): CompanyActions => ({
   type: GET_COMPANY_LIST,
   api: {
-    url: '/Company/GetCompanyList',
+    url: '/Firm/GetCompaniesList',
     method: 'GET',
+  },
+});
+
+export const GetOneCompany = (id: string | number): CompanyActions => ({
+  type: GET_ONE_COMPANY,
+  api: {
+    url: `/Firm/GetFirmByCompanyId/${id}`,
+    method: 'GET',
+  },
+});
+
+export const postNewCompany = (newCompany: NewCompany): CompanyActions => ({
+  type: POST_NEW_COMPANY,
+
+  api: {
+    url: '/Firm/AddFirm',
+    method: 'POST',
+    data: {
+      ...newCompany,
+    },
+  },
+});
+
+export const updateCompany = (company: PutCompany): CompanyActions => ({
+  type: PUT_COMPANY,
+  api: {
+    url: `/Firm/UpdateFirm`,
+    method: 'PUT',
+    data: {
+      ...company,
+    },
   },
 });

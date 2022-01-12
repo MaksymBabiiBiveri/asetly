@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
-import theme from './theme/muiTheme';
 import store from './store';
+import { ThemeProvider } from '@mui/material';
+import theme from './theme/muiTheme';
+import 'rsuite/dist/rsuite.min.css';
+import './styles/global.scss';
 
 ReactDOM.render(
   <React.StrictMode>

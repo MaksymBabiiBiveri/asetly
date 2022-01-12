@@ -23,6 +23,7 @@ html {
     .content_wrapper {
       flex-basis: 100%;
       .contents {
+        position: relative;
         background: $main-white;
         border-radius: 4px;
         max-height: 1010px;
@@ -41,31 +42,31 @@ h5 {
   color: $typography-headlines-color;
 }
 h1 {
-  @include adaptive-font($h1-fz, 90);
+  font-size: $h1-fz;
   font-weight: 700;
 }
 h2 {
-  @include adaptive-font($h2-fz, 55);
+  font-size: $h2-fz;
   font-weight: 700;
 }
 h3 {
-  @include adaptive-font($h3-fz, 43);
+  font-size: $h3-fz;
   font-weight: 700;
 }
 h4 {
-  @include adaptive-font($h4-fz, 30);
+  font-size: $h4-fz;
   font-weight: 600;
 }
 h5 {
-  @include adaptive-font($h5-fz, 14);
+  font-size: $h5-fz;
   font-weight: 700;
 }
 h6 {
-  @include adaptive-font($subtitle-fz-2, 12);
+  font-size: $subtitle-fz-2;
   font-weight: 700;
 }
 p {
-  @include adaptive-font($body-fz-1, 14);
+  font-size: $body-fz-1;
   font-weight: 400;
 }
 span {
@@ -93,9 +94,15 @@ ul {
 }
 input {
   line-height: 150%;
-  @include adaptive-font($form-placeholder-fz, 14);
+  font-size: $form-placeholder-fz;
   input::placeholder {
-    @include adaptive-font($form-placeholder-fz, 14);
+    font-size: $form-placeholder-fz;
     font-weight: 400;
   }
+}
+
+.markup_helper-box {
+  display: grid;
+  grid-template-columns: 355px 355px;
+  justify-content: space-between;
 }

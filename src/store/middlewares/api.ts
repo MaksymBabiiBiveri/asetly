@@ -4,6 +4,7 @@ import { concatActions } from '@helpers/functions';
 import { FAIL, SUCCESS } from '../actionTypes';
 import { AxiosError, AxiosResponse } from 'axios';
 import axios from '../../config/axios';
+import { useNavigate } from 'react-router-dom';
 
 const api: Middleware = () => (next: Dispatch) => (action: ActionsTypes) => {
   const { type } = action;
@@ -17,9 +18,6 @@ const api: Middleware = () => (next: Dispatch) => (action: ActionsTypes) => {
       params: {
         ...action.api.params,
       },
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
     })
     .then((response: AxiosResponse) => {
       next({
@@ -27,6 +25,10 @@ const api: Middleware = () => (next: Dispatch) => (action: ActionsTypes) => {
         type: concatActions(type, SUCCESS),
         response: response.data,
       });
+      if (action.redirect) {
+        const navigate = useNavigate();
+        navigate(action.redirect.path);
+      }
     })
     .catch((error: Error | AxiosError) => {
       next({ ...action, type: concatActions(type, FAIL), error });

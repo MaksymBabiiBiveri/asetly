@@ -14,6 +14,7 @@
     "no-unused-vars": "error",
     "import/no-extraneous-dependencies": "off",
     "react/jsx-filename-extension": "off",
-    "@typescript-eslint/default-param-last": "off"
+    "@typescript-eslint/default-param-last": "off",
+    "@typescript-eslint/no-shadow": "off"
   }
 }

@@ -1,0 +1,24 @@
+.headerActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  .search_wrapper {
+    flex: 0 0 30%;
+  }
+  .button_wrapper {
+    flex: 0 0 40%;
+    justify-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    button {
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+    .deleteButton_box {
+      margin-left: auto;
+    }
+  }
+}

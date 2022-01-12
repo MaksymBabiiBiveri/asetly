@@ -1,35 +1,60 @@
 import { BaseAction, Concat } from './index';
-import { GET_COMPANY_LIST, SUCCESS } from '../actionTypes';
-import { City } from './definition.types';
+import {
+  DELETE_COMPANY,
+  FAIL,
+  GET_COMPANY_LIST,
+  GET_ONE_COMPANY,
+  POST_NEW_COMPANY,
+  PUT_COMPANY,
+  SUCCESS,
+} from '../actionTypes';
+import { City, Country } from '@Types/definition.types';
 
-export type CompanyTypes = {
-  partnerId: number;
-  partnerCode: string;
+export type Company = {
+  companyId: number;
+  companyCode: string;
   name: string;
-  email: string;
-  isInsurancePartner: null | string;
-  isSupplierPartner: null | string;
   cityId: number;
   address: string;
-  taxNumber: string;
+  taxNumber: number;
   taxOffice: string;
+  contactName: string;
   phone: string;
-  secondPhone: null | string;
+  secondPhone: string;
   description: string;
   createdDate: string;
   creatorId: number;
-  modifiedDate: null | string;
-  modifiedId: null | string;
-  isValid: boolean;
-  //TODO: как узнаем тип массива изменить any
-  contracts: any[];
-  nonCurrAssetsPartner: any[];
-  nonCurrAssetsInsurancePartner: any[];
+  modifiedDate: string;
+  modifiedId: number;
+  isActive: boolean;
   city: City;
+  country: Country;
+  //TODO: как узнаем тип массива изменить any
+  logo: any;
+  contracts: any[];
+  companyMenus: any[];
+  userAuthorizedCompanies: any[];
 };
 
+export type NewCompany = {
+  companyCode: string;
+  name: string;
+  address: string;
+  phone: string;
+  cityId: number;
+  contactName: string;
+  taxNumber: string;
+  taxOffice: string;
+  secondPhone: string;
+  description: string;
+};
+
+export type PutCompany = NewCompany & Pick<Company, 'companyId'>;
+
 export interface CompanyState {
-  companyList: CompanyTypes[] | [];
+  companyList: Company[] | [];
+  currentCompany: Company | null;
+  loadingCompany: boolean;
 }
 
 export interface GetCompanyList extends BaseAction<typeof GET_COMPANY_LIST> {}
@@ -37,8 +62,48 @@ export interface GetCompanyListSuccess
   extends BaseAction<Concat<typeof GET_COMPANY_LIST, typeof SUCCESS>> {
   response: {
     resultStatus: boolean;
-    resultObject: CompanyTypes[];
+    resultObject: Company[];
   };
 }
 
-export type CompanyActions = GetCompanyList | GetCompanyListSuccess;
+export interface GetOneCompany extends BaseAction<typeof GET_ONE_COMPANY> {}
+export interface GetOneCompanySuccess
+  extends BaseAction<Concat<typeof GET_ONE_COMPANY, typeof SUCCESS>> {
+  response: {
+    resultStatus: boolean;
+    resultObject: Company;
+  };
+}
+
+export interface PostNewCompany extends BaseAction<typeof POST_NEW_COMPANY> {}
+export interface PostNewCompanySuccess
+  extends BaseAction<Concat<typeof POST_NEW_COMPANY, typeof SUCCESS>> {
+  response: {
+    resultObject: Company;
+  };
+}
+export interface PostNewCompanyFail
+  extends BaseAction<Concat<typeof POST_NEW_COMPANY, typeof FAIL>> {}
+
+export interface UpdateCompany extends BaseAction<typeof PUT_COMPANY> {}
+export interface UpdateCompanySuccess
+  extends BaseAction<Concat<typeof PUT_COMPANY, typeof SUCCESS>> {
+  response: {
+    resultObject: Company;
+  };
+}
+
+export interface DeleteCompany extends BaseAction<typeof DELETE_COMPANY> {}
+export interface DeleteCompanySuccess
+  extends BaseAction<Concat<typeof DELETE_COMPANY, typeof SUCCESS>> {}
+
+export type CompanyActions =
+  | GetCompanyList
+  | GetCompanyListSuccess
+  | GetOneCompany
+  | GetOneCompanySuccess
+  | PostNewCompany
+  | PostNewCompanySuccess
+  | PostNewCompanyFail
+  | UpdateCompany
+  | UpdateCompanySuccess;

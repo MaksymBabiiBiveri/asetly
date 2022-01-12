@@ -1,6 +1,21 @@
 import { BaseAction, Concat } from './index';
 import { FAIL, GET_TOKEN, SUCCESS } from '../actionTypes';
 
+export type PageMode = 'EDIT' | 'REVIEW' | null;
+
+export type DataKeyType = {
+  label: string;
+  key: string;
+  align?: 'center' | 'right' | 'left';
+  flexGrow?: number;
+  width?: number;
+  sortable?: boolean;
+};
+
+export type UnknownDataType = {
+  [key: string]: any;
+};
+
 export type ErrorType = {
   [key: string]: string;
 };

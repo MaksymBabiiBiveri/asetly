@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const Depreciation: React.FC = () => {
   return (
@@ -17,4 +17,4 @@ const Depreciation: React.FC = () => {
   );
 };
 
-export default Depreciation;
+export default memo(Depreciation);
