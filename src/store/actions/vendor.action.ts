@@ -1,4 +1,4 @@
-import { VendorActions, NewVendorTypes } from '../types/vendor.types';
+import { VendorActions, NewVendorType } from '../types/vendor.types';
 import { GET_VENDOR_LIST, POST_NEW_VENDOR } from '../actionTypes';
 
 export const GetVendorList = (): VendorActions => ({
@@ -10,9 +10,11 @@ export const GetVendorList = (): VendorActions => ({
 });
 
 export const postNewVendor = (
-  newVendor: NewVendorTypes
+  newVendor: NewVendorType,
+  path: string
 ): VendorActions => ({
   type: POST_NEW_VENDOR,
+
   api: {
     url: '',
     method: 'POST',
@@ -20,4 +22,7 @@ export const postNewVendor = (
       ...newVendor,
     },
   },
+  redirect: {
+    path: path,
+  }
 });

@@ -1,6 +1,6 @@
 import { BaseAction, Concat } from './index';
 import { GET_VENDOR_LIST, POST_NEW_VENDOR, SUCCESS } from '../actionTypes';
-import { City } from './definition.types';
+import { City } from '@Types/definition.types';
 
 export type VendorTypes = {
   companyId: number;
@@ -27,7 +27,7 @@ export type VendorTypes = {
   userAuthorizedCompanies: any[];
 };
 
-export type NewVendorTypes = {
+export type NewVendorType = {
   partnerCode: string;
   name: string;
   address: string;

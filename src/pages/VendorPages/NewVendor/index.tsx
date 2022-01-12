@@ -4,9 +4,8 @@ import classes from './NewVendor.module.scss';
 import { RootState } from '@RootStateType';
 import { getCitiesList } from '@Actions/definition.action';
 import { InputBase, Form, Divider } from '@UiKitComponents';
-import { NewVendorTypes } from '@Types/vendor.types';
+import { NewVendorType } from '@Types/vendor.types';
 import { postNewVendor } from '@Actions/vendor.action';
-import { useNavigate } from 'react-router-dom';
 import { Loader } from '@common';
 import { schemaNewCompany } from '@helpers/yupSchemas';
 import { CreateFormHeader, InputContainer } from '@components';
@@ -22,13 +21,9 @@ const getLoadingVendor = (state: RootState) =>
     const { citiesList, loadingDefinition } = useSelector(getDefinitionState);
     const loadingVendor = useSelector(getLoadingVendor);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
   
-  const onSubmit = (newVendor: NewVendorTypes) => {
-    dispatch(postNewVendor(newVendor));
-    if (!loadingVendor) {
-      navigate('/Vendors');
-    }
+  const onSubmit = (newVendor: NewVendorType) => {
+    dispatch(postNewVendor(newVendor, '/Vendors'));
   };
 
   useEffect(() => {
@@ -44,7 +39,7 @@ const getLoadingVendor = (state: RootState) =>
   return (
     <div className={classes.newVendor}>
       <div className={classes.newVendor_wrapper}>
-        <Form<NewVendorTypes> onSubmit={onSubmit} yupSchema={schemaNewCompany}>
+        <Form<NewVendorType> onSubmit={onSubmit} yupSchema={schemaNewCompany}>
           {({ register, formState: { errors } }) => (
             <>
               <CreateFormHeader title="New Vendor" errors={errors} />
