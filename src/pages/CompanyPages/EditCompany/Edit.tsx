@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './EditCompany.module.scss';
-import { Divider, Form, InputBase } from '@UiKitComponents';
+import { CustomInput, Divider, Form } from '@UiKitComponents';
 import { Company, NewCompany, PutCompany } from '@Types/company.types';
 import { HeaderSaveAction, InputContainer } from '@components';
 import { useDispatch } from 'react-redux';
@@ -34,7 +34,7 @@ const Edit: React.FC<EditProps> = (props) => {
             />
             <div className={classes.content_box}>
               <InputContainer title="Summary">
-                <InputBase
+                <CustomInput
                   errorText={errors.name?.message}
                   id="CompanyName"
                   placeholder="Company name"
@@ -44,7 +44,7 @@ const Edit: React.FC<EditProps> = (props) => {
                   {...register('name')}
                 />
 
-                <InputBase
+                <CustomInput
                   errorText={errors.taxOffice?.message}
                   id="TaxOffice"
                   placeholder="Tax Office"
@@ -54,7 +54,7 @@ const Edit: React.FC<EditProps> = (props) => {
                   {...register('taxOffice')}
                 />
 
-                <InputBase
+                <CustomInput
                   errorText={errors.companyCode?.message}
                   id="CompanyCode"
                   placeholder="Company code"
@@ -63,7 +63,7 @@ const Edit: React.FC<EditProps> = (props) => {
                   statusActive
                   {...register('companyCode')}
                 />
-                <InputBase
+                <CustomInput
                   errorText={errors.taxNumber?.message}
                   id="TXN"
                   placeholder="TXN"
@@ -76,7 +76,7 @@ const Edit: React.FC<EditProps> = (props) => {
               <Divider margin="40px 0 20px 0" />
               <div className="markup_helper-box">
                 <InputContainer title="Location">
-                  <InputBase
+                  <CustomInput
                     errorText={errors.cityId?.message}
                     id="City"
                     placeholder="Choose city"
@@ -87,7 +87,7 @@ const Edit: React.FC<EditProps> = (props) => {
                     {...register('cityId', { valueAsNumber: true })}
                   />
 
-                  <InputBase
+                  <CustomInput
                     errorText={errors.address?.message}
                     id="Address"
                     placeholder="Add address"
@@ -98,7 +98,7 @@ const Edit: React.FC<EditProps> = (props) => {
                   />
                 </InputContainer>
                 <InputContainer title="Contacts">
-                  <InputBase
+                  <CustomInput
                     errorText={errors.contactName?.message}
                     id="Email"
                     placeholder="Email"
@@ -107,7 +107,7 @@ const Edit: React.FC<EditProps> = (props) => {
                     statusActive
                     {...register('contactName')}
                   />
-                  <InputBase
+                  <CustomInput
                     errorText={errors.phone?.message}
                     id="PhoneNumber"
                     placeholder="Phone number"
