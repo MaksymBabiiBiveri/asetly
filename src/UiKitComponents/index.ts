@@ -7,6 +7,8 @@ import CustomTable from './CustomTable';
 import SearchInput from './SearchInput';
 import CheckboxCell from './CheckboxCell';
 import CustomCheckbox from './CustomCheckbox';
+import CustomInput from './CustomInput';
+import CustomSelect from './CustomSelect';
 
 export {
   Button,
@@ -18,4 +20,6 @@ export {
   CheckboxCell,
   CustomTable,
   CustomCheckbox,
+  CustomInput,
+  CustomSelect,
 };

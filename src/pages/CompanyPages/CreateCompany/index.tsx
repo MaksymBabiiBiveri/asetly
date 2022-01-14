@@ -1,39 +1,56 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './CreateCompany.module.scss';
 import { RootState } from '@RootStateType';
-import { getCitiesList } from '@Actions/definition.action';
-import { InputBase, Form, Divider } from '@UiKitComponents';
+import { Form, Divider, CustomInput, CustomSelect } from '@UiKitComponents';
 import { NewCompany } from '@Types/company.types';
 import { postNewCompany } from '@Actions/company.action';
 import { Loader } from '@common';
 import { HeaderSaveAction, InputContainer } from '@components';
 import { useBackHistory } from '@hooks';
 import { schemaCompany } from '@schema/company';
+import { getCitiesList, getCountriesList } from '@Actions/definition.action';
+import { City } from '@Types/definition.types';
 
 interface CreateCompanyProps {}
 
-const getDefinitionState = (state: RootState) => state.DefinitionReducer;
 const getLoadingCompany = (state: RootState) =>
   state.CompanyReducer.loadingCompany;
 
+const getDefinitionState = (state: RootState) => state.DefinitionReducer;
+
 const CreateCompany: React.FC<CreateCompanyProps> = () => {
-  const { citiesList, loadingDefinition } = useSelector(getDefinitionState);
   const loadingCompany = useSelector(getLoadingCompany);
+  const { loadingDefinition, countriesList, citiesList } =
+    useSelector(getDefinitionState);
   const dispatch = useDispatch();
   const backHistory = useBackHistory();
 
+  const [countryId, setCountryId] = useState<number | undefined | string>();
+
   const onSubmit = (newCompany: NewCompany) => {
+    console.log(newCompany);
     dispatch(postNewCompany(newCompany));
   };
 
+  const getCountryValue = (countryId: number | undefined | string) => {
+    setCountryId(countryId);
+  };
+
+  const filterCity = (): City[] => {
+    return citiesList.filter((city) => city.countryId === countryId);
+  };
+
   useEffect(() => {
+    if (!countriesList.length && !loadingDefinition) {
+      dispatch(getCountriesList());
+    }
     if (!citiesList.length && !loadingDefinition) {
       dispatch(getCitiesList());
     }
   }, []);
 
-  if (loadingCompany || loadingDefinition) {
+  if (loadingCompany) {
     return <Loader />;
   }
 
@@ -41,7 +58,7 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
     <div className={classes.newCompany}>
       <div className={classes.newCompany_wrapper}>
         <Form<NewCompany> onSubmit={onSubmit} yupSchema={schemaCompany}>
-          {({ register, formState: { errors } }) => (
+          {({ register, formState: { errors }, control }) => (
             <>
               <HeaderSaveAction
                 title="New Company"
@@ -50,7 +67,7 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
               />
               <div className={classes.form_box}>
                 <InputContainer title="Summary">
-                  <InputBase
+                  <CustomInput
                     errorText={errors.name?.message}
                     id="CompanyName"
                     placeholder="Company name"
@@ -58,14 +75,14 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
                     required
                     {...register('name')}
                   />
-                  <InputBase
+                  <CustomInput
                     errorText={errors.taxOffice?.message}
                     id="TaxOffice"
                     placeholder="Tax Office"
                     label="Tax Office"
                     {...register('taxOffice')}
                   />
-                  <InputBase
+                  <CustomInput
                     errorText={errors.companyCode?.message}
                     id="CompanyCode"
                     placeholder="Company code"
@@ -74,7 +91,7 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
                     {...register('companyCode')}
                   />
 
-                  <InputBase
+                  <CustomInput
                     errorText={errors.taxNumber?.message}
                     id="TXN"
                     placeholder="TXN"
@@ -86,17 +103,37 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
                 <Divider margin="50px 0 30px 0" />
                 <div className="markup_helper-box">
                   <InputContainer title="Location">
-                    <InputBase
-                      errorText={errors.cityId?.message}
-                      id="City"
-                      placeholder="Choose city"
-                      label="City"
-                      type="number"
+                    <CustomSelect
+                      errorText={errors.countryId?.message}
+                      label="Country"
+                      id="Country"
+                      name="countryId"
+                      control={control}
+                      placeholder="Choose country"
+                      mappingOptions={countriesList}
+                      optionValue="countryId"
+                      optionLabel="name"
+                      isLoading={loadingDefinition}
+                      isDisabled={loadingDefinition}
+                      getOptionValue={getCountryValue}
                       required
-                      {...register('cityId', { valueAsNumber: true })}
+                    />
+                    <CustomSelect
+                      errorText={errors.cityId?.message}
+                      label="City"
+                      id="City"
+                      name="cityId"
+                      control={control}
+                      placeholder="Choose city"
+                      mappingOptions={filterCity()}
+                      optionValue="cityId"
+                      optionLabel="name"
+                      isDisabled={loadingDefinition || !filterCity().length}
+                      isLoading={loadingDefinition}
+                      required
                     />
 
-                    <InputBase
+                    <CustomInput
                       errorText={errors.address?.message}
                       id="Address"
                       placeholder="Add address"
@@ -106,7 +143,7 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
                     />
                   </InputContainer>
                   <InputContainer title="Contacts">
-                    <InputBase
+                    <CustomInput
                       errorText={errors.contactName?.message}
                       id="Email"
                       placeholder="Email"
@@ -114,7 +151,7 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
                       required
                       {...register('contactName')}
                     />
-                    <InputBase
+                    <CustomInput
                       errorText={errors.phone?.message}
                       id="PhoneNumber"
                       placeholder="Phone number"

@@ -4,12 +4,20 @@ export const schemaCompany = yup.object({
   name: yup.string().required('This field is required'),
   companyCode: yup
     .string()
-    .max(4)
-    .min(4, 'Company code must be at least 4 characters')
-    .required('This field is required'),
+    .required('This field is required')
+    .min(1, 'Company code must be max 4 characters')
+    .max(4, 'Company code must be max 4 characters'),
   taxOffice: yup.string(),
-  taxNumber: yup.number().required('This field is required'),
+  taxNumber: yup
+    .number()
+    .typeError('TXN must be a number')
+    .required('This field is required'),
   cityId: yup
+    .number()
+    .required('This field is required')
+    .positive('The field is not valid. Only positive numbers')
+    .truncate(),
+  countryId: yup
     .number()
     .required('This field is required')
     .positive('The field is not valid. Only positive numbers')

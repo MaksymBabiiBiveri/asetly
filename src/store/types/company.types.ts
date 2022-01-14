@@ -42,11 +42,10 @@ export type NewCompany = {
   address: string;
   phone: string;
   cityId: number;
+  countryId: number;
   contactName: string;
   taxNumber: string;
-  taxOffice: string;
-  secondPhone: string;
-  description: string;
+  taxOffice?: string;
 };
 
 export type PutCompany = NewCompany & Pick<Company, 'companyId'>;
