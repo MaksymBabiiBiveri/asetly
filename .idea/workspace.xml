@@ -2,23 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eab7ad4-2e29-48e7-86e4-5e061ccb3b19" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomInput/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomSelect/CustomSelect.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/InputContainer/InputContainer.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/InputContainer/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomSelect/CustomSelect.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomInput/CustomInput.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomSelect/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomSelect/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/InputBase/InputBase.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/InputBase/index.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UiKitComponents/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/CreateCompany/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/CreateCompany/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/EditCompany/Edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/EditCompany/Edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/company.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/company.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actionTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actionTypes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/definition.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/definition.action.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/definition.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/definition.reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/types/company.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/types/company.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/types/definition.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/types/definition.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +126,7 @@
       <workItem from="1641376142010" duration="2634000" />
       <workItem from="1641400664397" duration="40078000" />
       <workItem from="1641853414094" duration="5817000" />
-      <workItem from="1642108942409" duration="6874000" />
+      <workItem from="1642108942409" duration="7073000" />
     </task>
     <servers />
   </component>

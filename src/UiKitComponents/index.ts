@@ -1,5 +1,4 @@
 import Button from './Button';
-import InputBase from './InputBase';
 import Form from './Form';
 import Divider from './Divider';
 import CustomTableRS from './CustomTableRS';
@@ -12,7 +11,6 @@ import CustomSelect from './CustomSelect';
 
 export {
   Button,
-  InputBase,
   Form,
   Divider,
   CustomTableRS,

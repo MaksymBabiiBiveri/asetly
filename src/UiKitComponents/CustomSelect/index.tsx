@@ -81,7 +81,6 @@ const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {
             value={selectList.filter((item) => value === item.value)}
             isDisabled={isDisabled}
             isLoading={isLoading}
-            defaultInputValue={'city'}
           />
         )}
       />
