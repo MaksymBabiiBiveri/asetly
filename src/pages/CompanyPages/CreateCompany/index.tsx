@@ -29,10 +29,8 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
   const [countryId, setCountryId] = useState<number | undefined | string>();
 
   const onSubmit = (newCompany: NewCompany) => {
-    console.log(newCompany);
     dispatch(postNewCompany(newCompany));
     console.log(newCompany);
-    
   };
 
   const getCountryValue = (countryId: number | undefined | string) => {

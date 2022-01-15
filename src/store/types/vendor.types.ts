@@ -8,13 +8,14 @@ import {
   SUCCESS, 
   FAIL 
 } from '../actionTypes';
-import { City } from '@Types/definition.types';
+import { City, Country } from '@Types/definition.types';
 
 export type VendorTypes = {
   partnerId: number;
   partnerCode: string;
   name: string;
   cityId: number;
+  countryId: number;
   address: string;
   taxNumber: string;
   taxOffice: string;
@@ -28,7 +29,7 @@ export type VendorTypes = {
   modifiedId: number;
   isActive: boolean;
   city: City;
-  countryId: number;
+  country: Country;
   isInsurancePartner: any,
   isSupplierPartner:any,
   //TODO: как узнаем тип массива изменить any

@@ -1,42 +1,55 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './NewVendor.module.scss';
 import { RootState } from '@RootStateType';
-import { getCitiesList } from '@Actions/definition.action';
-import { InputBase, Form, Divider } from '@UiKitComponents';
+import { getCitiesList, getCountriesList } from '@Actions/definition.action';
+import { CustomInput, CustomSelect, Form, Divider } from '@UiKitComponents';
 import { NewVendorType } from '@Types/vendor.types';
 import { postNewVendor } from '@Actions/vendor.action';
 import { Loader } from '@common';
 import { useBackHistory } from '@hooks';
 import { schemaVendor } from '@schema/vendor';
 import { HeaderSaveAction, InputContainer } from '@components';
+import { City } from '@Types/definition.types';
 
 interface NewVendorProps {}
 
-const getDefinitionState = (state: RootState) => 
-  state.DefinitionReducer;
 const getLoadingVendor = (state: RootState) => 
   state.VendorReducer.loadingVendor;
+const getDefinitionState = (state: RootState) => 
+  state.DefinitionReducer;
 
   const NewVendor: React.FC<NewVendorProps> = () => {
-    const { citiesList, loadingDefinition } = useSelector(getDefinitionState);
+    const { citiesList, countriesList, loadingDefinition } = useSelector(getDefinitionState);
     const loadingVendor = useSelector(getLoadingVendor);
     const dispatch = useDispatch();
     const backHistory = useBackHistory();
+
+    const [countryId, setCountryId] = useState<number | undefined | string>();
   
   const onSubmit = (newVendor: NewVendorType) => {
     dispatch(postNewVendor(newVendor));
     console.log(newVendor);
-    
+  };
+
+  const getCountryValue = (countryId: number | undefined | string) => {
+    setCountryId(countryId)
+  };
+
+  const filterCity = (): City[] => {
+    return citiesList.filter((city) => city.countryId === countryId);
   };
 
   useEffect(() => {
+    if (!countriesList.length && !loadingDefinition) {
+      dispatch(getCountriesList());
+    }
     if (!citiesList.length && !loadingDefinition) {
       dispatch(getCitiesList());
     }
   }, []);
 
-  if (loadingVendor || loadingDefinition) {
+  if (loadingVendor) {
     return <Loader />;
   }
 
@@ -44,7 +57,7 @@ const getLoadingVendor = (state: RootState) =>
     <div className={classes.newVendor}>
       <div className={classes.newVendor_wrapper}>
         <Form<NewVendorType> onSubmit={onSubmit} yupSchema={schemaVendor}>
-          {({ register, formState: { errors } }) => (
+          {({ register, formState: { errors }, control }) => (
             <>
               <HeaderSaveAction 
                 title="New Vendor" 
@@ -53,7 +66,7 @@ const getLoadingVendor = (state: RootState) =>
               />
               <div className={classes.form_box}>
                 <InputContainer title="Summary">
-                  <InputBase
+                  <CustomInput
                     errorText={errors.name?.message}
                     id="VendorName"
                     placeholder="Vendor name"
@@ -61,14 +74,14 @@ const getLoadingVendor = (state: RootState) =>
                     required
                     {...register('name')}
                   />
-                  <InputBase
+                  <CustomInput
                     errorText={errors.taxOffice?.message}
                     id="TaxOffice"
                     placeholder="Tax Office"
                     label="Tax Office"
                     {...register('taxOffice')}
                   />
-                  <InputBase
+                  <CustomInput
                     errorText={errors.partnerCode?.message}
                     id="PartnerCode"
                     placeholder="Vendor code"
@@ -76,7 +89,7 @@ const getLoadingVendor = (state: RootState) =>
                     required
                     {...register('partnerCode')}
                   />
-                  <InputBase
+                  <CustomInput
                     errorText={errors.taxNumber?.message}
                     id="TXN"
                     placeholder="TXN"
@@ -88,17 +101,37 @@ const getLoadingVendor = (state: RootState) =>
                 <Divider margin="50px 0 30px 0" />
                 <div className="markup_helper-box">
                   <InputContainer title="Location">
-                    <InputBase
-                      errorText={errors.cityId?.message}
-                      id="City"
-                      placeholder="Choose city"
-                      label="City"
-                      type="number"
+                    <CustomSelect
+                      errorText={errors.countryId?.message}
+                      label="Country"
+                      id="Country"
+                      name="countryId"
+                      control={control}
+                      placeholder="Choose country"
+                      mappingOptions={countriesList}
+                      optionValue="countryId"
+                      optionLabel="name"
+                      isLoading={loadingDefinition}
+                      isDisabled={loadingDefinition}
+                      getOptionValue={getCountryValue}
                       required
-                      {...register('cityId', { valueAsNumber: true })}
+                    />
+                    <CustomSelect
+                      errorText={errors.cityId?.message}
+                      label="City"
+                      id="City"
+                      name="cityId"
+                      control={control}
+                      placeholder="Choose city"
+                      mappingOptions={filterCity()}
+                      optionValue="cityId"
+                      optionLabel="name"
+                      isDisabled={loadingDefinition || !filterCity().length}
+                      isLoading={loadingDefinition}
+                      required
                     />
 
-                    <InputBase
+                    <CustomInput
                       errorText={errors.address?.message}
                       id="Address"
                       placeholder="Add address"
@@ -108,14 +141,14 @@ const getLoadingVendor = (state: RootState) =>
                     />
                   </InputContainer>
                   <InputContainer title="Contacts">
-                    <InputBase
+                    <CustomInput
                       errorText={errors.email?.message}
                       id="Email"
                       placeholder="Email"
                       label="Email"
                       {...register('email')}
                     />
-                    <InputBase
+                    <CustomInput
                       errorText={errors.phone?.message}
                       id="PhoneNumber"
                       placeholder="Phone number"

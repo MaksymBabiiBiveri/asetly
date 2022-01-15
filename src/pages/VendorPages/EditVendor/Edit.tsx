@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './EditVendor.module.scss';
-import { Divider, Form, InputBase } from '@UiKitComponents';
+import { Divider, Form, CustomInput } from '@UiKitComponents';
 import { VendorTypes, NewVendorType, PutVendor } from '@Types/vendor.types';
 import { HeaderSaveAction, InputContainer } from '@components';
 import { useDispatch } from 'react-redux';
@@ -34,7 +34,7 @@ const Edit: React.FC<EditProps> = (props) => {
           />
           <div className={classes.form_box}>
             <InputContainer title="Summary">
-              <InputBase
+              <CustomInput
                 errorText={errors.name?.message}
                 id="VendorName"
                 placeholder="Vendor name"
@@ -43,7 +43,7 @@ const Edit: React.FC<EditProps> = (props) => {
                 statusActive
                 {...register('name')}
               />
-              <InputBase
+              <CustomInput
                 errorText={errors.taxOffice?.message}
                 id="TaxOffice"
                 placeholder="Tax Office"
@@ -52,7 +52,7 @@ const Edit: React.FC<EditProps> = (props) => {
                 statusActive
                 {...register('taxOffice')}
               />
-              <InputBase
+              <CustomInput
                 errorText={errors.partnerCode?.message}
                 id="PartnerCode"
                 placeholder="Vendor code"
@@ -61,7 +61,7 @@ const Edit: React.FC<EditProps> = (props) => {
                 statusActive
                 {...register('partnerCode')}
               />
-              <InputBase
+              <CustomInput
                 errorText={errors.taxNumber?.message}
                 id="TXN"
                 placeholder="TXN"
@@ -72,9 +72,9 @@ const Edit: React.FC<EditProps> = (props) => {
               />
             </InputContainer>
             <Divider margin="40px 0 20px 0" />
-            <div className='markup_helper-box'>
+            <div className="markup_helper-box">
               <InputContainer title="Location">
-                <InputBase
+                <CustomInput
                   errorText={errors.cityId?.message}
                   id="City"
                   placeholder="Choose city"
@@ -85,7 +85,7 @@ const Edit: React.FC<EditProps> = (props) => {
                   {...register('cityId', { valueAsNumber: true })}
                 />
 
-                <InputBase
+                <CustomInput
                   errorText={errors.address?.message}
                   id="Address"
                   placeholder="Add address"
@@ -96,7 +96,7 @@ const Edit: React.FC<EditProps> = (props) => {
                 />
               </InputContainer>
               <InputContainer title="Contacts">
-                <InputBase
+                <CustomInput
                   errorText={errors.email?.message}
                   id="Email"
                   placeholder="Email"
@@ -105,7 +105,7 @@ const Edit: React.FC<EditProps> = (props) => {
                   statusActive
                   {...register('email')}
                 />
-                <InputBase
+                <CustomInput
                   errorText={errors.phone?.message}
                   id="PhoneNumber"
                   placeholder="Phone number"
