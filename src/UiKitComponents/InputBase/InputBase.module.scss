@@ -34,6 +34,7 @@
     &::placeholder {
       color: $form-placeholder;
     }
+    &.active_input,
     &:focus {
       border-color: $form-focus;
       color: $form-focus;
@@ -60,14 +61,14 @@
 }
 .input_error {
   input {
-    border-color: $form-error;
+    border-color: $form-error !important;
     background: transparent;
-    color: $form-error;
+    color: $form-error !important;
     &::placeholder {
-      color: $form-error;
+      color: $form-error !important;
     }
     & + .label {
-      color: $form-error;
+      color: $form-error !important;
     }
   }
 }

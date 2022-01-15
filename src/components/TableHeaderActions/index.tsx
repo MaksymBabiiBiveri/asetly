@@ -9,6 +9,7 @@ interface TableHeaderActionsProps {
   checkedItemsList: number[] | string[];
   actionButtonExport?: () => void;
   actionButtonImport?: () => void;
+  btnName: string;
 }
 
 const TableHeaderActions: React.FC<TableHeaderActionsProps> = (props) => {
@@ -17,6 +18,7 @@ const TableHeaderActions: React.FC<TableHeaderActionsProps> = (props) => {
     checkedItemsList,
     actionButtonExport,
     actionButtonImport,
+    btnName,
   } = props;
   const navigate = useNavigate();
   const redirectToPageCreating = () => {
@@ -45,7 +47,7 @@ const TableHeaderActions: React.FC<TableHeaderActionsProps> = (props) => {
               Import
             </Button>
             <Button variant="primary" onClick={redirectToPageCreating}>
-              New Company
+              {btnName}
             </Button>
           </>
         ) : (

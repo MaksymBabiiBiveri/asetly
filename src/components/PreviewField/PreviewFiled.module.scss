@@ -1,0 +1,27 @@
+@import '../../styles/variables';
+
+.field {
+  width: 355px;
+
+  &_label {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: $form-fill;
+    transition: $transition;
+  }
+
+  &_description {
+    max-height: 80px;
+    min-height: 50px;
+    color: $typography-primary-color;
+    background: $form-background-mint;
+    border: 1px solid $form-background-mint;
+    border-radius: 4px;
+    padding: 12px 16px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.3em;
+  }
+}

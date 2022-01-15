@@ -1,9 +1,17 @@
 import { VendorActions, VendorState } from '../types/vendor.types';
 import { concatActions } from '@helpers/functions';
-import { GET_VENDOR_LIST, POST_NEW_VENDOR, SUCCESS } from '../actionTypes';
+import { 
+  FAIL, 
+  GET_VENDOR_LIST, 
+  GET_ONE_VENDOR,
+  POST_NEW_VENDOR, 
+  PUT_VENDOR,
+  SUCCESS 
+} from '../actionTypes';
 
 const initialState: VendorState = {
   vendorList: [],
+  currentVendor: null,
   loadingVendor: false,
 };
 
@@ -23,6 +31,17 @@ export const VendorReducer = (
         vendorList: [...state.vendorList, ...action.response.resultObject],
         loadingVendor: false,
       };
+    case GET_ONE_VENDOR:
+      return {
+        ...state,
+        loadingVendor: true,
+      };
+    case concatActions(GET_ONE_VENDOR, SUCCESS):
+      return {
+        ...state,
+        currentVendor: action.response.resultObject,
+        loadingVendor: false,
+      };
     case POST_NEW_VENDOR:
       return {
         ...state,
@@ -32,6 +51,21 @@ export const VendorReducer = (
       return {
         ...state,
         vendorList: [...state.vendorList, action.response.resultObject],
+        loadingVendor: false,
+      };
+    case concatActions(POST_NEW_VENDOR, FAIL):
+      return {
+        ...state,
+        loadingVendor: false,
+      };
+    case PUT_VENDOR:
+      return {
+        ...state,
+        loadingVendor: true,
+      };
+    case concatActions(PUT_VENDOR, SUCCESS):
+      return {
+        ...state,
         loadingVendor: false,
       };
     default:

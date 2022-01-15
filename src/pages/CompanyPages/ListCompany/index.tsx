@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classes from './CompanyList.module.scss';
+import classes from './ListCompany.module.scss';
 import { GetCompanyList } from '@Actions/company.action';
 import { CompanyState } from '@Types/company.types';
 import { RootState } from '@RootStateType';
@@ -9,7 +9,7 @@ import { CustomTable } from '@UiKitComponents';
 import { Loader } from '@common';
 import { DataKeyType } from '@Types/application.types';
 
-interface CompanyListProps {}
+interface ListCompanyProps {}
 
 const dataKeyCompanyList: DataKeyType[] = [
   {
@@ -44,7 +44,7 @@ const dataKeyCompanyList: DataKeyType[] = [
 
 const getCompanyState = (state: RootState) => state.CompanyReducer;
 
-const CompanyList: React.FC<CompanyListProps> = () => {
+const ListCompany: React.FC<ListCompanyProps> = () => {
   const { companyList, loadingCompany } = useSelector<RootState, CompanyState>(
     getCompanyState
   );
@@ -71,6 +71,8 @@ const CompanyList: React.FC<CompanyListProps> = () => {
       </EmptyPage>
     );
   }
+  console.log(companyList);
+  
 
   return (
     <div className={classes.companyList}>
@@ -78,6 +80,7 @@ const CompanyList: React.FC<CompanyListProps> = () => {
         <TableHeaderActions
           checkedItemsList={checkedItemsList}
           pageCreatingUrl="/Companies/newCompany"
+          btnName='New Company'
         />
         <CustomTable
           data={companyList}
@@ -90,4 +93,4 @@ const CompanyList: React.FC<CompanyListProps> = () => {
   );
 };
 
-export default CompanyList;
+export default ListCompany;

@@ -19,6 +19,8 @@ module.exports = {
           '@Actions': './src/store/actions',
           '@RootStateType': './src/store',
           '@Types': './src/store/types',
+          '@hooks': './src/hooks',
+          '@schema': './src/schemas',
         },
       },
     },

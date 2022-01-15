@@ -13,6 +13,11 @@ export type Redirect = {
   path: string;
 };
 
+export type ResponseApi<T> = {
+  resultObject: T;
+  resultStatus: boolean;
+};
+
 export interface BaseAction<Type> {
   type: Type;
   api?: AxiosRequestConfig;

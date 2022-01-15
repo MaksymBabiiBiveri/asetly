@@ -100,3 +100,9 @@ input {
     font-weight: 400;
   }
 }
+
+.markup_helper-box {
+  display: grid;
+  grid-template-columns: 355px 355px;
+  justify-content: space-between;
+}

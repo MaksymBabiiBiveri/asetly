@@ -18,14 +18,9 @@ const api: Middleware = () => (next: Dispatch) => (action: ActionsTypes) => {
       params: {
         ...action.api.params,
       },
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
-      },
     })
     .then((response: AxiosResponse) => {
+      console.log(response);
       next({
         ...action,
         type: concatActions(type, SUCCESS),

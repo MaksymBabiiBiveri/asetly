@@ -6,11 +6,13 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 interface InputBaseProps {
   label: string;
   id: string;
-  placeholder: string;
+  placeholder?: string;
   type?: 'text' | 'number' | 'password';
   errorText?: string;
   required?: boolean;
   disabled?: boolean;
+  defaultValue?: string | number;
+  statusActive?: boolean;
 }
 
 const InputBase = React.forwardRef<
@@ -24,6 +26,8 @@ const InputBase = React.forwardRef<
     required,
     placeholder,
     type = 'text',
+    defaultValue,
+    statusActive,
     ...rest
   } = props;
 
@@ -33,13 +37,17 @@ const InputBase = React.forwardRef<
   return (
     <div className={cl(classes.input_wrapper, InputError)}>
       <p className={classes.errorText}>{errorText}</p>
+
       <input
+        className={statusActive ? classes.active_input : ''}
         type={type}
         id={id}
         placeholder={placeholder}
         ref={ref}
+        defaultValue={defaultValue}
         {...rest}
       />
+
       <label htmlFor={id} className={classes.label_input}>
         {label}
         <span>{InputIsRequired}</span>

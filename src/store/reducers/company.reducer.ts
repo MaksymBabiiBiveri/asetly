@@ -1,9 +1,17 @@
 import { CompanyActions, CompanyState } from '@Types/company.types';
 import { concatActions } from '@helpers/functions';
-import { GET_COMPANY_LIST, POST_NEW_COMPANY, SUCCESS } from '../actionTypes';
+import {
+  FAIL,
+  GET_COMPANY_LIST,
+  GET_ONE_COMPANY,
+  POST_NEW_COMPANY,
+  PUT_COMPANY,
+  SUCCESS,
+} from '../actionTypes';
 
 const initialState: CompanyState = {
   companyList: [],
+  currentCompany: null,
   loadingCompany: false,
 };
 
@@ -23,6 +31,17 @@ export const CompanyReducer = (
         companyList: [...state.companyList, ...action.response.resultObject],
         loadingCompany: false,
       };
+    case GET_ONE_COMPANY:
+      return {
+        ...state,
+        loadingCompany: true,
+      };
+    case concatActions(GET_ONE_COMPANY, SUCCESS):
+      return {
+        ...state,
+        currentCompany: action.response.resultObject,
+        loadingCompany: false,
+      };
     case POST_NEW_COMPANY:
       return {
         ...state,
@@ -32,6 +51,21 @@ export const CompanyReducer = (
       return {
         ...state,
         companyList: [...state.companyList, action.response.resultObject],
+        loadingCompany: false,
+      };
+    case concatActions(POST_NEW_COMPANY, FAIL):
+      return {
+        ...state,
+        loadingCompany: false,
+      };
+    case PUT_COMPANY:
+      return {
+        ...state,
+        loadingCompany: true,
+      };
+    case concatActions(PUT_COMPANY, SUCCESS):
+      return {
+        ...state,
         loadingCompany: false,
       };
     default:

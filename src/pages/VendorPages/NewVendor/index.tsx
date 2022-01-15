@@ -7,8 +7,9 @@ import { InputBase, Form, Divider } from '@UiKitComponents';
 import { NewVendorType } from '@Types/vendor.types';
 import { postNewVendor } from '@Actions/vendor.action';
 import { Loader } from '@common';
-import { schemaNewCompany } from '@helpers/yupSchemas';
-import { CreateFormHeader, InputContainer } from '@components';
+import { useBackHistory } from '@hooks';
+import { schemaVendor } from '@schema/vendor';
+import { HeaderSaveAction, InputContainer } from '@components';
 
 interface NewVendorProps {}
 
@@ -21,16 +22,19 @@ const getLoadingVendor = (state: RootState) =>
     const { citiesList, loadingDefinition } = useSelector(getDefinitionState);
     const loadingVendor = useSelector(getLoadingVendor);
     const dispatch = useDispatch();
+    const backHistory = useBackHistory();
   
   const onSubmit = (newVendor: NewVendorType) => {
-    dispatch(postNewVendor(newVendor, '/Vendors'));
+    dispatch(postNewVendor(newVendor));
+    console.log(newVendor);
+    
   };
 
   useEffect(() => {
     if (!citiesList.length && !loadingDefinition) {
       dispatch(getCitiesList());
     }
-  });
+  }, []);
 
   if (loadingVendor || loadingDefinition) {
     return <Loader />;
@@ -39,10 +43,14 @@ const getLoadingVendor = (state: RootState) =>
   return (
     <div className={classes.newVendor}>
       <div className={classes.newVendor_wrapper}>
-        <Form<NewVendorType> onSubmit={onSubmit} yupSchema={schemaNewCompany}>
+        <Form<NewVendorType> onSubmit={onSubmit} yupSchema={schemaVendor}>
           {({ register, formState: { errors } }) => (
             <>
-              <CreateFormHeader title="New Vendor" errors={errors} />
+              <HeaderSaveAction 
+                title="New Vendor" 
+                errors={errors}
+                onCancelButton={backHistory} 
+              />
               <div className={classes.form_box}>
                 <InputContainer title="Summary">
                   <InputBase
@@ -54,19 +62,19 @@ const getLoadingVendor = (state: RootState) =>
                     {...register('name')}
                   />
                   <InputBase
-                    errorText={errors.partnerCode?.message}
-                    id="VendorCode"
-                    placeholder="Vendor code"
-                    label="Partner code"
-                    required
-                    {...register('partnerCode')}
-                  />
-                  <InputBase
                     errorText={errors.taxOffice?.message}
                     id="TaxOffice"
                     placeholder="Tax Office"
                     label="Tax Office"
                     {...register('taxOffice')}
+                  />
+                  <InputBase
+                    errorText={errors.partnerCode?.message}
+                    id="PartnerCode"
+                    placeholder="Vendor code"
+                    label="Vendor code"
+                    required
+                    {...register('partnerCode')}
                   />
                   <InputBase
                     errorText={errors.taxNumber?.message}
@@ -78,7 +86,7 @@ const getLoadingVendor = (state: RootState) =>
                   />
                 </InputContainer>
                 <Divider margin="50px 0 30px 0" />
-                <div className={classes.helper_box}>
+                <div className="markup_helper-box">
                   <InputContainer title="Location">
                     <InputBase
                       errorText={errors.cityId?.message}

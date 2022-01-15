@@ -20,6 +20,7 @@ import Loader from './Loader';
 import FilterBtn from './FilterBtn';
 import Export from './Export';
 import Import from './Import';
+import TrashBasket from './TrashBasket';
 
 export {
   Import,
@@ -44,4 +45,5 @@ export {
   Attributes,
   Departments,
   FilterBtn,
+  TrashBasket,
 };

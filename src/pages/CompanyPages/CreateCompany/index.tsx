@@ -1,35 +1,39 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classes from './NewCompany.module.scss';
+import classes from './CreateCompany.module.scss';
 import { RootState } from '@RootStateType';
 import { getCitiesList } from '@Actions/definition.action';
 import { InputBase, Form, Divider } from '@UiKitComponents';
-import { NewCompanyType } from '@Types/company.types';
+import { NewCompany } from '@Types/company.types';
 import { postNewCompany } from '@Actions/company.action';
 import { Loader } from '@common';
-import { schemaNewCompany } from '@helpers/yupSchemas';
-import { CreateFormHeader, InputContainer } from '@components';
+import { HeaderSaveAction, InputContainer } from '@components';
+import { useBackHistory } from '@hooks';
+import { schemaCompany } from '@schema/company';
 
-interface NewCompanyProps {}
+interface CreateCompanyProps {}
 
 const getDefinitionState = (state: RootState) => state.DefinitionReducer;
 const getLoadingCompany = (state: RootState) =>
   state.CompanyReducer.loadingCompany;
 
-const NewCompany: React.FC<NewCompanyProps> = () => {
+const CreateCompany: React.FC<CreateCompanyProps> = () => {
   const { citiesList, loadingDefinition } = useSelector(getDefinitionState);
   const loadingCompany = useSelector(getLoadingCompany);
   const dispatch = useDispatch();
+  const backHistory = useBackHistory();
 
-  const onSubmit = (newCompany: NewCompanyType) => {
-    dispatch(postNewCompany(newCompany, '/Companies'));
+  const onSubmit = (newCompany: NewCompany) => {
+    dispatch(postNewCompany(newCompany));
+    console.log(newCompany);
+    
   };
 
   useEffect(() => {
     if (!citiesList.length && !loadingDefinition) {
       dispatch(getCitiesList());
     }
-  });
+  }, []);
 
   if (loadingCompany || loadingDefinition) {
     return <Loader />;
@@ -38,10 +42,14 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
   return (
     <div className={classes.newCompany}>
       <div className={classes.newCompany_wrapper}>
-        <Form<NewCompanyType> onSubmit={onSubmit} yupSchema={schemaNewCompany}>
+        <Form<NewCompany> onSubmit={onSubmit} yupSchema={schemaCompany}>
           {({ register, formState: { errors } }) => (
             <>
-              <CreateFormHeader title="New Company" errors={errors} />
+              <HeaderSaveAction
+                title="New Company"
+                errors={errors}
+                onCancelButton={backHistory}
+              />
               <div className={classes.form_box}>
                 <InputContainer title="Summary">
                   <InputBase
@@ -53,6 +61,13 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
                     {...register('name')}
                   />
                   <InputBase
+                    errorText={errors.taxOffice?.message}
+                    id="TaxOffice"
+                    placeholder="Tax Office"
+                    label="Tax Office"
+                    {...register('taxOffice')}
+                  />
+                  <InputBase
                     errorText={errors.companyCode?.message}
                     id="CompanyCode"
                     placeholder="Company code"
@@ -60,13 +75,7 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
                     required
                     {...register('companyCode')}
                   />
-                  <InputBase
-                    errorText={errors.taxOffice?.message}
-                    id="TaxOffice"
-                    placeholder="Tax Office"
-                    label="Tax Office"
-                    {...register('taxOffice')}
-                  />
+
                   <InputBase
                     errorText={errors.taxNumber?.message}
                     id="TXN"
@@ -77,7 +86,7 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
                   />
                 </InputContainer>
                 <Divider margin="50px 0 30px 0" />
-                <div className={classes.helper_box}>
+                <div className="markup_helper-box">
                   <InputContainer title="Location">
                     <InputBase
                       errorText={errors.cityId?.message}
@@ -126,4 +135,4 @@ const NewCompany: React.FC<NewCompanyProps> = () => {
   );
 };
 
-export default memo(NewCompany);
+export default memo(CreateCompany);
