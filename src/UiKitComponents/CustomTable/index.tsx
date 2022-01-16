@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Pagination, Table } from 'rsuite';
 import { DataKeyType, UnknownDataType } from '@Types/application.types';
-import { CheckboxCell } from '@UiKitComponents';
+import { CheckboxCell, CustomCell } from '@UiKitComponents';
 import './CustomTable.scss';
 import useSortDataTable from '../../hooks/useSortDataTable';
-import { useNavigate } from 'react-router-dom';
 import useWindowDimensions from '../../hooks/useWindowSize';
 
 interface DataType extends UnknownDataType {
@@ -25,7 +24,7 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
   const [limitPage, setLimitPage] = useState(15);
   const [page, setPage] = useState(1);
   const [sortedData, options, handleSortColumn] = useSortDataTable(data);
-  const navigate = useNavigate();
+
   const { height } = useWindowDimensions();
   const heightTable = () => {
     if (height) {
@@ -40,10 +39,6 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
   const handleChangeLimit = (key: number) => {
     setPage(1);
     setLimitPage(key);
-  };
-
-  const onRowClick = (row: DataType) => {
-    navigate(`${row[currentDataKey]}`);
   };
 
   const filteredData = sortedData.filter((v: any, i: any) => {
@@ -63,7 +58,6 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
   return (
     <div className="table_wrapper">
       <Table
-        onRowClick={onRowClick}
         height={heightTable()}
         sortColumn={options.sortColumn}
         sortType={options.sortType}
@@ -90,7 +84,7 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
           return (
             <Table.Column {...rest} key={key} verticalAlign="middle">
               <Table.HeaderCell>{label}</Table.HeaderCell>
-              <Table.Cell dataKey={key} />
+              <CustomCell currentDataKey={currentDataKey} dataKey={key} />
             </Table.Column>
           );
         })}

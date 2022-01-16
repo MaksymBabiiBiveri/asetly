@@ -19,6 +19,7 @@ interface CustomSelectProps<FieldType> {
   isDisabled?: boolean;
   errorText?: string;
   required?: boolean;
+  statusActive?: boolean;
 }
 interface SelectList {
   readonly value: number | string;
@@ -39,6 +40,7 @@ const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {
     isDisabled,
     errorText,
     required,
+    statusActive,
     getOptionValue,
   } = props;
 
@@ -50,6 +52,7 @@ const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {
   }));
 
   const selectError = errorText ? 'react-select-container__error' : '';
+  const selectActive = statusActive ? 'react-select-container__active' : '';
 
   useEffect(() => {
     if (getOptionValue) {
@@ -70,7 +73,7 @@ const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {
         control={control}
         render={({ field: { onChange, value } }) => (
           <Select
-            className={cl('react-select-container', selectError)}
+            className={cl('react-select-container', selectError, selectActive)}
             classNamePrefix="react-select"
             placeholder={placeholder}
             options={selectList}

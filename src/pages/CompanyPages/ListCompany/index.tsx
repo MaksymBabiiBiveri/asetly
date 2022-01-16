@@ -78,6 +78,7 @@ const ListCompany: React.FC<ListCompanyProps> = () => {
         <TableHeaderActions
           checkedItemsList={checkedItemsList}
           pageCreatingUrl="/Companies/newCompany"
+          textRedirectButton="New Company"
         />
         <CustomTable
           data={companyList}

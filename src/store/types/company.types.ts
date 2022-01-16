@@ -94,7 +94,13 @@ export interface UpdateCompanySuccess
 
 export interface DeleteCompany extends BaseAction<typeof DELETE_COMPANY> {}
 export interface DeleteCompanySuccess
-  extends BaseAction<Concat<typeof DELETE_COMPANY, typeof SUCCESS>> {}
+  extends BaseAction<Concat<typeof DELETE_COMPANY, typeof SUCCESS>> {
+  response: {
+    resultStatus: boolean;
+    languageKeyword: string;
+    resultObject: [];
+  };
+}
 
 export type CompanyActions =
   | GetCompanyList
@@ -105,4 +111,6 @@ export type CompanyActions =
   | PostNewCompanySuccess
   | PostNewCompanyFail
   | UpdateCompany
-  | UpdateCompanySuccess;
+  | UpdateCompanySuccess
+  | DeleteCompany
+  | DeleteCompanySuccess;

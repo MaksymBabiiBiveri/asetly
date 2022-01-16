@@ -6,17 +6,21 @@ import { Export, Import } from '@common';
 
 interface TableHeaderActionsProps {
   pageCreatingUrl: string;
+  textRedirectButton: string;
   checkedItemsList: number[] | string[];
   actionButtonExport?: () => void;
   actionButtonImport?: () => void;
+  actionButtonDelete?: () => void;
 }
 
 const TableHeaderActions: React.FC<TableHeaderActionsProps> = (props) => {
   const {
     pageCreatingUrl,
+    textRedirectButton,
     checkedItemsList,
     actionButtonExport,
     actionButtonImport,
+    actionButtonDelete,
   } = props;
   const navigate = useNavigate();
   const redirectToPageCreating = () => {
@@ -45,12 +49,14 @@ const TableHeaderActions: React.FC<TableHeaderActionsProps> = (props) => {
               Import
             </Button>
             <Button variant="primary" onClick={redirectToPageCreating}>
-              New Company
+              {textRedirectButton}
             </Button>
           </>
         ) : (
           <div className={classes.deleteButton_box}>
-            <Button variant="primary">Delete</Button>
+            <Button variant="primary" onClick={actionButtonDelete}>
+              Delete
+            </Button>
           </div>
         )}
       </div>

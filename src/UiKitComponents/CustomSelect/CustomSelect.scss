@@ -4,7 +4,6 @@
   max-width: 355px;
   height: 50px;
   width: 100%;
-
   .react-select {
     &__control {
       width: 100%;
@@ -13,6 +12,13 @@
       background: $form-background-mint;
       border: 1px solid $form-background-mint;
       border-radius: 4px;
+      transition: all 0.5s ease;
+      &:hover {
+        border-color: $form-focus;
+      }
+    }
+    &__single-value {
+      padding: 3px 0;
     }
     &__placeholder {
       color: $form-placeholder;
@@ -33,16 +39,25 @@
       }
     }
   }
-
   &.react-select--is-disabled {
     .react-select {
-      &__control {
+      &__control--is-disabled {
         background: transparent;
         border-color: $form-disabled;
         color: $form-disabled;
       }
       &__placeholder {
         color: $form-disabled;
+      }
+    }
+  }
+  .react-select {
+    &__control--is-focused {
+      border-color: $form-focus;
+      color: $form-focus;
+      background: $form-background-white;
+      .react-select__placeholder {
+        color: $form-focus;
       }
     }
   }
@@ -56,6 +71,19 @@
     }
     &__placeholder {
       color: $form-error !important;
+    }
+  }
+}
+
+.react-select-container__active {
+  .react-select {
+    &__control {
+      border-color: $form-focus;
+      color: $form-focus;
+      background: $form-background-white;
+    }
+    &__placeholder {
+      color: $form-focus;
     }
   }
 }
