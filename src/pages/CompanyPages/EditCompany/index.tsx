@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import classes from './EditCompany.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetOneCompany } from '@Actions/company.action';
+import { deleteCompanies, GetOneCompany } from '@Actions/company.action';
 import { RootState } from '@RootStateType';
 import { Loader } from '@common';
-import { HeaderEditAction } from '@components';
+import { HeaderEditAction, ModalDelete } from '@components';
 import { useToggle } from '@hooks';
 import Preview from '@pages/CompanyPages/EditCompany/Preview';
 import Edit from '@pages/CompanyPages/EditCompany/Edit';
-import ModalDelete from '../../../UiKitComponents/ModalDelete';
 
 type CompanyParams = {
   CompanyID: string;
@@ -22,6 +21,7 @@ const getCompanyState = (state: RootState) => state.CompanyReducer;
 const EditCompany: React.FC<EditCompanyProps> = () => {
   const params = useParams<CompanyParams>();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [modeEdit, setModeEdit] = useToggle();
   const [openModal, setOpenModal] = useToggle();
 
@@ -29,8 +29,11 @@ const EditCompany: React.FC<EditCompanyProps> = () => {
   const companyID = params.CompanyID ? params.CompanyID : '';
 
   const deleteCompany = () => {
-    console.log('delete');
+    if (currentCompany) {
+      dispatch(deleteCompanies([currentCompany.companyId]));
+    }
     setOpenModal(!open);
+    navigate('/Companies');
   };
 
   useEffect(() => {
