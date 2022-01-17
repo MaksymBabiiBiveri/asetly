@@ -2,23 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eab7ad4-2e29-48e7-86e4-5e061ccb3b19" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomCell/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomFileInput/CustomFileInput.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomFileInput/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/ContractPages/Contract.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/ContractPages/CreateContract/CreateContract.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/ContractPages/CreateContract/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/ContractPages/ListContracts/ListContracts.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/ContractPages/ListContracts/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/reducers/contract.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/types/contract.types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomSelect/CustomSelect.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomSelect/CustomSelect.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomSelect/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomSelect/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomTable/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomTableRS/CustomTableRs.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomTableRS/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/ModalDelete/ModalDelete.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ModalDelete/ModalDelete.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/ModalDelete/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ModalDelete/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomInput/CustomInput.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomInput/CustomInput.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UiKitComponents/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EmptyPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EmptyPage/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/InputContainer/InputContainer.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InputContainer/InputContainer.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TableHeaderActions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TableHeaderActions/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/EditCompany/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/EditCompany/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/ListCompany/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/ListCompany/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/company.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/company.action.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/company.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/company.reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/CreateCompany/CreateCompany.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/CreateCompany/CreateCompany.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/CreateCompany/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/CreateCompany/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actionTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actionTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/types/company.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/types/company.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +50,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="contracts_screens" />
+                    <option name="lastUsedInstant" value="1642363430" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="company_pages" />
                     <option name="lastUsedInstant" value="1642003120" />
@@ -140,6 +150,7 @@
       <workItem from="1641853414094" duration="5817000" />
       <workItem from="1642108942409" duration="17094000" />
       <workItem from="1642360479488" duration="608000" />
+      <workItem from="1642436888952" duration="4998000" />
     </task>
     <servers />
   </component>

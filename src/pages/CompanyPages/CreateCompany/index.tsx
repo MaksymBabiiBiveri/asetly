@@ -97,7 +97,7 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
                     placeholder="TXN"
                     label="TXN"
                     required
-                    {...register('taxNumber', { valueAsNumber: true })}
+                    {...register('taxNumber')}
                   />
                 </InputContainer>
                 <Divider margin="50px 0 30px 0" />

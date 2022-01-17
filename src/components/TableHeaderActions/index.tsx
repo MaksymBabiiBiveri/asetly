@@ -7,7 +7,7 @@ import { Export, Import } from '@common';
 interface TableHeaderActionsProps {
   pageCreatingUrl: string;
   textRedirectButton: string;
-  checkedItemsList: number[] | string[];
+  checkedItemsList?: number[] | string[];
   actionButtonExport?: () => void;
   actionButtonImport?: () => void;
   actionButtonDelete?: () => void;
@@ -17,7 +17,7 @@ const TableHeaderActions: React.FC<TableHeaderActionsProps> = (props) => {
   const {
     pageCreatingUrl,
     textRedirectButton,
-    checkedItemsList,
+    checkedItemsList = [],
     actionButtonExport,
     actionButtonImport,
     actionButtonDelete,
@@ -32,7 +32,7 @@ const TableHeaderActions: React.FC<TableHeaderActionsProps> = (props) => {
         <SearchInput />
       </div>
       <div className={classes.button_wrapper}>
-        {!checkedItemsList.length ? (
+        {checkedItemsList && !checkedItemsList.length ? (
           <>
             <Button
               variant="secondary"

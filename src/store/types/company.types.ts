@@ -16,7 +16,7 @@ export type Company = {
   name: string;
   cityId: number;
   address: string;
-  taxNumber: number;
+  taxNumber: string;
   taxOffice: string;
   contactName: string;
   phone: string;

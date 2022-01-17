@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 .custom_input {
-  width: 355px;
+  max-width: 355px;
+  width: 100%;
   color: $typography-primary-color;
   background: $form-background-mint;
   border: 1px solid $form-background-mint;
