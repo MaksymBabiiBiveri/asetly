@@ -45,7 +45,9 @@ const dataKeyVendorList: DataKeyType[] = [
 const getVendorState = (state: RootState) => state.VendorReducer;
 
 const VendorList: React.FC<VendorListProps> = () => {    
-  const { vendorList, loadingVendor } = useSelector<RootState, VendorState>(getVendorState);
+  const { vendorList, loadingVendor } = useSelector<RootState, VendorState>(
+    getVendorState
+  );
 
   const [checkedItemsList, setCheckedItemsList] = useState<number[] | string[]>(
     []
@@ -56,12 +58,12 @@ const VendorList: React.FC<VendorListProps> = () => {
     if (!vendorList.length) {
       dispatch(GetVendorList());
     }
+    console.log(vendorList);
   }, [vendorList]);
 
   if (loadingVendor) {
     return <Loader />;
   }
-  console.log(vendorList);
   
   if(vendorList && !vendorList.length) {
     return (
@@ -78,7 +80,7 @@ const VendorList: React.FC<VendorListProps> = () => {
         <TableHeaderActions
           checkedItemsList={checkedItemsList}
           pageCreatingUrl="/Vendors/newVendor"
-          btnName="New Vendor"
+          textRedirectButton="New Vendor"
         />
         <CustomTable
           data={vendorList}

@@ -6,6 +6,7 @@ import InputContainer from './InputContainer';
 import HeaderSaveAction from './HeaderSaveAction';
 import HeaderEditAction from './HeaderEditAction';
 import PreviewField from './PreviewField';
+import ModalDelete from './ModalDelete';
 
 export {
   EmptyPage,
@@ -16,4 +17,5 @@ export {
   HeaderSaveAction,
   HeaderEditAction,
   PreviewField,
+  ModalDelete,
 };

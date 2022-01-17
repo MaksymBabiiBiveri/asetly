@@ -1,5 +1,6 @@
 import { CompanyActions, NewCompany, PutCompany } from '@Types/company.types';
 import {
+  DELETE_COMPANY,
   GET_COMPANY_LIST,
   GET_ONE_COMPANY,
   POST_NEW_COMPANY,
@@ -41,6 +42,17 @@ export const updateCompany = (company: PutCompany): CompanyActions => ({
     method: 'PUT',
     data: {
       ...company,
+    },
+  },
+});
+
+export const deleteCompanies = (companyIds: number[]): CompanyActions => ({
+  type: DELETE_COMPANY,
+  api: {
+    url: `/Firm/RemoveByIdList`,
+    method: 'POST',
+    data: {
+      CompanyIds: companyIds,
     },
   },
 });

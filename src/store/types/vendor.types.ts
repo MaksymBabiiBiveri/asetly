@@ -10,7 +10,7 @@ import {
 } from '../actionTypes';
 import { City, Country } from '@Types/definition.types';
 
-export type VendorTypes = {
+export type Vendor = {
   partnerId: number;
   partnerCode: string;
   name: string;
@@ -38,7 +38,7 @@ export type VendorTypes = {
   nonCurrAssetsPartner: any[]
 };
 
-export type NewVendorType = {
+export type NewVendor = {
   partnerCode: string;
   name: string;
   email: string;
@@ -52,11 +52,11 @@ export type NewVendorType = {
   countryId: number;
 };
 
-export type PutVendor = NewVendorType & Pick<VendorTypes, 'partnerId'>;
+export type PutVendor = NewVendor & Pick<Vendor, 'partnerId'>;
 
 export interface VendorState {
-  vendorList: VendorTypes[] | [];
-  currentVendor: VendorTypes | null;
+  vendorList: Vendor[] | [];
+  currentVendor: Vendor | null;
   loadingVendor: boolean;
 }
 
@@ -65,7 +65,7 @@ export interface GetVendorListSuccess
   extends BaseAction<Concat<typeof GET_VENDOR_LIST, typeof SUCCESS>> {
   response: {
     resultStatus: boolean;
-    resultObject: VendorTypes[];
+    resultObject: Vendor[];
   };
 }
 
@@ -74,7 +74,7 @@ export interface GetOneVendorSuccess
   extends BaseAction<Concat<typeof GET_ONE_VENDOR, typeof SUCCESS>> {
   response: {
     resultStatus: boolean;
-    resultObject: VendorTypes;
+    resultObject: Vendor;
   };
 }
 
@@ -82,7 +82,7 @@ export interface PostNewVendor extends BaseAction<typeof POST_NEW_VENDOR> {}
 export interface PostNewVendorSuccess
   extends BaseAction<Concat<typeof POST_NEW_VENDOR, typeof SUCCESS>> {
   response: {
-    resultObject: VendorTypes;
+    resultObject: Vendor;
   };
 }
 export interface PostNewVendorFail
@@ -92,13 +92,20 @@ export interface UpdateVendor extends BaseAction<typeof PUT_VENDOR> {}
 export interface UpdateVendorSuccess
   extends BaseAction<Concat<typeof PUT_VENDOR, typeof SUCCESS>> {
   response: {
-    resultObject: VendorTypes;
+    resultObject: Vendor;
   };
 }
 
 export interface DeleteVendor extends BaseAction<typeof DELETE_VENDOR> {}
 export interface DeleteVendorSuccess
-  extends BaseAction<Concat<typeof DELETE_VENDOR, typeof SUCCESS>> {}
+  extends BaseAction<Concat<typeof DELETE_VENDOR, typeof SUCCESS>> {
+  response: {
+    resultStatus: boolean;
+    languageKeyword: string;
+    resultObject: [];
+  };
+}
+
 
 export type VendorActions =
   | GetVendorList
@@ -109,4 +116,6 @@ export type VendorActions =
   | PostNewVendorSuccess
   | PostNewVendorFail
   | UpdateVendor
-  | UpdateVendorSuccess;
+  | UpdateVendorSuccess
+  | DeleteVendor
+  | DeleteVendorSuccess;

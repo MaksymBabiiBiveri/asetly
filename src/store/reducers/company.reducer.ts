@@ -1,6 +1,7 @@
 import { CompanyActions, CompanyState } from '@Types/company.types';
 import { concatActions } from '@helpers/functions';
 import {
+  DELETE_COMPANY,
   FAIL,
   GET_COMPANY_LIST,
   GET_ONE_COMPANY,
@@ -67,6 +68,14 @@ export const CompanyReducer = (
       return {
         ...state,
         loadingCompany: false,
+      };
+    case DELETE_COMPANY:
+      return {
+        ...state,
+      };
+    case concatActions(DELETE_COMPANY, SUCCESS):
+      return {
+        ...state,
       };
     default:
       return {

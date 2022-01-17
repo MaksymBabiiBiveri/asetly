@@ -59,6 +59,8 @@ const ListCompany: React.FC<ListCompanyProps> = () => {
     }
   }, [companyList]);
 
+  
+
   if (loadingCompany) {
     return <Loader />;
   }
@@ -80,7 +82,7 @@ const ListCompany: React.FC<ListCompanyProps> = () => {
         <TableHeaderActions
           checkedItemsList={checkedItemsList}
           pageCreatingUrl="/Companies/newCompany"
-          btnName='New Company'
+          textRedirectButton="New Company"
         />
         <CustomTable
           data={companyList}

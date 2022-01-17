@@ -1,5 +1,6 @@
-import { VendorActions, NewVendorType, PutVendor } from '../types/vendor.types';
+import { VendorActions, NewVendor, PutVendor } from '../types/vendor.types';
 import { 
+  DELETE_VENDOR,
   GET_VENDOR_LIST,
   GET_ONE_VENDOR,
   POST_NEW_VENDOR,
@@ -22,7 +23,7 @@ export const GetOneVendor = (id: string | number): VendorActions => ({
   },
 });
 
-export const postNewVendor = (newVendor: NewVendorType):
+export const postNewVendor = (newVendor: NewVendor):
   VendorActions => ({
   type: POST_NEW_VENDOR,
 
@@ -43,5 +44,16 @@ export const updateVendor = (vendor: PutVendor): VendorActions => ({
     data: {
       ...vendor
     }
+  },
+});
+
+export const deleteVendor = (partnerIds: number[]): VendorActions => ({
+  type: DELETE_VENDOR,
+  api: {
+    url: `/Vendor/RemoveByIdList`,
+    method: 'POST',
+    data: {
+      PartnerIds: partnerIds,
+    },
   },
 });

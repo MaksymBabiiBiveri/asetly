@@ -1,30 +1,33 @@
 import React from 'react';
 import classes from './EditVendor.module.scss';
 import { Divider, Form, CustomInput } from '@UiKitComponents';
-import { VendorTypes, NewVendorType, PutVendor } from '@Types/vendor.types';
+import { Vendor, NewVendor, PutVendor } from '@Types/vendor.types';
 import { HeaderSaveAction, InputContainer } from '@components';
 import { useDispatch } from 'react-redux';
 import { updateVendor } from '@Actions/vendor.action';
 import { schemaVendor } from '@schema/vendor';
 
 interface EditProps {
-  currentVendor: VendorTypes;
+  currentVendor: Vendor;
   backToPreview: (modeEdit: boolean) => void;
 }
 
 const Edit: React.FC<EditProps> = (props) => {
   const { currentVendor, backToPreview } = props;
   const dispatch = useDispatch();
-  const onSubmit = (vendor: NewVendorType) => {
+
+  const onSubmit = (vendor: NewVendor) => {
     const NewVendor: PutVendor = {
       ...vendor,
       partnerId: currentVendor.partnerId,
     };
     dispatch(updateVendor(NewVendor));
+    console.log(NewVendor);
   };
+  
   return (
     <>
-      <Form<NewVendorType> onSubmit={onSubmit} yupSchema={schemaVendor}>
+      <Form<NewVendor> onSubmit={onSubmit} yupSchema={schemaVendor}>
       {({ register, formState: { errors } }) => (
         <>
           <HeaderSaveAction 
@@ -32,7 +35,7 @@ const Edit: React.FC<EditProps> = (props) => {
             errors={errors}
             onCancelButton={backToPreview} 
           />
-          <div className={classes.form_box}>
+          <div className={classes.content_box}>
             <InputContainer title="Summary">
               <CustomInput
                 errorText={errors.name?.message}

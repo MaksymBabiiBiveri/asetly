@@ -2,14 +2,17 @@ import React from 'react';
 import classes from './EditVendor.module.scss';
 import { InputContainer, PreviewField } from '@components';
 import { Divider } from '@UiKitComponents';
-import { VendorTypes } from '@Types/vendor.types';
+import { Vendor } from '@Types/vendor.types';
 
 interface PreviewProps {
-  currentVendor: VendorTypes;
+  currentVendor: Vendor;
 }
 
 const Preview: React.FC<PreviewProps> = (props) => {
   const { currentVendor } = props;
+  const cityName: string = currentVendor.city.name;
+  const countryName: string = currentVendor.city.country?.name;
+  
   return (
     <div className={classes.content_box}>
       <InputContainer title="Summary">
@@ -28,8 +31,8 @@ const Preview: React.FC<PreviewProps> = (props) => {
       <Divider margin="40px 0 20px 0" />
       <div className="markup_helper-box">
         <InputContainer title="Location">
-          <PreviewField label="Country" description="null" />
-          <PreviewField label="City" description="null" />
+          <PreviewField label="Country" description={countryName} />
+          <PreviewField label="City" description={cityName} />
           <PreviewField label="Address" description={currentVendor.address} />
         </InputContainer>
         <InputContainer title="Contacts">

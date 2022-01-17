@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import classes from './EditVendor.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetOneVendor } from '@Actions/vendor.action';
+import { deleteVendor, GetOneVendor } from '@Actions/vendor.action';
 import { RootState } from '@RootStateType';
 import { Loader } from '@common';
-import { HeaderEditAction } from '@components';
+import { HeaderEditAction, ModalDelete } from '@components';
 import { useToggle } from '@hooks';
 import Preview from '@pages/VendorPages/EditVendor/Preview';
 import Edit from '@pages/VendorPages/EditVendor/Edit';
-import ModalDelete from '../../../UiKitComponents/ModalDelete';
 
 type VendorParams = {
   PartnerID: string;
@@ -22,17 +21,20 @@ const getVendorState = (state: RootState) => state.VendorReducer;
 const EditVendor: React.FC<EditVendorProps> = () => {
   const params = useParams<VendorParams>();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [modeEdit, setModeEdit] = useToggle();
   const [openModal, setOpenModal] = useToggle();
 
   const { currentVendor, loadingVendor } = useSelector(getVendorState);
   const partnerID = params.PartnerID ? params.PartnerID : '';
 
-  const deleteVendor = () => {
-    console.log('delete');
+  const deleteVendors = () => {
+    if(currentVendor) {
+      dispatch(deleteVendor([currentVendor.partnerId]))
+    }
     setOpenModal(!open);
+    navigate('/Vendors');
   };
-console.log(params);
 
   useEffect(() => {
     dispatch(GetOneVendor(partnerID));
@@ -63,7 +65,7 @@ console.log(params);
           name={currentVendor.name}
           open={openModal}
           setOpen={setOpenModal}
-          onDelete={deleteVendor}
+          onDelete={deleteVendors}
         />
       </div>
     </div>

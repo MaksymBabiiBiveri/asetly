@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import VendorList from '@pages/VendorPages/VendorList';
-import NewVendor from '@pages/VendorPages/NewVendor';
+import CreateVendor from '@pages/VendorPages/CreateVendor';
 import EditVendor from './EditVendor';
 
 interface VendorsProps {}
@@ -11,7 +11,7 @@ const Vendors: React.FC<VendorsProps> = () => {
     <>
       <Routes>
         <Route index element={<VendorList />} />
-        <Route path="NewVendor" element={<NewVendor />} />
+        <Route path="NewVendor" element={<CreateVendor />} />
         <Route path=":PartnerID" element={<EditVendor />} />
       </Routes>
     </>

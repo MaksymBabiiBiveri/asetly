@@ -1,10 +1,10 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classes from './NewVendor.module.scss';
+import classes from './CreateVendor.module.scss';
 import { RootState } from '@RootStateType';
 import { getCitiesList, getCountriesList } from '@Actions/definition.action';
 import { CustomInput, CustomSelect, Form, Divider } from '@UiKitComponents';
-import { NewVendorType } from '@Types/vendor.types';
+import { NewVendor } from '@Types/vendor.types';
 import { postNewVendor } from '@Actions/vendor.action';
 import { Loader } from '@common';
 import { useBackHistory } from '@hooks';
@@ -12,14 +12,14 @@ import { schemaVendor } from '@schema/vendor';
 import { HeaderSaveAction, InputContainer } from '@components';
 import { City } from '@Types/definition.types';
 
-interface NewVendorProps {}
+interface CreateVendorProps {}
 
 const getLoadingVendor = (state: RootState) => 
   state.VendorReducer.loadingVendor;
 const getDefinitionState = (state: RootState) => 
   state.DefinitionReducer;
 
-  const NewVendor: React.FC<NewVendorProps> = () => {
+  const CreateVendor: React.FC<CreateVendorProps> = () => {
     const { citiesList, countriesList, loadingDefinition } = useSelector(getDefinitionState);
     const loadingVendor = useSelector(getLoadingVendor);
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const getDefinitionState = (state: RootState) =>
 
     const [countryId, setCountryId] = useState<number | undefined | string>();
   
-  const onSubmit = (newVendor: NewVendorType) => {
+  const onSubmit = (newVendor: NewVendor) => {
     dispatch(postNewVendor(newVendor));
     console.log(newVendor);
   };
@@ -56,7 +56,7 @@ const getDefinitionState = (state: RootState) =>
   return (
     <div className={classes.newVendor}>
       <div className={classes.newVendor_wrapper}>
-        <Form<NewVendorType> onSubmit={onSubmit} yupSchema={schemaVendor}>
+        <Form<NewVendor> onSubmit={onSubmit} yupSchema={schemaVendor}>
           {({ register, formState: { errors }, control }) => (
             <>
               <HeaderSaveAction 
@@ -167,4 +167,4 @@ const getDefinitionState = (state: RootState) =>
   );
 };
 
-export default memo(NewVendor);
+export default memo(CreateVendor);

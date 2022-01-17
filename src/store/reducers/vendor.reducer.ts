@@ -1,6 +1,7 @@
 import { VendorActions, VendorState } from '../types/vendor.types';
 import { concatActions } from '@helpers/functions';
 import { 
+  DELETE_VENDOR,
   FAIL, 
   GET_VENDOR_LIST, 
   GET_ONE_VENDOR,
@@ -67,6 +68,14 @@ export const VendorReducer = (
       return {
         ...state,
         loadingVendor: false,
+      };
+    case DELETE_VENDOR:
+      return {
+        ...state,
+      };
+    case concatActions(DELETE_VENDOR, SUCCESS):
+      return {
+        ...state,
       };
     default:
       return {
