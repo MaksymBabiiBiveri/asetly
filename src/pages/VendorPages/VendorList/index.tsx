@@ -13,29 +13,29 @@ interface VendorListProps {}
 
 const dataKeyVendorList: DataKeyType[] = [
   {
-    key: 'partnerId',
-    label: 'Vendor Id',
+    key: 'name',
+    label: 'VENDOR NAME',
     align: 'left',
-    width: 110,
+    flexGrow: 1,
     sortable: true,
   },
   {
-    key: 'name',
-    label: 'Vendor Name',
+    key: 'taxNumber',
+    label: 'TXN',
     align: 'left',
     flexGrow: 1,
     sortable: true,
   },
 
   {
-    key: 'partnerCode',
-    label: 'Vendor Code',
+    key: 'phone',
+    label: 'PHONE',
     align: 'left',
     flexGrow: 1,
   },
   {
-    key: 'address',
-    label: 'Address',
+    key: 'cityId',
+    label: 'CITY',
     align: 'left',
     flexGrow: 1,
     sortable: true,
