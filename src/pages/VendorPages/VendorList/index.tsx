@@ -58,7 +58,6 @@ const VendorList: React.FC<VendorListProps> = () => {
     if (!vendorList.length) {
       dispatch(GetVendorList());
     }
-    console.log(vendorList);
   }, [vendorList]);
 
   if (loadingVendor) {

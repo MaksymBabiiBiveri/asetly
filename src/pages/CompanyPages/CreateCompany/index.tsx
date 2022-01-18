@@ -30,7 +30,6 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
 
   const onSubmit = (newCompany: NewCompany) => {
     dispatch(postNewCompany(newCompany));
-    console.log(newCompany);
   };
 
   const getCountryValue = (countryId: number | undefined | string) => {

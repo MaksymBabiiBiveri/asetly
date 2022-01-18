@@ -1,20 +1,46 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import classes from './EditVendor.module.scss';
-import { Divider, Form, CustomInput } from '@UiKitComponents';
+import { Divider, Form, CustomInput, CustomSelect } from '@UiKitComponents';
 import { Vendor, NewVendor, PutVendor } from '@Types/vendor.types';
 import { HeaderSaveAction, InputContainer } from '@components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateVendor } from '@Actions/vendor.action';
 import { schemaVendor } from '@schema/vendor';
+import { RootState } from '@RootStateType';
+import { getCitiesList, getCountriesList } from '@Actions/definition.action';
+import { City } from '@Types/definition.types';
 
 interface EditProps {
   currentVendor: Vendor;
   backToPreview: (modeEdit: boolean) => void;
 }
 
+const getDefinitionState = (state: RootState) => state.DefinitionReducer;
+
 const Edit: React.FC<EditProps> = (props) => {
   const { currentVendor, backToPreview } = props;
+  const { loadingDefinition, countriesList, citiesList } =
+    useSelector(getDefinitionState);
   const dispatch = useDispatch();
+
+  const [countryId, setCountryId] = useState<number | undefined | string>();
+
+  const getCountryValue = (countryId: number | undefined | string) => {
+    setCountryId(countryId ? countryId : currentVendor.city.countryId);
+  };
+
+  const filterCity = (): City[] => {
+    return citiesList.filter((city) => city.countryId === countryId);
+  };
+
+  useEffect(() => {
+    if (!countriesList.length && !loadingDefinition) {
+      dispatch(getCountriesList());
+    }
+    if (!citiesList.length && !loadingDefinition) {
+      dispatch(getCitiesList());
+    }
+  }, []);
 
   const onSubmit = (vendor: NewVendor) => {
     const NewVendor: PutVendor = {
@@ -22,13 +48,12 @@ const Edit: React.FC<EditProps> = (props) => {
       partnerId: currentVendor.partnerId,
     };
     dispatch(updateVendor(NewVendor));
-    console.log(NewVendor);
   };
   
   return (
     <>
       <Form<NewVendor> onSubmit={onSubmit} yupSchema={schemaVendor}>
-      {({ register, formState: { errors } }) => (
+      {({ register, formState: { errors }, control }) => (
         <>
           <HeaderSaveAction 
             title={currentVendor.name}
@@ -77,15 +102,35 @@ const Edit: React.FC<EditProps> = (props) => {
             <Divider margin="40px 0 20px 0" />
             <div className="markup_helper-box">
               <InputContainer title="Location">
-                <CustomInput
+                <CustomSelect
+                  errorText={errors.countryId?.message}
+                  label="Country"
+                  id="Country"
+                  name="countryId"
+                  control={control}
+                  placeholder="Choose country"
+                  mappingOptions={countriesList}
+                  optionValue="countryId"
+                  optionLabel="name"
+                  isLoading={loadingDefinition}
+                  isDisabled={loadingDefinition}
+                  getOptionValue={getCountryValue}
+                  required
+                />
+
+                <CustomSelect
                   errorText={errors.cityId?.message}
-                  id="City"
-                  placeholder="Choose city"
                   label="City"
-                  type="number"
-                  defaultValue={currentVendor.cityId}
-                  statusActive
-                  {...register('cityId', { valueAsNumber: true })}
+                  id="City"
+                  name="cityId"
+                  control={control}
+                  placeholder="Choose city"
+                  mappingOptions={filterCity()}
+                  optionValue="cityId"
+                  optionLabel="name"
+                  isDisabled={loadingDefinition}
+                  isLoading={loadingDefinition}
+                  required
                 />
 
                 <CustomInput

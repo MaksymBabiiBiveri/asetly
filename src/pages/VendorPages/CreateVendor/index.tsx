@@ -29,7 +29,6 @@ const getDefinitionState = (state: RootState) =>
   
   const onSubmit = (newVendor: NewVendor) => {
     dispatch(postNewVendor(newVendor));
-    console.log(newVendor);
   };
 
   const getCountryValue = (countryId: number | undefined | string) => {

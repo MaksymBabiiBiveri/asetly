@@ -20,7 +20,6 @@ const api: Middleware = () => (next: Dispatch) => (action: ActionsTypes) => {
       },
     })
     .then((response: AxiosResponse) => {
-      console.log(response);
       next({
         ...action,
         type: concatActions(type, SUCCESS),
