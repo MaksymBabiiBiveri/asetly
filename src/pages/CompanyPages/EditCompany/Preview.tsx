@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './EditCompany.module.scss';
 import { InputContainer, PreviewField } from '@components';
 import { Divider } from '@UiKitComponents';
 import { Company } from '@Types/company.types';
@@ -11,7 +10,7 @@ interface PreviewProps {
 const Preview: React.FC<PreviewProps> = (props) => {
   const { currentCompany } = props;
   return (
-    <div className={classes.content_box}>
+    <div className="form_box">
       <InputContainer title="Summary">
         <PreviewField label="Company Name" description={currentCompany.name} />
         <PreviewField

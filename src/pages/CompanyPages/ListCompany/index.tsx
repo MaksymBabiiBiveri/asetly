@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classes from './ListCompany.module.scss';
 import { GetCompanyList } from '@Actions/company.action';
 import { CompanyState } from '@Types/company.types';
 import { RootState } from '@RootStateType';
@@ -73,8 +72,8 @@ const ListCompany: React.FC<ListCompanyProps> = () => {
   }
 
   return (
-    <div className={classes.companyList}>
-      <div className={classes.companyList_wrapper}>
+    <div>
+      <div className="padding_wrapper_table-page">
         <TableHeaderActions
           checkedItemsList={checkedItemsList}
           pageCreatingUrl="/Companies/newCompany"
