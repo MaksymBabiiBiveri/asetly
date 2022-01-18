@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './CreateContract.module.scss';
-import { CustomInput, Form } from '@UiKitComponents';
+import { CustomFileInput, CustomInput, Form } from '@UiKitComponents';
 import { NewContract } from '@Types/contract.types';
 import { HeaderSaveAction, InputContainer } from '@components';
 
 interface CreateContractProps {}
 
 const CreateContract: React.FC<CreateContractProps> = () => {
+  const [file, setFile] = useState<any>();
+  console.log(file);
   const onSubmit = (value: NewContract) => {
     console.log(value);
   };
@@ -64,6 +66,11 @@ const CreateContract: React.FC<CreateContractProps> = () => {
                       {...register('endDate')}
                     />
                   </div>
+                  <CustomFileInput
+                    value={file}
+                    setValue={setFile}
+                    {...register('contractFile')}
+                  />
                 </InputContainer>
               </div>
             </>

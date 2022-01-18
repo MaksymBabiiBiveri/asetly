@@ -76,17 +76,6 @@ const Edit: React.FC<EditProps> = (props) => {
               <div className="markup_helper-box">
                 <InputContainer title="Location">
                   <CustomInput
-                    errorText={errors.cityId?.message}
-                    id="City"
-                    placeholder="Choose city"
-                    label="City"
-                    type="number"
-                    defaultValue={currentCompany.cityId}
-                    statusActive
-                    {...register('cityId', { valueAsNumber: true })}
-                  />
-
-                  <CustomInput
                     errorText={errors.address?.message}
                     id="Address"
                     placeholder="Add address"
