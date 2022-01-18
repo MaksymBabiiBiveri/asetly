@@ -1,39 +1,38 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classes from './CreateCompany.module.scss';
+import classes from './CreateVendor.module.scss';
 import { RootState } from '@RootStateType';
-import { Form, Divider, CustomInput, CustomSelect } from '@UiKitComponents';
-import { NewCompany } from '@Types/company.types';
-import { postNewCompany } from '@Actions/company.action';
-import { Loader } from '@common';
-import { HeaderSaveAction, InputContainer } from '@components';
-import { useBackHistory } from '@hooks';
-import { schemaCompany } from '@schema/company';
 import { getCitiesList, getCountriesList } from '@Actions/definition.action';
+import { CustomInput, CustomSelect, Form, Divider } from '@UiKitComponents';
+import { NewVendor } from '@Types/vendor.types';
+import { postNewVendor } from '@Actions/vendor.action';
+import { Loader } from '@common';
+import { useBackHistory } from '@hooks';
+import { schemaVendor } from '@schema/vendor';
+import { HeaderSaveAction, InputContainer } from '@components';
 import { City } from '@Types/definition.types';
 
-interface CreateCompanyProps {}
+interface CreateVendorProps {}
 
-const getLoadingCompany = (state: RootState) =>
-  state.CompanyReducer.loadingCompany;
+const getLoadingVendor = (state: RootState) => 
+  state.VendorReducer.loadingVendor;
+const getDefinitionState = (state: RootState) => 
+  state.DefinitionReducer;
 
-const getDefinitionState = (state: RootState) => state.DefinitionReducer;
+  const CreateVendor: React.FC<CreateVendorProps> = () => {
+    const { citiesList, countriesList, loadingDefinition } = useSelector(getDefinitionState);
+    const loadingVendor = useSelector(getLoadingVendor);
+    const dispatch = useDispatch();
+    const backHistory = useBackHistory();
 
-const CreateCompany: React.FC<CreateCompanyProps> = () => {
-  const loadingCompany = useSelector(getLoadingCompany);
-  const { loadingDefinition, countriesList, citiesList } =
-    useSelector(getDefinitionState);
-  const dispatch = useDispatch();
-  const backHistory = useBackHistory();
-
-  const [countryId, setCountryId] = useState<number | undefined | string>();
-
-  const onSubmit = (newCompany: NewCompany) => {
-    dispatch(postNewCompany(newCompany));
+    const [countryId, setCountryId] = useState<number | undefined | string>();
+  
+  const onSubmit = (newVendor: NewVendor) => {
+    dispatch(postNewVendor(newVendor));
   };
 
   const getCountryValue = (countryId: number | undefined | string) => {
-    setCountryId(countryId);
+    setCountryId(countryId)
   };
 
   const filterCity = (): City[] => {
@@ -49,28 +48,28 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
     }
   }, []);
 
-  if (loadingCompany) {
+  if (loadingVendor) {
     return <Loader />;
   }
 
   return (
-    <div className={classes.newCompany}>
-      <div className={classes.newCompany_wrapper}>
-        <Form<NewCompany> onSubmit={onSubmit} yupSchema={schemaCompany}>
+    <div className={classes.newVendor}>
+      <div className={classes.newVendor_wrapper}>
+        <Form<NewVendor> onSubmit={onSubmit} yupSchema={schemaVendor}>
           {({ register, formState: { errors }, control }) => (
             <>
-              <HeaderSaveAction
-                title="New Company"
+              <HeaderSaveAction 
+                title="New Vendor" 
                 errors={errors}
-                onCancelButton={backHistory}
+                onCancelButton={backHistory} 
               />
               <div className={classes.form_box}>
                 <InputContainer title="Summary">
                   <CustomInput
                     errorText={errors.name?.message}
-                    id="CompanyName"
-                    placeholder="Company name"
-                    label="Company name"
+                    id="VendorName"
+                    placeholder="Vendor name"
+                    label="Vendor name"
                     required
                     {...register('name')}
                   />
@@ -82,21 +81,20 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
                     {...register('taxOffice')}
                   />
                   <CustomInput
-                    errorText={errors.companyCode?.message}
-                    id="CompanyCode"
-                    placeholder="Company code"
-                    label="Company code"
+                    errorText={errors.partnerCode?.message}
+                    id="PartnerCode"
+                    placeholder="Vendor code"
+                    label="Vendor code"
                     required
-                    {...register('companyCode')}
+                    {...register('partnerCode')}
                   />
-
                   <CustomInput
                     errorText={errors.taxNumber?.message}
                     id="TXN"
                     placeholder="TXN"
                     label="TXN"
                     required
-                    {...register('taxNumber', { valueAsNumber: true })}
+                    {...register('taxNumber')}
                   />
                 </InputContainer>
                 <Divider margin="50px 0 30px 0" />
@@ -143,12 +141,11 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
                   </InputContainer>
                   <InputContainer title="Contacts">
                     <CustomInput
-                      errorText={errors.contactName?.message}
+                      errorText={errors.email?.message}
                       id="Email"
                       placeholder="Email"
                       label="Email"
-                      required
-                      {...register('contactName')}
+                      {...register('email')}
                     />
                     <CustomInput
                       errorText={errors.phone?.message}
@@ -169,4 +166,4 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
   );
 };
 
-export default memo(CreateCompany);
+export default memo(CreateVendor);

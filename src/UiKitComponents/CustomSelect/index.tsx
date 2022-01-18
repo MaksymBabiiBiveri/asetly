@@ -10,7 +10,7 @@ interface CustomSelectProps<FieldType> {
   id: string;
   name: FieldPath<FieldType>;
   control: Control<FieldType, object>;
-  placeholder: string;
+  placeholder?: string;
   mappingOptions: any[];
   optionValue: string | number;
   optionLabel: string;
@@ -59,7 +59,7 @@ const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {
       getOptionValue(value);
     }
   }, [value]);
-
+  
   return (
     <InputContainer
       label={label}
@@ -79,7 +79,7 @@ const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {
             options={selectList}
             onChange={(item) => {
               onChange(item?.value);
-              setValue(item?.value);
+              setValue(item?.value);              
             }}
             value={selectList.filter((item) => value === item.value)}
             isDisabled={isDisabled}

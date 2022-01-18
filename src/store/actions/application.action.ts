@@ -22,6 +22,5 @@ export const GetToken =
       const token = responseAuth.data.token;
       localStorage.setItem('token', token);
     } catch (error: any) {
-      console.log(error);
     }
   };

@@ -14,7 +14,7 @@ export type City = {
   name: string;
   countryId: number;
   orderId: number;
-  country: Country | null;
+  country: Country;
   //TODO: как узнаем тип массива изменить any
   partners: any[];
   companies: any[];

@@ -59,6 +59,8 @@ const ListCompany: React.FC<ListCompanyProps> = () => {
     }
   }, [companyList]);
 
+  
+
   if (loadingCompany) {
     return <Loader />;
   }
@@ -70,7 +72,7 @@ const ListCompany: React.FC<ListCompanyProps> = () => {
         <h5>Click the button and create a new company</h5>
       </EmptyPage>
     );
-  }
+  }  
 
   return (
     <div className={classes.companyList}>
