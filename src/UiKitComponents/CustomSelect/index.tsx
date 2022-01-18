@@ -4,7 +4,10 @@ import Select from 'react-select';
 import { Control, Controller, FieldPath } from 'react-hook-form';
 import InputContainer from '../InputContainer';
 import './CustomSelect.scss';
-
+interface SelectList {
+  readonly value: number | string;
+  readonly label: string;
+}
 interface CustomSelectProps<FieldType> {
   label: string;
   id: string;
@@ -14,16 +17,12 @@ interface CustomSelectProps<FieldType> {
   mappingOptions: any[];
   optionValue: string | number;
   optionLabel: string;
-  getOptionValue?: (option: string | number | undefined) => void;
   isLoading?: boolean;
   isDisabled?: boolean;
   errorText?: string;
   required?: boolean;
   statusActive?: boolean;
-}
-interface SelectList {
-  readonly value: number | string;
-  readonly label: string;
+  getOptionValue?: (option: string | number | undefined) => void;
 }
 
 const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {

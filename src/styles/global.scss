@@ -1,6 +1,7 @@
 @import 'mixins';
 @import 'nullStyles';
 @import 'variables';
+@import 'helperStyleComponents';
 
 body,
 html {
@@ -99,10 +100,4 @@ input {
     font-size: $form-placeholder-fz;
     font-weight: 400;
   }
-}
-
-.markup_helper-box {
-  display: grid;
-  grid-template-columns: 355px 355px;
-  justify-content: space-between;
 }

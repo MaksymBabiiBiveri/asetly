@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@UiKitComponents';
 
 interface EmptyPageProps {
-  textButton: 'Company' | 'Vendor';
-  redirectPath: 'newCompany' | 'newVendor';
+  textButton: 'Company' | 'Vendor' | 'Contract';
+  redirectPath: 'newCompany' | 'newVendor' | 'newContract';
 }
 
 const EmptyPage: React.FC<EmptyPageProps> = (props) => {

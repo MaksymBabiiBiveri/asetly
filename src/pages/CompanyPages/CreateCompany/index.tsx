@@ -1,15 +1,13 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classes from './CreateCompany.module.scss';
 import { RootState } from '@RootStateType';
 import { Form, Divider, CustomInput, CustomSelect } from '@UiKitComponents';
 import { NewCompany } from '@Types/company.types';
 import { postNewCompany } from '@Actions/company.action';
 import { Loader } from '@common';
 import { HeaderSaveAction, InputContainer } from '@components';
-import { useBackHistory } from '@hooks';
+import { useBackHistory, useGetCityAndCountry } from '@hooks';
 import { schemaCompany } from '@schema/company';
-import { getCitiesList, getCountriesList } from '@Actions/definition.action';
 import { City } from '@Types/definition.types';
 
 interface CreateCompanyProps {}
@@ -17,14 +15,15 @@ interface CreateCompanyProps {}
 const getLoadingCompany = (state: RootState) =>
   state.CompanyReducer.loadingCompany;
 
-const getDefinitionState = (state: RootState) => state.DefinitionReducer;
+const getLoadingDefinition = (state: RootState) =>
+  state.DefinitionReducer.loadingDefinition;
 
 const CreateCompany: React.FC<CreateCompanyProps> = () => {
   const loadingCompany = useSelector(getLoadingCompany);
-  const { loadingDefinition, countriesList, citiesList } =
-    useSelector(getDefinitionState);
+  const loadingDefinition = useSelector(getLoadingDefinition);
   const dispatch = useDispatch();
   const backHistory = useBackHistory();
+  const { citiesList, countriesList } = useGetCityAndCountry();
 
   const [countryId, setCountryId] = useState<number | undefined | string>();
 
@@ -40,22 +39,13 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
     return citiesList.filter((city) => city.countryId === countryId);
   };
 
-  useEffect(() => {
-    if (!countriesList.length && !loadingDefinition) {
-      dispatch(getCountriesList());
-    }
-    if (!citiesList.length && !loadingDefinition) {
-      dispatch(getCitiesList());
-    }
-  }, []);
-
   if (loadingCompany) {
     return <Loader />;
   }
 
   return (
-    <div className={classes.newCompany}>
-      <div className={classes.newCompany_wrapper}>
+    <div>
+      <div className="padding_wrapper_page">
         <Form<NewCompany> onSubmit={onSubmit} yupSchema={schemaCompany}>
           {({ register, formState: { errors }, control }) => (
             <>
@@ -64,7 +54,7 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
                 errors={errors}
                 onCancelButton={backHistory}
               />
-              <div className={classes.form_box}>
+              <div className="form_box">
                 <InputContainer title="Summary">
                   <CustomInput
                     errorText={errors.name?.message}
@@ -96,7 +86,7 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
                     placeholder="TXN"
                     label="TXN"
                     required
-                    {...register('taxNumber', { valueAsNumber: true })}
+                    {...register('taxNumber')}
                   />
                 </InputContainer>
                 <Divider margin="50px 0 30px 0" />

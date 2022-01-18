@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+
+.custom_file_input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  width: 355px;
+  border: 2px dashed $main-default-color;
+  border-radius: 4px;
+  text-align: center;
+  label {
+    color: $main-blue-color;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+}

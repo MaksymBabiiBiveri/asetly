@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import classes from './EditCompany.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCompanies, GetOneCompany } from '@Actions/company.action';
 import { RootState } from '@RootStateType';
@@ -45,8 +44,8 @@ const EditCompany: React.FC<EditCompanyProps> = () => {
   }
 
   return (
-    <div className={classes.editCompany}>
-      <div className={classes.editCompany_wrapper}>
+    <div>
+      <div className="padding_wrapper_page">
         {!modeEdit && (
           <HeaderEditAction
             title={currentCompany.name}

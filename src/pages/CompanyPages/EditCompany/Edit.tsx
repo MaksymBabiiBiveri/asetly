@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './EditCompany.module.scss';
 import { CustomInput, Divider, Form } from '@UiKitComponents';
 import { Company, NewCompany, PutCompany } from '@Types/company.types';
 import { HeaderSaveAction, InputContainer } from '@components';
@@ -32,7 +31,7 @@ const Edit: React.FC<EditProps> = (props) => {
               errors={errors}
               onCancelButton={backToPreview}
             />
-            <div className={classes.content_box}>
+            <div className="form_box">
               <InputContainer title="Summary">
                 <CustomInput
                   errorText={errors.name?.message}
@@ -76,17 +75,6 @@ const Edit: React.FC<EditProps> = (props) => {
               <Divider margin="40px 0 20px 0" />
               <div className="markup_helper-box">
                 <InputContainer title="Location">
-                  <CustomInput
-                    errorText={errors.cityId?.message}
-                    id="City"
-                    placeholder="Choose city"
-                    label="City"
-                    type="number"
-                    defaultValue={currentCompany.cityId}
-                    statusActive
-                    {...register('cityId', { valueAsNumber: true })}
-                  />
-
                   <CustomInput
                     errorText={errors.address?.message}
                     id="Address"

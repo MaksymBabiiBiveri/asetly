@@ -8,6 +8,7 @@ import CustomCheckbox from './CustomCheckbox';
 import CustomInput from './CustomInput';
 import CustomSelect from './CustomSelect';
 import CustomCell from './CustomCell';
+import CustomFileInput from './CustomFileInput';
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   CustomInput,
   CustomSelect,
   CustomCell,
+  CustomFileInput,
 };

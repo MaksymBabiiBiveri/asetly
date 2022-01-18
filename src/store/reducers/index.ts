@@ -3,12 +3,14 @@ import { ApplicationReducer } from './application.reducer';
 import { CompanyReducer } from './company.reducer';
 import { DefinitionReducer } from './definition.reducer';
 import { VendorReducer } from './vendor.reducer';
+import { ContractReducer } from './contract.reducer';
 
 const reducer = combineReducers({
   ApplicationReducer,
   CompanyReducer,
   DefinitionReducer,
-  VendorReducer
+  VendorReducer,
+  ContractReducer,
 });
 
 export default reducer;

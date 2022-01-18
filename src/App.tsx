@@ -6,6 +6,7 @@ import { Header, Sidebar } from '@components';
 import { Loader } from '@common';
 
 const Company = React.lazy(() => import('@pages/CompanyPages/Company'));
+const Contract = React.lazy(() => import('@pages/ContractPages/Contract'));
 const Vendors = React.lazy(() => import('@pages/VendorPages/Vendors'));
 
 function App() {
@@ -25,8 +26,9 @@ function App() {
           <section className="contents">
             <React.Suspense fallback={<Loader />}>
               <Routes>
-                <Route path="companies/*" element={<Company />} />
-                <Route path="vendors/*" element={<Vendors />} />
+                <Route path="Companies/*" element={<Company />} />
+                <Route path="Contracts/*" element={<Contract />} />
+                <Route path="Vendors/*" element={<Vendors />} />
               </Routes>
             </React.Suspense>
           </section>
