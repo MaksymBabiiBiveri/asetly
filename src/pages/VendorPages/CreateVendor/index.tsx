@@ -1,6 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classes from './CreateVendor.module.scss';
 import { RootState } from '@RootStateType';
 import { getCitiesList, getCountriesList } from '@Actions/definition.action';
 import { CustomInput, CustomSelect, Form, Divider } from '@UiKitComponents';
@@ -53,8 +52,8 @@ const getDefinitionState = (state: RootState) =>
   }
 
   return (
-    <div className={classes.newVendor}>
-      <div className={classes.newVendor_wrapper}>
+    <div>
+      <div className={'padding_wrapper_page'}>
         <Form<NewVendor> onSubmit={onSubmit} yupSchema={schemaVendor}>
           {({ register, formState: { errors }, control }) => (
             <>
@@ -63,7 +62,7 @@ const getDefinitionState = (state: RootState) =>
                 errors={errors}
                 onCancelButton={backHistory} 
               />
-              <div className={classes.form_box}>
+              <div className={'form_box'}>
                 <InputContainer title="Summary">
                   <CustomInput
                     errorText={errors.name?.message}

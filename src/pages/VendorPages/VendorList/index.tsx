@@ -7,7 +7,6 @@ import { EmptyPage, TableHeaderActions } from '@components';
 import { CustomTable } from '@UiKitComponents';
 import { Loader } from '@common';
 import { DataKeyType } from '@Types/application.types';
-import classes from './VendorList.module.scss';
 
 interface VendorListProps {}
 
@@ -74,8 +73,8 @@ const VendorList: React.FC<VendorListProps> = () => {
   }
 
   return (
-    <div className={classes.vendorList}>
-      <div className={classes.vendorList_wrapper}>
+    <div>
+      <div className={'padding_wrapper_table-page'}>
         <TableHeaderActions
           checkedItemsList={checkedItemsList}
           pageCreatingUrl="/Vendors/newVendor"
