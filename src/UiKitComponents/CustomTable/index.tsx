@@ -83,7 +83,9 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
           const { key, label, ...rest } = dataItem;
           return (
             <Table.Column {...rest} key={key} verticalAlign="middle">
-              <Table.HeaderCell>{label}</Table.HeaderCell>
+              <Table.HeaderCell className="custom_header_cell">
+                {label}
+              </Table.HeaderCell>
               <CustomCell currentDataKey={currentDataKey} dataKey={key} />
             </Table.Column>
           );

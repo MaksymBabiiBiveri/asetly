@@ -1,26 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import classes from './CreateContract.module.scss';
-import { CustomFileInput, CustomInput, Form } from '@UiKitComponents';
+import {
+  CustomFileInput,
+  CustomInput,
+  CustomSelect,
+  Form,
+} from '@UiKitComponents';
 import { NewContract } from '@Types/contract.types';
 import { HeaderSaveAction, InputContainer } from '@components';
+import { RootState } from '@RootStateType';
+import { useDispatch, useSelector } from 'react-redux';
+import { GetVendorList } from '@Actions/vendor.action';
 
 interface CreateContractProps {}
 
+const getVendorList = (state: RootState) => state.VendorReducer.vendorList;
+
 const CreateContract: React.FC<CreateContractProps> = () => {
-  const [file, setFile] = useState<any>();
-  console.log(file);
+  const vendorList = useSelector(getVendorList);
+  const dispatch = useDispatch();
+
   const onSubmit = (value: NewContract) => {
     console.log(value);
   };
 
+  useEffect(() => {
+    if (!vendorList.length) {
+      dispatch(GetVendorList());
+    }
+  }, []);
+
   return (
-    <div className={classes.createContract}>
-      <div className={classes.createContract_wrapper}>
+    <div>
+      <div className="padding_wrapper_page">
         <Form<NewContract> onSubmit={onSubmit}>
-          {({ register }) => (
+          {({ register, control }) => (
             <>
               <HeaderSaveAction title="New Contract" />
-              <div className={classes.form_box}>
+              <div className="form_box">
                 <InputContainer title="Summary">
                   <CustomInput
                     label="Contract Code"
@@ -29,12 +46,15 @@ const CreateContract: React.FC<CreateContractProps> = () => {
                     required
                     {...register('contractCode')}
                   />
-                  <CustomInput
+                  <CustomSelect
                     label="Vendor"
                     id="partnerId"
-                    placeholder="Vendor Company"
+                    name="partnerId"
+                    control={control}
+                    mappingOptions={vendorList}
+                    optionValue="partnerId"
+                    optionLabel="name"
                     required
-                    {...register('partnerId')}
                   />
                   <CustomInput
                     label="Contract No"
@@ -66,11 +86,7 @@ const CreateContract: React.FC<CreateContractProps> = () => {
                       {...register('endDate')}
                     />
                   </div>
-                  <CustomFileInput
-                    value={file}
-                    setValue={setFile}
-                    {...register('contractFile')}
-                  />
+                  <CustomFileInput {...register('contractFile')} />
                 </InputContainer>
               </div>
             </>
