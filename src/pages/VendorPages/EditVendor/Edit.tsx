@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import classes from './EditVendor.module.scss';
 import { Divider, Form, CustomInput, CustomSelect } from '@UiKitComponents';
 import { Vendor, NewVendor, PutVendor } from '@Types/vendor.types';
 import { HeaderSaveAction, InputContainer } from '@components';
@@ -60,7 +59,7 @@ const Edit: React.FC<EditProps> = (props) => {
             errors={errors}
             onCancelButton={backToPreview} 
           />
-          <div className={classes.content_box}>
+          <div className='form_box'>
             <InputContainer title="Summary">
               <CustomInput
                 errorText={errors.name?.message}

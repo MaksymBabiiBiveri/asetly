@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import classes from './EditVendor.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteVendor, GetOneVendor } from '@Actions/vendor.action';
 import { RootState } from '@RootStateType';
@@ -45,8 +44,8 @@ const EditVendor: React.FC<EditVendorProps> = () => {
   }
 
   return (
-    <div className={classes.editVendor}>
-      <div className={classes.editVendor_wrapper}>
+    <div>
+      <div className='padding_wrapper_page'>
         {!modeEdit && (
           <HeaderEditAction
             title={currentVendor.name}
