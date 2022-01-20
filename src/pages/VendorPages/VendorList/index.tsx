@@ -58,6 +58,7 @@ const VendorList: React.FC<VendorListProps> = () => {
       dispatch(GetVendorList());
     }
   }, [vendorList]);
+console.log(vendorList);
 
   if (loadingVendor) {
     return <Loader />;
