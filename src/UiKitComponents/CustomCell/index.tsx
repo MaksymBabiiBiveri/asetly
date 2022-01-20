@@ -13,9 +13,9 @@ const CustomCell: React.FC<CustomCellProps> = (props) => {
   const navigate = useNavigate();
 
   const mappingValue = (): string | number => {
-    const arrStr = dataKey.split('.');
+    const arrKey = dataKey.split('.');
     let newData = rowData;
-    arrStr.forEach((key) => {
+    arrKey.forEach((key) => {
       newData = newData[key];
     });
     return newData;

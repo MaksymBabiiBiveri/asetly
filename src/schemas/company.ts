@@ -9,8 +9,8 @@ export const schemaCompany = yup.object({
     .max(4, 'Company code must be max 4 characters'),
   taxOffice: yup.string(),
   taxNumber: yup
-    .number()
-    .typeError('TXN must be a number')
+    .string()
+    .matches(/^[0-9]*$/, 'TXN must be a number')
     .required('This field is required'),
   cityId: yup
     .number()

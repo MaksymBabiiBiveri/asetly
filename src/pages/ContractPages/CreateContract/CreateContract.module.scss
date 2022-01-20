@@ -4,6 +4,16 @@
   display: flex;
   justify-content: space-between;
   input {
-    width: 128px;
+    width: 150px;
+  }
+}
+.group_input_price {
+  display: flex;
+  justify-content: space-between;
+  div[class='custom-input-container']:first-child {
+    width: 210px !important;
+  }
+  div[class='custom-input-container']:last-child {
+    width: 110px;
   }
 }

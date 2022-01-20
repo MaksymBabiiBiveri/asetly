@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './CustomInput.module.scss';
+import './CustomInput.scss';
 import cl from 'classnames';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import InputContainer from '../InputContainer';
@@ -33,8 +33,8 @@ const CustomInput = React.forwardRef<
     ...rest
   } = props;
 
-  const activeInput = statusActive ? classes.active_input : '';
-  const errorInput = errorText ? classes.error_input : '';
+  const activeInput = statusActive ? 'custom-input__active' : '';
+  const errorInput = errorText ? 'custom-input__error' : '';
 
   return (
     <InputContainer
@@ -49,7 +49,7 @@ const CustomInput = React.forwardRef<
         placeholder={placeholder}
         ref={ref}
         type={type}
-        className={cl(classes.custom_input, activeInput, errorInput)}
+        className={cl('custom-input', activeInput, errorInput)}
         disabled={disabled}
         defaultValue={defaultValue}
         {...rest}

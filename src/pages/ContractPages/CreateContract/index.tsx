@@ -11,35 +11,53 @@ import { HeaderSaveAction, InputContainer } from '@components';
 import { RootState } from '@RootStateType';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetVendorList } from '@Actions/vendor.action';
+import { getCurrencyList } from '@Actions/currency.action';
+import { schemaContract } from '@schema/contract';
+import { useBackHistory } from '@hooks';
+import { postNewContract } from '@Actions/contracts.action';
 
 interface CreateContractProps {}
 
-const getVendorList = (state: RootState) => state.VendorReducer.vendorList;
+const getVendorState = (state: RootState) => state.VendorReducer;
+const getCurrencyState = (state: RootState) => state.CurrencyReducer;
 
 const CreateContract: React.FC<CreateContractProps> = () => {
-  const vendorList = useSelector(getVendorList);
+  const { vendorList, loadingVendor } = useSelector(getVendorState);
+  const { currencyList, loadingCurrency } = useSelector(getCurrencyState);
+  const backHistory = useBackHistory();
   const dispatch = useDispatch();
 
-  const onSubmit = (value: NewContract) => {
-    console.log(value);
+  const onSubmit = (contract: NewContract) => {
+    contract.endDate = new Date(contract.endDate).toISOString();
+    contract.startDate = new Date(contract.startDate).toISOString();
+
+    console.log(contract);
+    dispatch(postNewContract(contract));
   };
 
   useEffect(() => {
     if (!vendorList.length) {
       dispatch(GetVendorList());
     }
+    if (!currencyList.length) {
+      dispatch(getCurrencyList());
+    }
   }, []);
 
   return (
     <div>
       <div className="padding_wrapper_page">
-        <Form<NewContract> onSubmit={onSubmit}>
-          {({ register, control }) => (
+        <Form<NewContract> onSubmit={onSubmit} yupSchema={schemaContract}>
+          {({ register, control, formState: { errors } }) => (
             <>
-              <HeaderSaveAction title="New Contract" />
+              <HeaderSaveAction
+                title="New Contract"
+                onCancelButton={backHistory}
+              />
               <div className="form_box">
                 <InputContainer title="Summary">
                   <CustomInput
+                    errorText={errors.contractCode?.message}
                     label="Contract Code"
                     id="contractCode"
                     placeholder="Contract Code"
@@ -47,6 +65,7 @@ const CreateContract: React.FC<CreateContractProps> = () => {
                     {...register('contractCode')}
                   />
                   <CustomSelect
+                    errorText={errors.partnerId?.message}
                     label="Vendor"
                     id="partnerId"
                     name="partnerId"
@@ -55,33 +74,60 @@ const CreateContract: React.FC<CreateContractProps> = () => {
                     optionValue="partnerId"
                     optionLabel="name"
                     required
+                    isLoading={loadingVendor}
+                    isDisabled={loadingVendor}
                   />
                   <CustomInput
+                    errorText={errors.no?.message}
                     label="Contract No"
                     id="no"
                     placeholder="Contract No"
                     required
                     {...register('no')}
                   />
+
                   <CustomInput
+                    errorText={errors.name?.message}
                     label="Contract Name"
                     id="name"
                     placeholder="Contract Name"
                     required
                     {...register('name')}
                   />
+                  <div className={classes.group_input_price}>
+                    <CustomInput
+                      errorText={errors.price?.message}
+                      label="Agreement Price"
+                      id="price"
+                      placeholder="0,00"
+                      required
+                      {...register('price')}
+                    />
+                    <CustomSelect
+                      label=""
+                      id="currency"
+                      name="currencyId"
+                      control={control}
+                      mappingOptions={currencyList}
+                      optionValue="currencyId"
+                      optionLabel="symbol"
+                      isDisabled={loadingCurrency}
+                    />
+                  </div>
                   <div className={classes.group_input}>
                     <CustomInput
+                      errorText={errors.startDate?.message}
                       label="Contract Start Date"
                       id="startDate"
-                      placeholder="12/00/0000"
+                      placeholder="0000-00-12"
                       required
                       {...register('startDate')}
                     />
                     <CustomInput
+                      errorText={errors.endDate?.message}
                       label="Contract End Date"
                       id="endDate"
-                      placeholder="12/00/0000"
+                      placeholder="0000-00-12"
                       required
                       {...register('endDate')}
                     />

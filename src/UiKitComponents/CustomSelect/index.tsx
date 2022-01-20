@@ -4,9 +4,10 @@ import Select from 'react-select';
 import { Control, Controller, FieldPath } from 'react-hook-form';
 import InputContainer from '../InputContainer';
 import './CustomSelect.scss';
-interface SelectList {
+
+interface SelectOptions {
   readonly value: number | string;
-  readonly label: string;
+  readonly label: number | string;
 }
 interface CustomSelectProps<FieldType> {
   label: string;
@@ -45,7 +46,7 @@ const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {
 
   const [value, setValue] = useState<string | number>();
 
-  const selectList: SelectList[] = mappingOptions.map((item) => ({
+  const selectList: SelectOptions[] = mappingOptions.map((item) => ({
     value: item[optionValue],
     label: item[optionLabel],
   }));
@@ -58,7 +59,7 @@ const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {
       getOptionValue(value);
     }
   }, [value]);
-  
+
   return (
     <InputContainer
       label={label}
@@ -70,17 +71,16 @@ const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {
       <Controller
         name={name}
         control={control}
-        render={({ field: { onChange, value } }) => (
+        render={({ field: { onChange } }) => (
           <Select
             className={cl('react-select-container', selectError, selectActive)}
             classNamePrefix="react-select"
             placeholder={placeholder}
             options={selectList}
-            onChange={(item) => {
-              onChange(item?.value);
-              setValue(item?.value);              
+            onChange={(newValue) => {
+              onChange(newValue?.value);
+              setValue(newValue?.value);
             }}
-            value={selectList.filter((item) => value === item.value)}
             isDisabled={isDisabled}
             isLoading={isLoading}
           />

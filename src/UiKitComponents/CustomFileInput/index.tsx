@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
+// import { Control, Controller, FieldPath } from 'react-hook-form';
 import './CustomFileInput.scss';
 
 interface CustomFileInputProps {}
@@ -19,6 +20,7 @@ const CustomFileInput = React.forwardRef<
   return (
     <div className="custom_file_input">
       <label htmlFor="uploadFile">Upload a contract</label>
+
       <input
         type="file"
         ref={ref}

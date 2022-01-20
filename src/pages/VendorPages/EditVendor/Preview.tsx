@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './EditVendor.module.scss';
 import { InputContainer, PreviewField } from '@components';
 import { Divider } from '@UiKitComponents';
 import { Vendor } from '@Types/vendor.types';
@@ -12,9 +11,9 @@ const Preview: React.FC<PreviewProps> = (props) => {
   const { currentVendor } = props;
   const cityName: string = currentVendor.city.name;
   const countryName: string = currentVendor.city.country?.name;
-  
+
   return (
-    <div className={classes.content_box}>
+    <div className="form_box">
       <InputContainer title="Summary">
         <PreviewField label="Vendor Name" description={currentVendor.name} />
         <PreviewField
@@ -36,10 +35,7 @@ const Preview: React.FC<PreviewProps> = (props) => {
           <PreviewField label="Address" description={currentVendor.address} />
         </InputContainer>
         <InputContainer title="Contacts">
-          <PreviewField
-            label="Email"
-            description={currentVendor.email}
-          />
+          <PreviewField label="Email" description={currentVendor.email} />
           <PreviewField
             label="Phone number"
             description={currentVendor.phone}

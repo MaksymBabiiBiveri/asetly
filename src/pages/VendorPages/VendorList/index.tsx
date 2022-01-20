@@ -14,7 +14,7 @@ interface VendorListProps {}
 const dataKeyVendorList: DataKeyType[] = [
   {
     key: 'name',
-    label: 'VENDOR NAME',
+    label: 'Vendor Name',
     align: 'left',
     flexGrow: 1,
     sortable: true,
@@ -26,10 +26,9 @@ const dataKeyVendorList: DataKeyType[] = [
     flexGrow: 1,
     sortable: true,
   },
-
   {
     key: 'phone',
-    label: 'PHONE',
+    label: 'Phone',
     align: 'left',
     flexGrow: 1,
   },

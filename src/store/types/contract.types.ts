@@ -1,6 +1,6 @@
 import { Company } from '@Types/company.types';
 import { BaseAction, Concat } from '@Types/index';
-import { GET_CONTRACTS_LIST, SUCCESS } from '../actionTypes';
+import { GET_CONTRACTS_LIST, POST_NEW_CONTRACT, SUCCESS } from '../actionTypes';
 
 export type Contract = {
   contractCode: string;
@@ -36,7 +36,7 @@ export type NewContract = {
   currencyId: number;
   startDate: string;
   endDate: string;
-  contractFile: string;
+  contractFile: File;
   description: string;
 };
 
@@ -55,4 +55,17 @@ export interface GetContractsListSuccess
   };
 }
 
-export type ContractActions = GetContractsList | GetContractsListSuccess;
+export interface PostNewContract extends BaseAction<typeof POST_NEW_CONTRACT> {}
+export interface PostNewContractSuccess
+  extends BaseAction<Concat<typeof POST_NEW_CONTRACT, typeof SUCCESS>> {
+  response: {
+    resultStatus: boolean;
+    resultObject: Contract[];
+  };
+}
+
+export type ContractActions =
+  | GetContractsList
+  | GetContractsListSuccess
+  | PostNewContract
+  | PostNewContractSuccess;
