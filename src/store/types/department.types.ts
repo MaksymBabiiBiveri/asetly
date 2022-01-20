@@ -22,7 +22,7 @@ export type Department = {
   isValid: boolean;
   modifiedDate: string;
   modifiedId: number;
-  parentDepartment: Department;
+  parentDepartment: object;
   parentDepartmentId: number;
 //TODO: как узнаем тип массива изменить any
   inverseParentDepartment: any[]

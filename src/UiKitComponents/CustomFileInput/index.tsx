@@ -15,7 +15,6 @@ const CustomFileInput = React.forwardRef<
   // const [value, setValue] = useState<any>();
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target);
     setValue(event.target.value);
   };
 

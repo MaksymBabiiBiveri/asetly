@@ -8,7 +8,6 @@ interface PreviewProps {
 
 const Preview: React.FC<PreviewProps> = (props) => {
   const { currentDepartment } = props;
-  console.log(currentDepartment);
   
   
   return (

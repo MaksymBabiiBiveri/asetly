@@ -34,7 +34,7 @@ const EditDepartment: React.FC<EditDepartmentProps> = () => {
     setOpenModal(!open);
     navigate('/Departments');
   };
-
+  
   useEffect(() => {
     dispatch(GetOneDepartment(departmentID));
   }, []);

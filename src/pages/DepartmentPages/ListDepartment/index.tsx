@@ -57,10 +57,7 @@ const ListDepartment: React.FC<ListDepartmentProps> = () => {
     if (!departmentList.length) {
       dispatch(GetDepartmentList());
     }
-  }, [departmentList]);
-
-  console.log(departmentList);
-  
+  }, [departmentList]);  
 
   if (loadingDepartment) {
     return <Loader />;
