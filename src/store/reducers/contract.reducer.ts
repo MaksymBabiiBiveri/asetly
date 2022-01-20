@@ -18,9 +18,16 @@ export const ContractReducer = (
         loadingContract: true,
       };
     case concatActions(GET_CONTRACTS_LIST, SUCCESS):
+      const newContract = action.response.resultObject.map((contract) => {
+        return {
+          ...contract,
+          startDate: contract.startDate.split('T')[0],
+          endDate: contract.endDate.split('T')[0],
+        };
+      });
       return {
         ...state,
-        contracts: [...state.contracts, ...action.response.resultObject],
+        contracts: newContract,
         loadingContract: false,
       };
     default:

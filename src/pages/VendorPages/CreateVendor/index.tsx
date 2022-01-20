@@ -1,6 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classes from './CreateVendor.module.scss';
 import { RootState } from '@RootStateType';
 import { getCitiesList, getCountriesList } from '@Actions/definition.action';
 import { CustomInput, CustomSelect, Form, Divider } from '@UiKitComponents';
@@ -14,25 +13,25 @@ import { City } from '@Types/definition.types';
 
 interface CreateVendorProps {}
 
-const getLoadingVendor = (state: RootState) => 
+const getLoadingVendor = (state: RootState) =>
   state.VendorReducer.loadingVendor;
-const getDefinitionState = (state: RootState) => 
-  state.DefinitionReducer;
+const getDefinitionState = (state: RootState) => state.DefinitionReducer;
 
-  const CreateVendor: React.FC<CreateVendorProps> = () => {
-    const { citiesList, countriesList, loadingDefinition } = useSelector(getDefinitionState);
-    const loadingVendor = useSelector(getLoadingVendor);
-    const dispatch = useDispatch();
-    const backHistory = useBackHistory();
+const CreateVendor: React.FC<CreateVendorProps> = () => {
+  const { citiesList, countriesList, loadingDefinition } =
+    useSelector(getDefinitionState);
+  const loadingVendor = useSelector(getLoadingVendor);
+  const dispatch = useDispatch();
+  const backHistory = useBackHistory();
 
-    const [countryId, setCountryId] = useState<number | undefined | string>();
-  
+  const [countryId, setCountryId] = useState<number | undefined | string>();
+
   const onSubmit = (newVendor: NewVendor) => {
     dispatch(postNewVendor(newVendor));
   };
 
   const getCountryValue = (countryId: number | undefined | string) => {
-    setCountryId(countryId)
+    setCountryId(countryId);
   };
 
   const filterCity = (): City[] => {
@@ -53,17 +52,17 @@ const getDefinitionState = (state: RootState) =>
   }
 
   return (
-    <div className={classes.newVendor}>
-      <div className={classes.newVendor_wrapper}>
+    <div>
+      <div className="padding_wrapper_page">
         <Form<NewVendor> onSubmit={onSubmit} yupSchema={schemaVendor}>
           {({ register, formState: { errors }, control }) => (
             <>
-              <HeaderSaveAction 
-                title="New Vendor" 
+              <HeaderSaveAction
+                title="New Vendor"
                 errors={errors}
-                onCancelButton={backHistory} 
+                onCancelButton={backHistory}
               />
-              <div className={classes.form_box}>
+              <div className="form_box">
                 <InputContainer title="Summary">
                   <CustomInput
                     errorText={errors.name?.message}

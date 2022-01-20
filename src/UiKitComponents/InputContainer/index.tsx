@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from 'classnames';
-import classes from './InputContainer.module.scss';
+import './InputContainer.scss';
 
 interface InputContainerProps {
   label: string;
@@ -16,14 +16,19 @@ const InputContainer: React.FC<InputContainerProps> = (props) => {
   const { label, errorText, id, required, disabled = false, children } = props;
 
   const IsRequired = required ? '*' : '';
-  const Error = errorText && !disabled ? classes.input_error : '';
-  const Disabled = disabled ? classes.input_disabled : '';
+  const Error = errorText && !disabled ? 'custom-input-container__error' : '';
+  const Disabled = disabled ? 'custom-input-container__disabled' : '';
 
   return (
-    <div className={cl(classes.input_wrapper, Error)}>
-      <p className={classes.errorText}>{!disabled && errorText}</p>
+    <div className={cl('custom-input-container', Error)}>
+      <p className="custom-input-container__errorText">
+        {!disabled && errorText}
+      </p>
       {children}
-      <label htmlFor={id} className={cl(classes.label_input, Disabled)}>
+      <label
+        htmlFor={id}
+        className={cl('custom-input-container__label', Disabled)}
+      >
         {label}
         <span>{IsRequired}</span>
       </label>

@@ -1,12 +1,12 @@
 import { BaseAction, Concat } from './index';
-import { 
+import {
   DELETE_VENDOR,
-  GET_VENDOR_LIST, 
+  GET_VENDOR_LIST,
   GET_ONE_VENDOR,
   POST_NEW_VENDOR,
-  PUT_VENDOR, 
-  SUCCESS, 
-  FAIL 
+  PUT_VENDOR,
+  SUCCESS,
+  FAIL
 } from '../actionTypes';
 import { City, Country } from '@Types/definition.types';
 

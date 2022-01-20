@@ -24,7 +24,7 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
   const [limitPage, setLimitPage] = useState(15);
   const [page, setPage] = useState(1);
   const [sortedData, options, handleSortColumn] = useSortDataTable(data);
-
+  console.log(sortedData);
   const { height } = useWindowDimensions();
   const heightTable = () => {
     if (height) {
@@ -83,7 +83,9 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
           const { key, label, ...rest } = dataItem;
           return (
             <Table.Column {...rest} key={key} verticalAlign="middle">
-              <Table.HeaderCell>{label}</Table.HeaderCell>
+              <Table.HeaderCell className="custom_header_cell">
+                {label}
+              </Table.HeaderCell>
               <CustomCell currentDataKey={currentDataKey} dataKey={key} />
             </Table.Column>
           );

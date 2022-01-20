@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ContractState } from '@Types/contract.types';
 import { Loader } from '@common';
 import { EmptyPage, TableHeaderActions } from '@components';
-import classes from './ListContracts.module.scss';
 import { getContractList } from '@Actions/contracts.action';
 import { CustomTable } from '@UiKitComponents';
 import { DataKeyType } from '@Types/application.types';
@@ -78,8 +77,8 @@ const ListContracts: React.FC<ListContractsProps> = () => {
   }
 
   return (
-    <div className={classes.contractList}>
-      <div className={classes.contractList_wrapper}>
+    <div>
+      <div className="padding_wrapper_table-page">
         <TableHeaderActions
           checkedItemsList={checkedItemsList}
           pageCreatingUrl="newContract"
