@@ -1,0 +1,89 @@
+@import '../../styles/variables';
+
+.react-select-container {
+  max-width: 355px;
+  height: 50px;
+  width: 100%;
+  .react-select {
+    &__control {
+      width: 100%;
+      height: 100%;
+      color: $typography-primary-color;
+      background: $form-background-mint;
+      border: 1px solid $form-background-mint;
+      border-radius: 4px;
+      transition: all 0.5s ease;
+      &:hover {
+        border-color: $form-focus;
+      }
+    }
+    &__single-value {
+      padding: 3px 0;
+    }
+    &__placeholder {
+      color: $form-placeholder;
+    }
+    &__indicator-separator {
+      display: none;
+    }
+    &__menu {
+      box-shadow: 0px 0px 20px rgba(183, 183, 183, 0.25);
+    }
+    &__loading-indicator {
+      span {
+        width: 6px;
+        height: 6px;
+        &:not(:first-child) {
+          margin-left: 6px;
+        }
+      }
+    }
+  }
+  &.react-select--is-disabled {
+    .react-select {
+      &__control--is-disabled {
+        background: transparent;
+        border-color: $form-disabled;
+        color: $form-disabled;
+      }
+      &__placeholder {
+        color: $form-disabled;
+      }
+    }
+  }
+  .react-select {
+    &__control--is-focused {
+      border-color: $form-focus;
+      color: $form-focus;
+      background: $form-background-white;
+      .react-select__placeholder {
+        color: $form-focus;
+      }
+    }
+  }
+}
+.react-select-container__error {
+  .react-select {
+    &__control {
+      border-color: $form-error !important;
+      background: transparent;
+      color: $form-error !important;
+    }
+    &__placeholder {
+      color: $form-error !important;
+    }
+  }
+}
+
+.react-select-container__active {
+  .react-select {
+    &__control {
+      border-color: $form-focus;
+      color: $form-focus;
+      background: $form-background-white;
+    }
+    &__placeholder {
+      color: $form-focus;
+    }
+  }
+}

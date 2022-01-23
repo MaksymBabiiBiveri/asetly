@@ -2,13 +2,14 @@ import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@RootStateType';
 import { Form, Divider, CustomInput, CustomSelect } from '@UiKitComponents';
-import { NewCompany } from '@Types/company.types';
+import { TFormCreateCompany } from '@Types/company.types';
 import { postNewCompany } from '@Actions/company.action';
 import { Loader } from '@common';
 import { HeaderSaveAction, InputContainer } from '@components';
 import { useBackHistory, useGetCityAndCountry } from '@hooks';
 import { schemaCompany } from '@schema/company';
 import { City } from '@Types/definition.types';
+import { TSelectValue } from '@Types/application.types';
 
 interface CreateCompanyProps {}
 
@@ -25,18 +26,23 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
   const backHistory = useBackHistory();
   const { citiesList, countriesList } = useGetCityAndCountry();
 
-  const [countryId, setCountryId] = useState<number | undefined | string>();
+  const [countryValue, setCountryValue] = useState<TSelectValue<number>>();
 
-  const onSubmit = (newCompany: NewCompany) => {
+  const onSubmit = (company: TFormCreateCompany) => {
+    const newCompany = {
+      ...company,
+      cityId: company.cityId.value,
+      countryId: company.countryId.value,
+    };
     dispatch(postNewCompany(newCompany));
   };
 
-  const getCountryValue = (countryId: number | undefined | string) => {
-    setCountryId(countryId);
+  const getCountryValue = (countryId: TSelectValue<number>) => {
+    setCountryValue(countryId);
   };
 
   const filterCity = (): City[] => {
-    return citiesList.filter((city) => city.countryId === countryId);
+    return citiesList.filter((city) => city.countryId === countryValue?.value);
   };
 
   if (loadingCompany) {
@@ -46,7 +52,7 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
   return (
     <div>
       <div className="padding_wrapper_page">
-        <Form<NewCompany> onSubmit={onSubmit} yupSchema={schemaCompany}>
+        <Form<TFormCreateCompany> onSubmit={onSubmit} yupSchema={schemaCompany}>
           {({ register, formState: { errors }, control }) => (
             <>
               <HeaderSaveAction
@@ -93,28 +99,28 @@ const CreateCompany: React.FC<CreateCompanyProps> = () => {
                 <div className="markup_helper-box">
                   <InputContainer title="Location">
                     <CustomSelect
-                      errorText={errors.countryId?.message}
+                      errorText={errors.countryId?.value?.message}
                       label="Country"
                       id="Country"
                       name="countryId"
                       control={control}
                       placeholder="Choose country"
-                      mappingOptions={countriesList}
+                      options={countriesList}
                       optionValue="countryId"
                       optionLabel="name"
                       isLoading={loadingDefinition}
                       isDisabled={loadingDefinition}
-                      getOptionValue={getCountryValue}
+                      getSelectValue={getCountryValue}
                       required
                     />
                     <CustomSelect
-                      errorText={errors.cityId?.message}
+                      errorText={errors.cityId?.value?.message}
                       label="City"
                       id="City"
                       name="cityId"
                       control={control}
                       placeholder="Choose city"
-                      mappingOptions={filterCity()}
+                      options={filterCity()}
                       optionValue="cityId"
                       optionLabel="name"
                       isDisabled={loadingDefinition || !filterCity().length}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './CustomInput.scss';
 import cl from 'classnames';
 import { UseFormRegisterReturn } from 'react-hook-form';
@@ -58,4 +58,4 @@ const CustomInput = React.forwardRef<
   );
 });
 
-export default CustomInput;
+export default memo(CustomInput);

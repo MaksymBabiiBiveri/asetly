@@ -1,6 +1,10 @@
 import React from 'react';
 import { CustomInput, Divider, Form } from '@UiKitComponents';
-import { Company, NewCompany, PutCompany } from '@Types/company.types';
+import {
+  Company,
+  TFormCreateCompany,
+  TUpdateCompany,
+} from '@Types/company.types';
 import { HeaderSaveAction, InputContainer } from '@components';
 import { useDispatch } from 'react-redux';
 import { updateCompany } from '@Actions/company.action';
@@ -14,16 +18,19 @@ interface EditProps {
 const Edit: React.FC<EditProps> = (props) => {
   const { currentCompany, backToPreview } = props;
   const dispatch = useDispatch();
-  const onSubmit = (company: NewCompany) => {
-    const newCompany: PutCompany = {
+  const onSubmit = (company: TFormCreateCompany) => {
+    const newCompany: TUpdateCompany = {
       ...company,
       companyId: currentCompany.companyId,
+      cityId: company.cityId.value,
+      countryId: company.countryId.value,
     };
     dispatch(updateCompany(newCompany));
   };
+
   return (
     <>
-      <Form<NewCompany> onSubmit={onSubmit} yupSchema={schemaCompany}>
+      <Form<TFormCreateCompany> onSubmit={onSubmit} yupSchema={schemaCompany}>
         {({ register, formState: { errors } }) => (
           <>
             <HeaderSaveAction

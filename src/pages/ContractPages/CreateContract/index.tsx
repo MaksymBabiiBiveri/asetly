@@ -6,7 +6,7 @@ import {
   CustomSelect,
   Form,
 } from '@UiKitComponents';
-import { NewContract } from '@Types/contract.types';
+import { TFormCreateContract } from '@Types/contract.types';
 import { HeaderSaveAction, InputContainer } from '@components';
 import { RootState } from '@RootStateType';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +14,7 @@ import { GetVendorList } from '@Actions/vendor.action';
 import { getCurrencyList } from '@Actions/currency.action';
 import { schemaContract } from '@schema/contract';
 import { useBackHistory } from '@hooks';
-import { postNewContract } from '@Actions/contracts.action';
+// import { postNewContract } from '@Actions/contracts.action';
 
 interface CreateContractProps {}
 
@@ -27,12 +27,12 @@ const CreateContract: React.FC<CreateContractProps> = () => {
   const backHistory = useBackHistory();
   const dispatch = useDispatch();
 
-  const onSubmit = (contract: NewContract) => {
+  const onSubmit = (contract: TFormCreateContract) => {
+    console.log(contract);
     contract.endDate = new Date(contract.endDate).toISOString();
     contract.startDate = new Date(contract.startDate).toISOString();
 
-    console.log(contract);
-    dispatch(postNewContract(contract));
+    // dispatch(postNewContract(contract));
   };
 
   useEffect(() => {
@@ -47,9 +47,13 @@ const CreateContract: React.FC<CreateContractProps> = () => {
   return (
     <div>
       <div className="padding_wrapper_page">
-        <Form<NewContract> onSubmit={onSubmit} yupSchema={schemaContract}>
-          {({ register, control, formState: { errors } }) => (
+        <Form<TFormCreateContract>
+          onSubmit={onSubmit}
+          yupSchema={schemaContract}
+        >
+          {({ register, control, formState: { errors }, setValue }) => (
             <>
+              {console.log(errors)}
               <HeaderSaveAction
                 title="New Contract"
                 onCancelButton={backHistory}
@@ -65,18 +69,20 @@ const CreateContract: React.FC<CreateContractProps> = () => {
                     {...register('contractCode')}
                   />
                   <CustomSelect
-                    errorText={errors.partnerId?.message}
                     label="Vendor"
                     id="partnerId"
                     name="partnerId"
                     control={control}
-                    mappingOptions={vendorList}
+                    placeholder="Chose partner"
+                    options={vendorList}
                     optionValue="partnerId"
                     optionLabel="name"
                     required
                     isLoading={loadingVendor}
                     isDisabled={loadingVendor}
+                    setValue={setValue}
                   />
+
                   <CustomInput
                     errorText={errors.no?.message}
                     label="Contract No"
@@ -108,7 +114,7 @@ const CreateContract: React.FC<CreateContractProps> = () => {
                       id="currency"
                       name="currencyId"
                       control={control}
-                      mappingOptions={currencyList}
+                      options={currencyList}
                       optionValue="currencyId"
                       optionLabel="symbol"
                       isDisabled={loadingCurrency}

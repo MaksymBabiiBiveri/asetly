@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Divider, Form, CustomInput, CustomSelect } from '@UiKitComponents';
-import { Vendor, NewVendor, PutVendor } from '@Types/vendor.types';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Divider, CustomInput, CustomSelect } from '@UiKitComponents';
+import { Vendor, TFormCreateVendor, TUpdateVendor } from '@Types/vendor.types';
 import { HeaderSaveAction, InputContainer } from '@components';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateVendor } from '@Actions/vendor.action';
@@ -8,6 +8,9 @@ import { schemaVendor } from '@schema/vendor';
 import { RootState } from '@RootStateType';
 import { getCitiesList, getCountriesList } from '@Actions/definition.action';
 import { City } from '@Types/definition.types';
+import { TSelectValue } from '@Types/application.types';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 interface EditProps {
   currentVendor: Vendor;
@@ -18,18 +21,41 @@ const getDefinitionState = (state: RootState) => state.DefinitionReducer;
 
 const Edit: React.FC<EditProps> = (props) => {
   const { currentVendor, backToPreview } = props;
-  const { loadingDefinition, countriesList, citiesList } =
-    useSelector(getDefinitionState);
+  const { loadingDefinition, countriesList, citiesList } = useSelector(getDefinitionState);
   const dispatch = useDispatch();
+  const {
+    register,
+    formState: { errors },
+    control,
+    setValue,
+    handleSubmit,
+  } = useForm<TFormCreateVendor>({
+    resolver: yupResolver(schemaVendor),
+  });
+  const memoizedControl = useMemo(() => control, []);
+  const countryDefaultValue = useMemo(
+    () => ({
+      value: currentVendor.city.countryId,
+      label: currentVendor.city.country.name,
+    }),
+    []
+  );
+  const cityDefaultValue = useMemo(
+    () => ({
+      value: currentVendor.city.cityId,
+      label: currentVendor.city.name,
+    }),
+    []
+  );
 
-  const [countryId, setCountryId] = useState<number | undefined | string>();
+  const [countryValue, setCountryValue] = useState<TSelectValue<number>>(countryDefaultValue);
 
-  const getCountryValue = (countryId: number | undefined | string) => {
-    setCountryId(countryId ? countryId : currentVendor.city.countryId);
+  const getCountryValue = (country: TSelectValue<number>) => {
+    setCountryValue(country);
   };
 
-  const filterCity = (): City[] => {
-    return citiesList.filter((city) => city.countryId === countryId);
+  const filterCitiesList = (): City[] => {
+    return citiesList.filter((city) => city.countryId === countryValue.value);
   };
 
   useEffect(() => {
@@ -41,10 +67,11 @@ const Edit: React.FC<EditProps> = (props) => {
     }
   }, []);
 
-  const onSubmit = (vendor: NewVendor) => {
-    console.log(vendor);
-    const NewVendor: PutVendor = {
+  const onSubmit = (vendor: TFormCreateVendor) => {
+    const NewVendor: TUpdateVendor = {
       ...vendor,
+      countryId: vendor.countryId.value,
+      cityId: vendor.cityId.value,
       partnerId: currentVendor.partnerId,
     };
     dispatch(updateVendor(NewVendor));
@@ -52,124 +79,116 @@ const Edit: React.FC<EditProps> = (props) => {
 
   return (
     <>
-      <Form<NewVendor> onSubmit={onSubmit} yupSchema={schemaVendor}>
-        {({ register, formState: { errors }, control }) => (
-          <>
-            <HeaderSaveAction
-              title={currentVendor.name}
-              errors={errors}
-              onCancelButton={backToPreview}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <HeaderSaveAction title={currentVendor.name} errors={errors} onCancelButton={backToPreview} />
+        <div className="form_box">
+          <InputContainer title="Summary">
+            <CustomInput
+              errorText={errors.name?.message}
+              id="VendorName"
+              placeholder="Vendor name"
+              label="Vendor name"
+              defaultValue={currentVendor.name}
+              statusActive
+              {...register('name')}
             />
-            <div className="form_box">
-              <InputContainer title="Summary">
-                <CustomInput
-                  errorText={errors.name?.message}
-                  id="VendorName"
-                  placeholder="Vendor name"
-                  label="Vendor name"
-                  defaultValue={currentVendor.name}
-                  statusActive
-                  {...register('name')}
-                />
-                <CustomInput
-                  errorText={errors.taxOffice?.message}
-                  id="TaxOffice"
-                  placeholder="Tax Office"
-                  label="Tax Office"
-                  defaultValue={currentVendor.taxOffice}
-                  statusActive
-                  {...register('taxOffice')}
-                />
-                <CustomInput
-                  errorText={errors.partnerCode?.message}
-                  id="PartnerCode"
-                  placeholder="Vendor code"
-                  label="Vendor code"
-                  defaultValue={currentVendor.partnerCode}
-                  statusActive
-                  {...register('partnerCode')}
-                />
-                <CustomInput
-                  errorText={errors.taxNumber?.message}
-                  id="TXN"
-                  placeholder="TXN"
-                  label="TXN"
-                  defaultValue={currentVendor.taxNumber}
-                  statusActive
-                  {...register('taxNumber', { valueAsNumber: true })}
-                />
-              </InputContainer>
-              <Divider margin="40px 0 20px 0" />
-              <div className="markup_helper-box">
-                <InputContainer title="Location">
-                  <CustomSelect
-                    errorText={errors.countryId?.message}
-                    label="Country"
-                    id="Country"
-                    name="countryId"
-                    control={control}
-                    placeholder="Choose country"
-                    mappingOptions={countriesList}
-                    optionValue="countryId"
-                    optionLabel="name"
-                    isLoading={loadingDefinition}
-                    isDisabled={loadingDefinition}
-                    getOptionValue={getCountryValue}
-                    required
-                    statusActive
-                  />
+            <CustomInput
+              errorText={errors.taxOffice?.message}
+              id="TaxOffice"
+              placeholder="Tax Office"
+              label="Tax Office"
+              defaultValue={currentVendor.taxOffice}
+              statusActive
+              {...register('taxOffice')}
+            />
+            <CustomInput
+              errorText={errors.partnerCode?.message}
+              id="PartnerCode"
+              placeholder="Vendor code"
+              label="Vendor code"
+              defaultValue={currentVendor.partnerCode}
+              statusActive
+              {...register('partnerCode')}
+            />
+            <CustomInput
+              errorText={errors.taxNumber?.message}
+              id="TXN"
+              placeholder="TXN"
+              label="TXN"
+              defaultValue={currentVendor.taxNumber}
+              statusActive
+              {...register('taxNumber')}
+            />
+          </InputContainer>
+          <Divider margin="40px 0 20px 0" />
+          <div className="markup_helper-box">
+            <InputContainer title="Location">
+              <CustomSelect
+                options={countriesList}
+                defaultValue={countryDefaultValue}
+                label="Country"
+                id="Country"
+                name="countryId"
+                control={memoizedControl}
+                placeholder="Choose country"
+                optionValue="countryId"
+                optionLabel="name"
+                isLoading={loadingDefinition}
+                isDisabled={loadingDefinition}
+                getSelectValue={getCountryValue}
+                setValue={setValue}
+                statusActive
+              />
 
-                  <CustomSelect
-                    errorText={errors.cityId?.message}
-                    label="City"
-                    id="City"
-                    name="cityId"
-                    control={control}
-                    placeholder="Choose city"
-                    mappingOptions={filterCity()}
-                    optionValue="cityId"
-                    optionLabel="name"
-                    isDisabled={loadingDefinition}
-                    isLoading={loadingDefinition}
-                    required
-                    statusActive
-                  />
+              <CustomSelect
+                options={filterCitiesList()}
+                defaultValue={cityDefaultValue}
+                name="cityId"
+                control={memoizedControl}
+                label="City"
+                id="City"
+                placeholder="Choose city"
+                optionValue="cityId"
+                optionLabel="name"
+                isLoading={loadingDefinition}
+                isDisabled={!filterCitiesList().length || loadingDefinition}
+                setValue={setValue}
+                statusActive
+              />
 
-                  <CustomInput
-                    errorText={errors.address?.message}
-                    id="Address"
-                    placeholder="Add address"
-                    label="Address"
-                    defaultValue={currentVendor.address}
-                    statusActive
-                    {...register('address')}
-                  />
-                </InputContainer>
-                <InputContainer title="Contacts">
-                  <CustomInput
-                    errorText={errors.email?.message}
-                    id="Email"
-                    placeholder="Email"
-                    label="Email"
-                    defaultValue={currentVendor.email}
-                    statusActive
-                    {...register('email')}
-                  />
-                  <CustomInput
-                    errorText={errors.phone?.message}
-                    id="PhoneNumber"
-                    placeholder="Phone number"
-                    label="Phone number"
-                    defaultValue={currentVendor.phone}
-                    statusActive
-                    {...register('phone')}
-                  />
-                </InputContainer>
-              </div>
-            </div>
-          </>
-        )}
-      </Form>
+              <CustomInput
+                errorText={errors.address?.message}
+                id="Address"
+                placeholder="Add address"
+                label="Address"
+                defaultValue={currentVendor.address}
+                statusActive
+                {...register('address')}
+              />
+            </InputContainer>
+            <InputContainer title="Contacts">
+              <CustomInput
+                errorText={errors.email?.message}
+                id="Email"
+                placeholder="Email"
+                label="Email"
+                defaultValue={currentVendor.email}
+                statusActive
+                {...register('email')}
+              />
+              <CustomInput
+                errorText={errors.phone?.message}
+                id="PhoneNumber"
+                placeholder="Phone number"
+                label="Phone number"
+                defaultValue={currentVendor.phone}
+                statusActive
+                {...register('phone')}
+              />
+            </InputContainer>
+          </div>
+        </div>
+      </form>
     </>
   );
 };
