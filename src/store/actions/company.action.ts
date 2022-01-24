@@ -1,4 +1,8 @@
-import { CompanyActions, NewCompany, PutCompany } from '@Types/company.types';
+import {
+  CompanyActions,
+  TUpdateCompany,
+  TCreateCompany,
+} from '@Types/company.types';
 import {
   DELETE_COMPANY,
   GET_COMPANY_LIST,
@@ -23,7 +27,7 @@ export const GetOneCompany = (id: string | number): CompanyActions => ({
   },
 });
 
-export const postNewCompany = (newCompany: NewCompany): CompanyActions => ({
+export const postNewCompany = (newCompany: TCreateCompany): CompanyActions => ({
   type: POST_NEW_COMPANY,
 
   api: {
@@ -35,7 +39,7 @@ export const postNewCompany = (newCompany: NewCompany): CompanyActions => ({
   },
 });
 
-export const updateCompany = (company: PutCompany): CompanyActions => ({
+export const updateCompany = (company: TUpdateCompany): CompanyActions => ({
   type: PUT_COMPANY,
   api: {
     url: `/Firm/UpdateFirm`,

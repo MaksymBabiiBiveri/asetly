@@ -9,6 +9,7 @@ import {
   SUCCESS,
 } from '../actionTypes';
 import { City, Country } from '@Types/definition.types';
+import { TSelectValue } from '@Types/application.types';
 
 export type Company = {
   companyId: number;
@@ -36,7 +37,7 @@ export type Company = {
   userAuthorizedCompanies: any[];
 };
 
-export type NewCompany = {
+export type TCreateCompany = {
   companyCode: string;
   name: string;
   address: string;
@@ -47,8 +48,15 @@ export type NewCompany = {
   taxNumber: string;
   taxOffice?: string;
 };
+export type TFormCreateCompany = Omit<
+  TCreateCompany,
+  'countryId' | 'cityId'
+> & {
+  countryId: TSelectValue<number>;
+  cityId: TSelectValue<number>;
+};
 
-export type PutCompany = NewCompany & Pick<Company, 'companyId'>;
+export type TUpdateCompany = TCreateCompany & Pick<Company, 'companyId'>;
 
 export interface CompanyState {
   companyList: Company[] | [];

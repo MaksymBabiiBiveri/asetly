@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetCompanyList } from '@Actions/company.action';
-import { CompanyState } from '@Types/company.types';
 import { RootState } from '@RootStateType';
 import { EmptyPage, TableHeaderActions } from '@components';
 import { CustomTable } from '@UiKitComponents';
@@ -44,12 +43,8 @@ const dataKeyCompanyList: DataKeyType[] = [
 const getCompanyState = (state: RootState) => state.CompanyReducer;
 
 const ListCompany: React.FC<ListCompanyProps> = () => {
-  const { companyList, loadingCompany } = useSelector<RootState, CompanyState>(
-    getCompanyState
-  );
-  const [checkedItemsList, setCheckedItemsList] = useState<number[] | string[]>(
-    []
-  );
+  const { companyList, loadingCompany } = useSelector(getCompanyState);
+  const [checkedItemsList, setCheckedItemsList] = useState<number[] | string[]>([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,8 +52,6 @@ const ListCompany: React.FC<ListCompanyProps> = () => {
       dispatch(GetCompanyList());
     }
   }, [companyList]);
-
-  
 
   if (loadingCompany) {
     return <Loader />;
@@ -71,7 +64,7 @@ const ListCompany: React.FC<ListCompanyProps> = () => {
         <h5>Click the button and create a new company</h5>
       </EmptyPage>
     );
-  }  
+  }
 
   return (
     <div>

@@ -13,15 +13,17 @@ export const schemaCompany = yup.object({
     .matches(/^[0-9]*$/, 'TXN must be a number')
     .required('This field is required'),
   cityId: yup
-    .number()
-    .required('This field is required')
-    .positive('The field is not valid. Only positive numbers')
-    .truncate(),
+    .object({
+      label: yup.string(),
+      value: yup.number(),
+    })
+    .required('This field is required'),
   countryId: yup
-    .number()
-    .required('This field is required')
-    .positive('The field is not valid. Only positive numbers')
-    .truncate(),
+    .object({
+      label: yup.string(),
+      value: yup.number(),
+    })
+    .required('This field is required'),
   address: yup.string().required('This field is required'),
   contactName: yup
     .string()

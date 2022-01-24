@@ -24,7 +24,7 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
   const [limitPage, setLimitPage] = useState(15);
   const [page, setPage] = useState(1);
   const [sortedData, options, handleSortColumn] = useSortDataTable(data);
-  console.log(sortedData);
+
   const { height } = useWindowDimensions();
   const heightTable = () => {
     if (height) {
@@ -48,9 +48,7 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
   });
 
   const handleCheck = (value?: string | number, checked?: boolean) => {
-    const keys = checked
-      ? [...checkedKeys, value]
-      : checkedKeys.filter((item: any) => item !== value);
+    const keys = checked ? [...checkedKeys, value] : checkedKeys.filter((item: any) => item !== value);
     setCheckedItemsList(keys);
     setCheckedKeys(keys);
   };
@@ -72,20 +70,14 @@ const CustomTable: React.FC<CustomTableProps> = (props) => {
           <Table.HeaderCell style={{ padding: 0 }}>
             <div> </div>
           </Table.HeaderCell>
-          <CheckboxCell
-            dataKey={currentDataKey}
-            checkedKeys={checkedKeys}
-            onChange={handleCheck}
-          />
+          <CheckboxCell dataKey={currentDataKey} checkedKeys={checkedKeys} onChange={handleCheck} />
         </Table.Column>
 
         {dataKey.map((dataItem) => {
           const { key, label, ...rest } = dataItem;
           return (
             <Table.Column {...rest} key={key} verticalAlign="middle">
-              <Table.HeaderCell className="custom_header_cell">
-                {label}
-              </Table.HeaderCell>
+              <Table.HeaderCell className="custom_header_cell">{label}</Table.HeaderCell>
               <CustomCell currentDataKey={currentDataKey} dataKey={key} />
             </Table.Column>
           );

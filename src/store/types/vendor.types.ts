@@ -6,9 +6,10 @@ import {
   POST_NEW_VENDOR,
   PUT_VENDOR,
   SUCCESS,
-  FAIL
+  FAIL,
 } from '../actionTypes';
 import { City, Country } from '@Types/definition.types';
+import { TSelectValue } from '@Types/application.types';
 
 export type Vendor = {
   partnerId: number;
@@ -30,29 +31,33 @@ export type Vendor = {
   isActive: boolean;
   city: City;
   country: Country;
-  isInsurancePartner: any,
-  isSupplierPartner:any,
+  isInsurancePartner: any;
+  isSupplierPartner: any;
   //TODO: как узнаем тип массива изменить any
   contracts: any[];
-  nonCurrAssetsInsurancePartner: any[],
-  nonCurrAssetsPartner: any[]
+  nonCurrAssetsInsurancePartner: any[];
+  nonCurrAssetsPartner: any[];
 };
 
-export type NewVendor = {
+export type TCreateVendor = {
   partnerCode: string;
   name: string;
-  email: string;
-  address: string;
   phone: string;
-  cityId: number;
-  taxNumber: string;
-  taxOffice: string;
-  secondPhone: string;
-  description: string;
-  countryId: number;
+  address: string;
+  email?: string;
+  cityId?: number;
+  taxNumber?: string;
+  taxOffice?: string;
+  secondPhone?: string;
+  description?: string;
+  countryId?: number;
+};
+export type TFormCreateVendor = Omit<TCreateVendor, 'countryId' | 'cityId'> & {
+  countryId: TSelectValue<number>;
+  cityId: TSelectValue<number>;
 };
 
-export type PutVendor = NewVendor & Pick<Vendor, 'partnerId'>;
+export type TUpdateVendor = TCreateVendor & Pick<Vendor, 'partnerId'>;
 
 export interface VendorState {
   vendorList: Vendor[] | [];
@@ -105,7 +110,6 @@ export interface DeleteVendorSuccess
     resultObject: [];
   };
 }
-
 
 export type VendorActions =
   | GetVendorList

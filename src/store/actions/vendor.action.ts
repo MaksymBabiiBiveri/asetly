@@ -1,11 +1,5 @@
-import { VendorActions, NewVendor, PutVendor } from '../types/vendor.types';
-import { 
-  DELETE_VENDOR,
-  GET_VENDOR_LIST,
-  GET_ONE_VENDOR,
-  POST_NEW_VENDOR,
-  PUT_VENDOR,
-} from '../actionTypes';
+import { VendorActions, TCreateVendor, TUpdateVendor } from '@Types/vendor.types';
+import { DELETE_VENDOR, GET_VENDOR_LIST, GET_ONE_VENDOR, POST_NEW_VENDOR, PUT_VENDOR } from '../actionTypes';
 
 export const GetVendorList = (): VendorActions => ({
   type: GET_VENDOR_LIST,
@@ -23,8 +17,7 @@ export const GetOneVendor = (id: string | number): VendorActions => ({
   },
 });
 
-export const postNewVendor = (newVendor: NewVendor):
-  VendorActions => ({
+export const postNewVendor = (newVendor: TCreateVendor): VendorActions => ({
   type: POST_NEW_VENDOR,
 
   api: {
@@ -36,14 +29,14 @@ export const postNewVendor = (newVendor: NewVendor):
   },
 });
 
-export const updateVendor = (vendor: PutVendor): VendorActions => ({
+export const updateVendor = (vendor: TUpdateVendor): VendorActions => ({
   type: PUT_VENDOR,
   api: {
     url: '/Vendor/UpdateVendor',
     method: 'PUT',
     data: {
-      ...vendor
-    }
+      ...vendor,
+    },
   },
 });
 
