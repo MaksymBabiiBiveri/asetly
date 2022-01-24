@@ -1,5 +1,5 @@
 @import '../../styles/variables';
-.custom_input {
+.custom-input {
   max-width: 355px;
   width: 100%;
   color: $typography-primary-color;
@@ -11,7 +11,7 @@
   &::placeholder {
     color: $form-placeholder;
   }
-  &.active_input,
+  &.custom-input__active,
   &:focus {
     border-color: $form-focus;
     color: $form-focus;
@@ -28,7 +28,7 @@
       color: $form-disabled;
     }
   }
-  &.error_input {
+  &.custom-input__error {
     border-color: $form-error !important;
     background: transparent;
     color: $form-error !important;

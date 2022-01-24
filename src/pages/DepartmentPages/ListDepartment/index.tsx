@@ -28,7 +28,7 @@ const dataKeyDepartmentList: DataKeyType[] = [
   },
 
   {
-    key: 'parentDepartmentId',
+    key: 'parentDepartment.name',
     label: 'PARENT DEPARTMENT',
     align: 'left',
     flexGrow: 1,

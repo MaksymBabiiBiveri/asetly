@@ -1,11 +1,11 @@
 @import '../../styles/variables';
 
-.input_wrapper {
+.custom-input-container {
   position: relative;
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
-  .label_input {
+  &__label {
     margin-bottom: 8px;
     color: $form-fill;
     transition: $transition;
@@ -14,7 +14,7 @@
       color: $form-required-star;
     }
   }
-  .errorText {
+  &__errorText {
     position: absolute;
     text-align: center;
     bottom: -18px;
@@ -23,15 +23,15 @@
     font-size: $body-fz-2;
     color: $form-error;
   }
-  .input_disabled {
+  &__disabled {
     color: $form-disabled;
     & > span {
       color: $form-disabled;
     }
   }
 }
-.input_error {
-  .label_input {
+.custom-input-container__error {
+  .custom-input-container__label {
     color: $form-error !important;
   }
 }

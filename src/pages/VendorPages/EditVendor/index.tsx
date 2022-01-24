@@ -28,8 +28,8 @@ const EditVendor: React.FC<EditVendorProps> = () => {
   const partnerID = params.PartnerID ? params.PartnerID : '';
 
   const deleteVendors = () => {
-    if(currentVendor) {
-      dispatch(deleteVendor([currentVendor.partnerId]))
+    if (currentVendor) {
+      dispatch(deleteVendor([currentVendor.partnerId]));
     }
     setOpenModal(!open);
     navigate('/Vendors');
@@ -45,7 +45,7 @@ const EditVendor: React.FC<EditVendorProps> = () => {
 
   return (
     <div>
-      <div className='padding_wrapper_page'>
+      <div className="padding_wrapper_page">
         {!modeEdit && (
           <HeaderEditAction
             title={currentVendor.name}
@@ -68,7 +68,7 @@ const EditVendor: React.FC<EditVendorProps> = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default EditVendor;

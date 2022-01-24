@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetVendorList } from '@Actions/vendor.action';
 import { VendorState } from '@Types/vendor.types';
@@ -13,7 +13,7 @@ interface VendorListProps {}
 const dataKeyVendorList: DataKeyType[] = [
   {
     key: 'name',
-    label: 'VENDOR NAME',
+    label: 'Vendor Name',
     align: 'left',
     flexGrow: 1,
     sortable: true,
@@ -25,15 +25,14 @@ const dataKeyVendorList: DataKeyType[] = [
     flexGrow: 1,
     sortable: true,
   },
-
   {
     key: 'phone',
-    label: 'PHONE',
+    label: 'Phone',
     align: 'left',
     flexGrow: 1,
   },
   {
-    key: 'cityId',
+    key: 'city.name',
     label: 'CITY',
     align: 'left',
     flexGrow: 1,
@@ -43,7 +42,7 @@ const dataKeyVendorList: DataKeyType[] = [
 
 const getVendorState = (state: RootState) => state.VendorReducer;
 
-const VendorList: React.FC<VendorListProps> = () => {    
+const VendorList: React.FC<VendorListProps> = () => {
   const { vendorList, loadingVendor } = useSelector<RootState, VendorState>(
     getVendorState
   );
@@ -62,12 +61,12 @@ const VendorList: React.FC<VendorListProps> = () => {
   if (loadingVendor) {
     return <Loader />;
   }
-  
-  if(vendorList && !vendorList.length) {
+
+  if (vendorList && !vendorList.length) {
     return (
       <EmptyPage textButton="Vendor" redirectPath="newVendor">
-          <h5>You don`t have vendors yet</h5>
-          <h5>Click the button and create a new vendor</h5>
+        <h5>You don`t have vendors yet</h5>
+        <h5>Click the button and create a new vendor</h5>
       </EmptyPage>
     );
   }
