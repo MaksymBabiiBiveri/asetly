@@ -2,34 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eab7ad4-2e29-48e7-86e4-5e061ccb3b19" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomSelectSpare/CustomSelect.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomSelectSpare/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UiKitComponents/FormFormik/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomInput/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomInput/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomSelect/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomSelect/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomFileInput/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomFileInput/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UiKitComponents/CustomTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/CustomTable/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/Form/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/Form/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/InputContainer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/InputContainer/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/Form/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/FormFormik/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UiKitComponents/InputContainer/InputContainer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/InputContainer/InputContainer.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UiKitComponents/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/UiKitComponents/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useSortDataTable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useSortDataTable.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/CreateCompany/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/CreateCompany/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/EditCompany/Edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/EditCompany/Edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CompanyPages/ListCompany/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompanyPages/ListCompany/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ContractPages/CreateContract/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ContractPages/CreateContract/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/VendorPages/CreateVendor/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/VendorPages/CreateVendor/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/VendorPages/EditVendor/Edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/VendorPages/EditVendor/Edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/company.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/company.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/contract.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/contract.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/vendor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/vendor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/company.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/company.action.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions/contracts.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/contracts.action.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/vendor.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/vendor.action.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/types/application.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/types/application.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/types/company.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/types/company.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/types/contract.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/types/contract.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/types/vendor.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/types/vendor.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theme/muiTheme.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
@@ -166,7 +154,8 @@
       <workItem from="1642698264424" duration="14960000" />
       <workItem from="1642717494872" duration="6085000" />
       <workItem from="1642760671906" duration="12884000" />
-      <workItem from="1642865235451" duration="15344000" />
+      <workItem from="1642865235451" duration="21908000" />
+      <workItem from="1643014630755" duration="3265000" />
     </task>
     <servers />
   </component>

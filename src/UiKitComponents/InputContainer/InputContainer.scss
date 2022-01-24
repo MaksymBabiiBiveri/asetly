@@ -14,15 +14,7 @@
       color: $form-required-star;
     }
   }
-  &__errorText {
-    position: absolute;
-    text-align: center;
-    bottom: -18px;
-    right: 0;
-    left: 0;
-    font-size: $body-fz-2;
-    color: $form-error;
-  }
+
   &__disabled {
     color: $form-disabled;
     & > span {
@@ -33,5 +25,13 @@
 .custom-input-container__error {
   .custom-input-container__label {
     color: $form-error !important;
+  }
+  .custom-input-container__errorText {
+    position: absolute;
+    bottom: -33px;
+    right: 0;
+    left: 0;
+    font-size: $body-fz-2;
+    color: $form-error;
   }
 }

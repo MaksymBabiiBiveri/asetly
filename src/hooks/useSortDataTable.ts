@@ -24,7 +24,7 @@ const useSortDataTable = (
       return data.sort((a, b) => {
         let x = a[sortColumn];
         let y = b[sortColumn];
-
+        console.log(typeof x);
         if (typeof x === 'string') {
           x = x.charCodeAt(0);
         }
