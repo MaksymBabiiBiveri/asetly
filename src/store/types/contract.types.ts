@@ -1,6 +1,7 @@
 import { Company } from '@Types/company.types';
 import { BaseAction, Concat } from '@Types/index';
 import { GET_CONTRACTS_LIST, POST_NEW_CONTRACT, SUCCESS } from '../actionTypes';
+import { TSelectValue } from '@Types/application.types';
 
 export type Contract = {
   contractCode: string;
@@ -27,7 +28,7 @@ export type Contract = {
   partner: any;
   nonCurrAssetContracts: any;
 };
-export type NewContract = {
+export type TCreateContract = {
   contractCode: string;
   name: string;
   no: string;
@@ -36,8 +37,15 @@ export type NewContract = {
   currencyId: number;
   startDate: string;
   endDate: string;
-  contractFile: File;
+  contractFile: string;
   description: string;
+};
+export type TFormCreateContract = Omit<
+  TCreateContract,
+  'partnerId' | 'currencyId'
+> & {
+  partnerId: TSelectValue<number>;
+  currencyId: TSelectValue<number>;
 };
 
 export interface ContractState {

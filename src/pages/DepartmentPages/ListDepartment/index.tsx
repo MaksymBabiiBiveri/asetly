@@ -70,7 +70,7 @@ const ListDepartment: React.FC<ListDepartmentProps> = () => {
         <h5>Click the button and create a new company</h5>
       </EmptyPage>
     );
-  }  
+  }    
 
   return (
     <div>

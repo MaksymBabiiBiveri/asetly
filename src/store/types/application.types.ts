@@ -12,6 +12,11 @@ export type DataKeyType = {
   sortable?: boolean;
 };
 
+export type TSelectValue<ValueType extends number | string> = {
+  label: string;
+  value: ValueType;
+};
+
 export type UnknownDataType = {
   [key: string]: any;
 };

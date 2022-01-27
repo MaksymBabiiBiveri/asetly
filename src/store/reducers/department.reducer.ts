@@ -8,12 +8,14 @@ import {
   GET_ONE_DEPARTMENT,
   POST_NEW_DEPARTMENT,
   PUT_DEPARTMENT, 
+  GET_PARENT_DEPARTMENT,
 } from '../actionTypes';
 
 const initialState: DepartmentState = {
   departmentList: [],
   currentDepartment: null,
   loadingDepartment: false,
+  parentDepartment: null,
 };
 
 export const DepartmentReducer = (
@@ -40,8 +42,13 @@ export const DepartmentReducer = (
     case concatActions(GET_ONE_DEPARTMENT, SUCCESS):
       return {
         ...state,
-        currentDepartment: action.response.resultObject,
+        currentDepartment: action.response.resultObject[0],
         loadingDepartment: false,
+      };
+    case concatActions(GET_PARENT_DEPARTMENT, SUCCESS):
+      return {
+        ...state,
+        parentDepartment: action.response.resultObject[0],
       };
     case POST_NEW_DEPARTMENT:
       return {

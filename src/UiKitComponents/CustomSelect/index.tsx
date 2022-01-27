@@ -1,88 +1,87 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import cl from 'classnames';
 import Select from 'react-select';
-import { Control, Controller, FieldPath } from 'react-hook-form';
-import InputContainer from '../InputContainer';
+import { Controller, FieldValues, UseControllerProps } from 'react-hook-form';
+import InputContainer, { InputContainerProps } from '../InputContainer';
 import './CustomSelect.scss';
+import { TSelectValue } from '@Types/application.types';
+import { UseFormSetValue } from 'react-hook-form/dist/types/form';
 
-interface SelectOptions {
-  readonly value: number | string;
-  readonly label: number | string;
-}
-interface CustomSelectProps<FieldType> {
-  label: string;
-  id: string;
-  name: FieldPath<FieldType>;
-  control: Control<FieldType, object>;
-  placeholder?: string;
-  mappingOptions: any[];
-  optionValue: string | number;
+interface CustomSelectProps<FieldType extends FieldValues = FieldValues>
+  extends UseControllerProps<FieldType>,
+    InputContainerProps {
+  options: any[];
+  optionValue: string;
   optionLabel: string;
+  placeholder?: string;
   isLoading?: boolean;
   isDisabled?: boolean;
-  errorText?: string;
-  required?: boolean;
-  statusActive?: boolean;
-  getOptionValue?: (option: string | number | undefined) => void;
+  getSelectValue?: (value: TSelectValue<number>) => void;
+  setValue?: UseFormSetValue<FieldType>;
 }
+const PureReactSelect = React.memo(Select);
 
 const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {
   const {
+    errorText,
+    statusActive,
     label,
-    id,
-    name,
-    control,
     placeholder,
-    mappingOptions,
+    id,
+    options,
     optionValue,
     optionLabel,
+    required,
     isLoading,
     isDisabled,
-    errorText,
-    required,
-    statusActive,
-    getOptionValue,
+    defaultValue,
+    name,
+    setValue,
+    getSelectValue,
+    ...rest
   } = props;
-
-  const [value, setValue] = useState<string | number>();
-
-  const selectList: SelectOptions[] = mappingOptions.map((item) => ({
-    value: item[optionValue],
-    label: item[optionLabel],
-  }));
+  const [valueSelect, setValueSelect] = useState<TSelectValue<number>>();
 
   const selectError = errorText ? 'react-select-container__error' : '';
   const selectActive = statusActive ? 'react-select-container__active' : '';
 
+  const getOptions: any[] = useMemo(() => {
+    return options.map((option) => ({
+      value: option[optionValue],
+      label: option[optionLabel],
+    }));
+  }, [options]);
+  
   useEffect(() => {
-    if (getOptionValue) {
-      getOptionValue(value);
+    if (getSelectValue && valueSelect) {
+      getSelectValue(valueSelect);
     }
-  }, [value]);
+  }, [valueSelect]);
+  useEffect(() => {
+    if (setValue) {
+      setValue(name, defaultValue || getOptions[0]);
+    }
+  }, [setValue, defaultValue]);  
 
   return (
-    <InputContainer
-      label={label}
-      id={id}
-      errorText={errorText}
-      required={required}
-      disabled={isDisabled}
-    >
+    <InputContainer label={label} id={id} errorText={errorText} required={required} disabled={isDisabled}>
       <Controller
         name={name}
-        control={control}
-        render={({ field: { onChange } }) => (
-          <Select
+        {...rest}
+        render={({ field: { onChange, ref } }) => (
+          <PureReactSelect
+            defaultValue={defaultValue || getOptions[0]}
+            ref={ref}
+            placeholder={placeholder}
             className={cl('react-select-container', selectError, selectActive)}
             classNamePrefix="react-select"
-            placeholder={placeholder}
-            options={selectList}
-            onChange={(newValue) => {
-              onChange(newValue?.value);
-              setValue(newValue?.value);
-            }}
-            isDisabled={isDisabled}
+            options={getOptions}
             isLoading={isLoading}
+            isDisabled={isDisabled}
+            onChange={(value) => {
+              onChange(value);
+              setValueSelect(value as TSelectValue<number>);
+            }}
           />
         )}
       />

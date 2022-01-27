@@ -42,6 +42,7 @@ const EditVendor: React.FC<EditVendorProps> = () => {
   if (loadingVendor || !currentVendor) {
     return <Loader />;
   }
+console.log(currentVendor);
 
   return (
     <div>

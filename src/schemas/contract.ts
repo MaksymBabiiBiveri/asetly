@@ -1,15 +1,15 @@
 import * as yup from 'yup';
+import { object } from 'yup';
 
 export const schemaContract = yup.object({
   name: yup.string().required('This field is required'),
   contractCode: yup.string().required('This field is required'),
   no: yup.string().required('This field is required'),
   price: yup.string().required('This field is required'),
-  partnerId: yup
-    .number()
-    .required('This field is required')
-    .positive('The field is not valid. Only positive numbers')
-    .truncate(),
+  partnerId: object({
+    label: yup.string(),
+    value: yup.number(),
+  }),
   startDate: yup
     .string()
     .required('This field is required')

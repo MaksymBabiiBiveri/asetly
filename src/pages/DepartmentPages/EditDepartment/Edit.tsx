@@ -1,11 +1,13 @@
-import React, {useEffect} from 'react';
-import { CustomInput, CustomSelect, Form } from '@UiKitComponents';
-import { Department, NewDepartment, PutDepartment, DepartmentState } from '@Types/department.types';
+import React, {useEffect, useMemo} from 'react';
+import { CustomInput, CustomSelect } from '@UiKitComponents';
+import { Department, TFormCreateDepartment, DepartmentState } from '@Types/department.types';
 import { RootState } from '@RootStateType';
 import { HeaderSaveAction, InputContainer } from '@components';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateDepartment, GetDepartmentList } from '@Actions/department.action';
 import { schemaDepartment } from '@schema/department';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 interface EditProps {
   currentDepartment: Department;
@@ -20,14 +22,24 @@ const Edit: React.FC<EditProps> = (props) => {
     getDepartmentState
   );
   const dispatch = useDispatch();
+  const {
+    register,
+    formState: { errors },
+    control,
+    setValue,
+    handleSubmit,
+  } = useForm<TFormCreateDepartment>({
+    resolver: yupResolver(schemaDepartment),
+  });
 
-  const onSubmit = (department: NewDepartment) => {
-    const newDepartment: PutDepartment = {
-      ...department,
-      departmentId: currentDepartment.departmentId,
-    };
-    dispatch(updateDepartment(newDepartment));
-  };
+  const memoizedControl = useMemo(() => control, []);
+  const parentDefaultValue = useMemo(
+    () => ({
+      value: currentDepartment.parentDepartmentId,
+      label: 'parentDepartment',
+    }),
+    []
+  );
 
   useEffect(() => {
     if (!departmentList.length) {
@@ -35,10 +47,18 @@ const Edit: React.FC<EditProps> = (props) => {
     }
   }, [departmentList]);
 
+  const onSubmit = (department: TFormCreateDepartment) => {
+    const newDepartmen = {
+      ...department,
+      parentDepartmentId: department.parentDepartmentId.value,
+      departmentId: currentDepartment.departmentId,
+    };
+    dispatch(updateDepartment(newDepartmen));
+  };
+
   return (
     <>
-      <Form<NewDepartment> onSubmit={onSubmit} yupSchema={schemaDepartment}>
-        {({ register, formState: { errors }, control }) => (
+      <form onSubmit={handleSubmit(onSubmit)}>
           <>
             <HeaderSaveAction
               title={currentDepartment.name}
@@ -57,15 +77,16 @@ const Edit: React.FC<EditProps> = (props) => {
                   {...register('name')}
                 />
                 <CustomSelect
-                  errorText={errors.parentDepartmentId?.message}
                   label="Parent Department"
                   id="ParentDepartment"
                   name="parentDepartmentId"
-                  control={control}
+                  defaultValue={parentDefaultValue}
+                  control={memoizedControl}
                   placeholder="Choose department"
-                  mappingOptions={departmentList}
+                  options={departmentList}
                   optionValue="departmentId"
                   optionLabel="name"
+                  setValue={setValue}
                   isDisabled={loadingDepartment}
                   isLoading={loadingDepartment}
                 />
@@ -90,8 +111,7 @@ const Edit: React.FC<EditProps> = (props) => {
                 </InputContainer>
               </div>
           </>
-        )}
-      </Form>
+      </form>
     </>
   );
 };

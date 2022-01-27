@@ -5,6 +5,8 @@ import {
   GET_ONE_DEPARTMENT,
   POST_NEW_DEPARTMENT,
   PUT_DEPARTMENT,
+  GET_PARENT_DEPARTMENT
+
 } from '../actionTypes';
 
 export const GetDepartmentList = (): DepartmentActions => ({
@@ -17,6 +19,14 @@ export const GetDepartmentList = (): DepartmentActions => ({
 
 export const GetOneDepartment = (id: string | number): DepartmentActions => ({
   type: GET_ONE_DEPARTMENT,
+  api: {
+    url: `/Department/GetDepartmentById/${id}`,
+    method: 'GET',
+  },
+});
+
+export const GetParentDepartment = (id: string | number): DepartmentActions => ({
+  type: GET_PARENT_DEPARTMENT,
   api: {
     url: `/Department/GetDepartmentById/${id}`,
     method: 'GET',

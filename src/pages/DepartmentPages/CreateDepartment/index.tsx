@@ -1,13 +1,15 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@RootStateType';
-import { Form, CustomInput, CustomSelect } from '@UiKitComponents';
-import { NewDepartment, DepartmentState } from '@Types/department.types';
-import { postNewDepartment, GetDepartmentList } from '@Actions/department.action';
+import { CustomInput, CustomSelect } from '@UiKitComponents';
+import { DepartmentState, TFormCreateDepartment } from '@Types/department.types';
+import { GetDepartmentList } from '@Actions/department.action';
 import { Loader } from '@common';
 import { HeaderSaveAction, InputContainer } from '@components';
 import { useBackHistory } from '@hooks';
 import { schemaDepartment } from '@schema/department';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 interface CreateDepartmentProps {}
 
@@ -20,8 +22,25 @@ const CreateDepartment: React.FC<CreateDepartmentProps> = () => {
   const dispatch = useDispatch();
   const backHistory = useBackHistory();
 
-  const onSubmit = (newDepartment: NewDepartment) => {
-    dispatch(postNewDepartment(newDepartment));
+  const {
+    register,
+    formState: { errors },
+    control,
+    handleSubmit,
+  } = useForm<TFormCreateDepartment>({
+    resolver: yupResolver(schemaDepartment),
+  });
+
+  const memoizedControl = useMemo(() => control, []);
+
+  const onSubmit = (department: TFormCreateDepartment) => {
+    const newDepartmen = {
+      ...department,
+      parentDepartmentId: department.parentDepartmentId.value
+    };
+    console.log(newDepartmen);
+    
+    // dispatch(postNewDepartment(newDepartmen));
   };
 
   useEffect(() => {
@@ -37,8 +56,7 @@ const CreateDepartment: React.FC<CreateDepartmentProps> = () => {
   return (
     <div>
       <div className="padding_wrapper_page">
-        <Form<NewDepartment> onSubmit={onSubmit} yupSchema={schemaDepartment}>
-          {({ register, formState: { errors }, control }) => (
+        <form onSubmit={handleSubmit(onSubmit)}>
             <>
               <HeaderSaveAction
                 title="New Department"
@@ -56,13 +74,12 @@ const CreateDepartment: React.FC<CreateDepartmentProps> = () => {
                     {...register('name')}
                   />
                   <CustomSelect
-                    errorText={errors.parentDepartmentId?.message}
                     label="Parent Department"
                     id="ParentDepartment"
                     name="parentDepartmentId"
-                    control={control}
+                    control={memoizedControl}
                     placeholder="Choose department"
-                    mappingOptions={departmentList}
+                    options={departmentList}
                     optionValue="departmentId"
                     optionLabel="name"
                     isDisabled={loadingDepartment}
@@ -86,8 +103,7 @@ const CreateDepartment: React.FC<CreateDepartmentProps> = () => {
                   </InputContainer>
                 </div>
             </>
-          )}
-        </Form>
+        </form>
       </div>
     </div>
   );

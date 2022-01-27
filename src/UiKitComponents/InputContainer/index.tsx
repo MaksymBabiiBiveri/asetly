@@ -2,13 +2,12 @@ import React from 'react';
 import cl from 'classnames';
 import './InputContainer.scss';
 
-interface InputContainerProps {
+export interface InputContainerProps {
   label: string;
   id: string;
   errorText?: string;
   required?: boolean;
   disabled?: boolean;
-  defaultValue?: string | number;
   statusActive?: boolean;
 }
 

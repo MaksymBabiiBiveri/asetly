@@ -7,7 +7,11 @@ import {
   GET_ONE_DEPARTMENT,
   POST_NEW_DEPARTMENT,
   PUT_DEPARTMENT, 
+  GET_PARENT_DEPARTMENT,
 } from '../actionTypes';
+
+import { TSelectValue } from '@Types/application.types';
+
 
 export type Department = {
   companyId: number,
@@ -22,7 +26,7 @@ export type Department = {
   isValid: boolean;
   modifiedDate: string;
   modifiedId: number;
-  parentDepartment: object;
+  parentDepartment: object[];
   parentDepartmentId: number;
 //TODO: как узнаем тип массива изменить any
   inverseParentDepartment: any[]
@@ -45,11 +49,16 @@ export type NewDepartment = {
   isActive: boolean;
 };
 
+export type TFormCreateDepartment = Omit<NewDepartment,'parentDepartmentId'> & {
+  parentDepartmentId: TSelectValue<number>;
+};
+
 export type PutDepartment = NewDepartment & Pick<Department, 'departmentId'>;
 
 export interface DepartmentState {
   departmentList: Department[] | [];
   currentDepartment: Department | null;
+  parentDepartment: Department | null;
   loadingDepartment: boolean;
 }
 
@@ -67,7 +76,16 @@ export interface GetOneDepartmentSuccess
   extends BaseAction<Concat<typeof GET_ONE_DEPARTMENT, typeof SUCCESS>> {
   response: {
     resultStatus: boolean;
-    resultObject: Department;
+    resultObject: Department[];
+  };
+}
+
+export interface GetParentDepartment extends BaseAction<typeof GET_PARENT_DEPARTMENT> {}
+export interface GetParentDepartmentSuccess
+  extends BaseAction<Concat<typeof GET_PARENT_DEPARTMENT, typeof SUCCESS>> {
+  response: {
+    resultStatus: boolean;
+    resultObject: Department[];
   };
 }
 
@@ -105,6 +123,8 @@ export type DepartmentActions =
   | GetDepartmentListSuccess
   | GetOneDepartment
   | GetOneDepartmentSuccess
+  | GetParentDepartment
+  | GetParentDepartmentSuccess
   | PostNewDepartment
   | PostNewDepartmentSuccess
   | PostNewDepartmentFail

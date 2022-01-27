@@ -41,7 +41,7 @@ const EditDepartment: React.FC<EditDepartmentProps> = () => {
 
   if (loadingDepartment || !currentDepartment) {
     return <Loader />;
-  }
+  } 
 
   return (
     <div>

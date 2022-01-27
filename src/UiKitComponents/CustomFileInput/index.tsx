@@ -1,34 +1,39 @@
-import React, { useState } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
-// import { Control, Controller, FieldPath } from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+import { Controller, FieldValues, UseControllerProps } from 'react-hook-form';
 import './CustomFileInput.scss';
 
-interface CustomFileInputProps {}
+interface CustomFileInputProps<FieldType extends FieldValues = FieldValues> extends UseControllerProps<FieldType> {}
 
-const CustomFileInput = React.forwardRef<
-  HTMLInputElement,
-  Partial<UseFormRegisterReturn> & CustomFileInputProps
->((props, ref) => {
+const CustomFileInput = <FieldType,>(props: CustomFileInputProps<FieldType>) => {
   const { ...rest } = props;
-  const [value, setValue] = useState<any>();
-
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
+  const [files, setFiles] = useState<File | null>();
+  
+  useEffect(() => {
+    if (files) {
+      const newFiles = files.text();
+      console.log('files', newFiles);
+    }
+  }, [files]);
 
   return (
     <div className="custom_file_input">
       <label htmlFor="uploadFile">Upload a contract</label>
-
-      <input
-        type="file"
-        ref={ref}
-        value={value}
-        id="uploadFile"
-        onChange={onChange}
+      <Controller
         {...rest}
+        render={({ field: { ref, onChange } }) => (
+          <input
+            type="file"
+            id="uploadFile"
+            ref={ref}
+            onChange={(value) => {
+              setFiles(value.target.files && value.target.files[0]);
+              onChange(value);
+            }}
+          />
+        )}
       />
     </div>
   );
-});
+};
+
 export default CustomFileInput;
