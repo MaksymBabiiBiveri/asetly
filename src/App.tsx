@@ -8,6 +8,7 @@ import { Loader } from '@common';
 const Company = React.lazy(() => import('@pages/CompanyPages/Company'));
 const Contract = React.lazy(() => import('@pages/ContractPages/Contract'));
 const Vendors = React.lazy(() => import('@pages/VendorPages/Vendors'));
+const Sites = React.lazy(() => import('@pages/SitePages/Sites'));
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
                 <Route path="Companies/*" element={<Company />} />
                 <Route path="Contracts/*" element={<Contract />} />
                 <Route path="Vendors/*" element={<Vendors />} />
+                <Route path="Locations/*" element={<Sites />} />
               </Routes>
             </React.Suspense>
           </section>

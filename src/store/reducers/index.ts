@@ -4,6 +4,7 @@ import { CompanyReducer } from './company.reducer';
 import { DefinitionReducer } from './definition.reducer';
 import { VendorReducer } from './vendor.reducer';
 import { ContractReducer } from './contract.reducer';
+import { SiteReducer } from './site.reducer';
 import { CurrencyReducer } from './currency.reducer';
 
 const reducer = combineReducers({
@@ -12,6 +13,7 @@ const reducer = combineReducers({
   DefinitionReducer,
   VendorReducer,
   ContractReducer,
+  SiteReducer,
   CurrencyReducer,
 });
 

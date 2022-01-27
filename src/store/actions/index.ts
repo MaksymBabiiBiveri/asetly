@@ -3,6 +3,7 @@ import { CompanyActions } from '@Types/company.types';
 import { DefinitionActions } from '@Types/definition.types';
 import { VendorActions } from '@Types/vendor.types';
 import { ContractActions } from '@Types/contract.types';
+import { SiteActions } from '@Types/site.types';
 import { CurrencyActions } from '@Types/currency.type';
 
 export type ActionsTypes =
@@ -11,4 +12,5 @@ export type ActionsTypes =
   | DefinitionActions
   | VendorActions
   | ContractActions
+  | SiteActions
   | CurrencyActions;

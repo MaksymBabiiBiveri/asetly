@@ -16,7 +16,8 @@ const CustomCell: React.FC<CustomCellProps> = (props) => {
     const arrKey = dataKey.split('.');
     let newData = rowData;
     arrKey.forEach((key) => {
-      newData = newData[key];
+      const correctData = newData ? newData : '';
+      newData = correctData[key];
     });
     return newData;
   };
