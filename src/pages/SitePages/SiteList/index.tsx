@@ -87,7 +87,7 @@ const SiteList: React.FC<SiteListProps> = () => {
       <div className={classes.siteList_wrapper}>
         <TableHeaderActions
           checkedItemsList={checkedItemsList}
-          pageCreatingUrl="/Sites/newSite"
+          pageCreatingUrl="/Locations/newLocation"
           textRedirectButton="New Site"
         />
         <CustomTable
