@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@RootStateType';
 import { getCitiesList, getCountriesList } from '@Actions/definition.action';
 import { CustomInput, CustomSelect, Divider } from '@UiKitComponents';
-import { TFormCreateSite } from '@Types/site.types';
-import { postNewSite } from '@Actions/site.action';
+import { TFormCreateSite, SiteState } from '@Types/site.types';
+import { postNewSite, GetSiteList } from '@Actions/site.action';
 import { Loader } from '@common';
 import { useBackHistory } from '@hooks';
 import { schemaSite } from '@schema/site';
@@ -18,9 +18,13 @@ interface CreateSiteProps {}
 
 const getLoadingSite = (state: RootState) => state.SiteReducer.loadingSite;
 const getDefinitionState = (state: RootState) => state.DefinitionReducer;
+const getSiteState = (state: RootState) => state.SiteReducer;
 
 const CreateSite: React.FC<CreateSiteProps> = () => {
   const { citiesList, countriesList, loadingDefinition } = useSelector(getDefinitionState);
+  const { siteList } = useSelector<RootState, SiteState>(
+    getSiteState
+  );
   const loadingSite = useSelector(getLoadingSite);
 
   const dispatch = useDispatch();
@@ -65,6 +69,12 @@ const CreateSite: React.FC<CreateSiteProps> = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (!siteList.length) {
+      dispatch(GetSiteList());
+    }
+  }, [siteList]);
+
   if (loadingSite) {
     return <Loader />;
   }
@@ -100,9 +110,18 @@ const CreateSite: React.FC<CreateSiteProps> = () => {
                 required
                 {...register('siteCode')}
               />
-              {/* <CustomSelect
-                
-              /> */}
+              <CustomSelect
+                label="Parent site"
+                id="ParentSiteId"
+                name="parentSiteId"
+                control={memoizedControl}
+                placeholder="Choose parent site"
+                options={siteList}
+                optionValue="parentSiteId"
+                optionLabel="name"
+                isLoading={loadingSite}
+                isDisabled={loadingSite}
+              />
             </InputContainer>
             <Divider margin="50px 0 30px 0" />
             <div className="markup_helper-box">
