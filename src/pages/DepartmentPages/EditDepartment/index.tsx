@@ -42,7 +42,7 @@ const EditDepartment: React.FC<EditDepartmentProps> = () => {
   }, []);
 
   // console.log(currentDepartment);
-  console.log(parentDepartment);
+  // console.log(parentDepartment);
   
   
   if (loadingDepartment || !currentDepartment) {
