@@ -37,13 +37,16 @@ export const DepartmentReducer = (
     case GET_ONE_DEPARTMENT:
       return {
         ...state,
-        loadingDepartment: true,
+        currentDepartment: action.obj,
+        // loadingDepartment: true,
       };
     case concatActions(GET_ONE_DEPARTMENT, SUCCESS):
+      
+      
       return {
         ...state,
-        currentDepartment: action.response.resultObject[0],
-        loadingDepartment: false,
+        currentDepartment: action.obj,
+        // loadingDepartment: false,
       };
     case concatActions(GET_PARENT_DEPARTMENT, SUCCESS):
       return {

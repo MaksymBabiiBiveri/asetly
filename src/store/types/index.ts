@@ -23,4 +23,5 @@ export interface BaseAction<Type> {
   api?: AxiosRequestConfig;
   apiKey?: true | string;
   redirect?: Redirect;
+  obj?: any;
 }

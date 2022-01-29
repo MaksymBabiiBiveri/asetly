@@ -17,12 +17,13 @@ export const GetDepartmentList = (): DepartmentActions => ({
   },
 });
 
-export const GetOneDepartment = (id: string | number): DepartmentActions => ({
+export const GetOneDepartment = (dep: any): DepartmentActions => ({
   type: GET_ONE_DEPARTMENT,
-  api: {
-    url: `/Department/GetDepartmentById/${id}`,
-    method: 'GET',
-  },
+  obj: dep,
+  // api: {
+  //   url: `/Department/GetDepartmentById/${id}`,
+  //   method: 'GET',
+  // },
 });
 
 export const GetParentDepartment = (id: string | number): DepartmentActions => ({

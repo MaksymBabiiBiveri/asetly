@@ -74,10 +74,7 @@ export interface GetDepartmentListSuccess
 export interface GetOneDepartment extends BaseAction<typeof GET_ONE_DEPARTMENT> {}
 export interface GetOneDepartmentSuccess
   extends BaseAction<Concat<typeof GET_ONE_DEPARTMENT, typeof SUCCESS>> {
-  response: {
-    resultStatus: boolean;
-    resultObject: Department[];
-  };
+    obj: Department;
 }
 
 export interface GetParentDepartment extends BaseAction<typeof GET_PARENT_DEPARTMENT> {}

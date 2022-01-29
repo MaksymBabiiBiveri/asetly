@@ -12,16 +12,18 @@ import { yupResolver } from '@hookform/resolvers/yup';
 interface EditProps {
   currentDepartment: Department;
   backToPreview: (modeEdit: boolean) => void;
+  parentName: string;
 }
 
 const getDepartmentState = (state: RootState) => state.DepartmentReducer;
 
 const Edit: React.FC<EditProps> = (props) => {
-  const { currentDepartment, backToPreview } = props;
+  const { currentDepartment, backToPreview, parentName } = props;
   const { departmentList, loadingDepartment } = useSelector<RootState, DepartmentState>(
     getDepartmentState
   );
   const dispatch = useDispatch();
+  const parentId = currentDepartment.parentDepartmentId;
   const {
     register,
     formState: { errors },
@@ -35,8 +37,8 @@ const Edit: React.FC<EditProps> = (props) => {
   const memoizedControl = useMemo(() => control, []);
   const parentDefaultValue = useMemo(
     () => ({
-      value: currentDepartment.parentDepartmentId,
-      label: 'parentDepartment',
+      value: parentId,
+      label: parentId ? parentName : '',
     }),
     []
   );

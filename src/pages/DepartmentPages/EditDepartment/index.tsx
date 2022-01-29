@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteDepartment, GetOneDepartment } from '@Actions/department.action';
+import { deleteDepartment } from '@Actions/department.action';
 import { RootState } from '@RootStateType';
 import { Loader } from '@common';
 import { HeaderEditAction, ModalDelete } from '@components';
 import { useToggle } from '@hooks';
+import { dis } from '@Actions/dis.action';
 import Preview from '@pages/DepartmentPages/EditDepartment/Preview';
 import Edit from '@pages/DepartmentPages/EditDepartment/Edit';
 
@@ -24,8 +25,9 @@ const EditDepartment: React.FC<EditDepartmentProps> = () => {
   const [modeEdit, setModeEdit] = useToggle();
   const [openModal, setOpenModal] = useToggle();
 
-  const { currentDepartment, loadingDepartment } = useSelector(getDepartmentState);
+  const { currentDepartment, parentDepartment, loadingDepartment } = useSelector(getDepartmentState);
   const departmentID = params.DepartmentID ? params.DepartmentID : '';
+  const parentName = parentDepartment ? parentDepartment.name : ' ';
 
   const deleteDepartments = () => {
     if (currentDepartment) {
@@ -36,9 +38,13 @@ const EditDepartment: React.FC<EditDepartmentProps> = () => {
   };
   
   useEffect(() => {
-    dispatch(GetOneDepartment(departmentID));
+    dispatch(dis(departmentID));
   }, []);
 
+  // console.log(currentDepartment);
+  console.log(parentDepartment);
+  
+  
   if (loadingDepartment || !currentDepartment) {
     return <Loader />;
   } 
@@ -54,9 +60,9 @@ const EditDepartment: React.FC<EditDepartmentProps> = () => {
           />
         )}
         {modeEdit ? (
-          <Edit currentDepartment={currentDepartment} backToPreview={setModeEdit} />
+          <Edit currentDepartment={currentDepartment} parentName={parentName} backToPreview={setModeEdit} />
         ) : (
-          <Preview currentDepartment={currentDepartment} />
+          <Preview currentDepartment={currentDepartment} parentName={parentName} />
         )}
         <ModalDelete
           title="department"
