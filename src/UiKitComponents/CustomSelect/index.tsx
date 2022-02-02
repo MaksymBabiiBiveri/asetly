@@ -70,7 +70,7 @@ const CustomSelect = <FieldType,>(props: CustomSelectProps<FieldType>) => {
         {...rest}
         render={({ field: { onChange, ref } }) => (
           <PureReactSelect
-            defaultValue={defaultValue || getOptions[0]}
+            defaultValue={defaultValue}
             ref={ref}
             placeholder={placeholder}
             className={cl('react-select-container', selectError, selectActive)}

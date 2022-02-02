@@ -1,65 +1,73 @@
-import React, { memo, useEffect, useMemo, useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Divider, CustomInput, CustomSelect } from '@UiKitComponents';
+import { Site, TFormCreateSite, TUpdateSite, SiteState } from '@Types/site.types';
+import { HeaderSaveAction, InputContainer } from '@components';
 import { useDispatch, useSelector } from 'react-redux';
+import { updateSite } from '@Actions/site.action';
+import { schemaSite } from '@schema/site';
 import { RootState } from '@RootStateType';
 import { getCitiesList, getCountriesList } from '@Actions/definition.action';
-import { CustomInput, CustomSelect, Divider } from '@UiKitComponents';
-import { TFormCreateSite, SiteState } from '@Types/site.types';
-import { postNewSite, GetSiteList } from '@Actions/site.action';
-import { Loader } from '@common';
-import { useBackHistory } from '@hooks';
-import { schemaSite } from '@schema/site';
-import { HeaderSaveAction, InputContainer } from '@components';
+import { GetSiteList } from '@Actions/site.action';
 import { City } from '@Types/definition.types';
 import { TSelectValue } from '@Types/application.types';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-interface CreateSiteProps {}
+interface EditProps {
+  currentSite: Site;
+  backToPreview: (modeEdit: boolean) => void;
+}
 
-const getLoadingSite = (state: RootState) => state.SiteReducer.loadingSite;
 const getDefinitionState = (state: RootState) => state.DefinitionReducer;
 const getSiteState = (state: RootState) => state.SiteReducer;
 
-const CreateSite: React.FC<CreateSiteProps> = () => {
-  const { citiesList, countriesList, loadingDefinition } = useSelector(getDefinitionState);
-  const { siteList } = useSelector<RootState, SiteState>(
+const Edit: React.FC<EditProps> = (props) => {
+  const { currentSite, backToPreview } = props;
+  const { loadingDefinition, countriesList, citiesList } = useSelector(getDefinitionState);
+  const { siteList, loadingSite } = useSelector<RootState, SiteState>(
     getSiteState
   );
-  const loadingSite = useSelector(getLoadingSite);
-
   const dispatch = useDispatch();
-  const backHistory = useBackHistory();
-
-  const [countryValue, setCountryValue] = useState<TSelectValue<number>>();
-
   const {
     register,
     formState: { errors },
     control,
+    setValue,
     handleSubmit,
   } = useForm<TFormCreateSite>({
     resolver: yupResolver(schemaSite),
   });
-
   const memoizedControl = useMemo(() => control, []);
+  const countryDefaultValue = useMemo(
+    () => ({
+      value: currentSite.countryId,
+      label: 'currentSite.country.name',
+    }),
+    []
+  );
+  const cityDefaultValue = useMemo(
+    () => ({
+      value: currentSite.cityId,
+      label: 'currentSite.city.name',
+    }),
+    []
+  );
+  const parentDefaultValue = useMemo(
+    () => ({
+      value: currentSite.parentSiteId,
+      label: 'currentSite.parentSite.name',
+    }),
+    []
+  );  
 
-  const onSubmit = (site: TFormCreateSite) => {
-    const newSite = {
-      ...site,
-      cityId: site.cityId.value,
-      countryId: site.countryId.value,
-      parentSiteId: site.parentSiteId.value,
-    };
-    console.log(newSite);
-    dispatch(postNewSite(newSite));
-  };
+  const [countryValue, setCountryValue] = useState<TSelectValue<number>>(countryDefaultValue);
 
   const getCountryValue = (country: TSelectValue<number>) => {
     setCountryValue(country);
   };
 
-  const filterCity = (): City[] => {
-    return citiesList.filter((city) => city.countryId === countryValue?.value);
+  const filterCitiesList = (): City[] => {
+    return citiesList.filter((city) => city.countryId === countryValue.value);
   };
 
   useEffect(() => {
@@ -77,23 +85,31 @@ const CreateSite: React.FC<CreateSiteProps> = () => {
     }
   }, [siteList]);
 
-  if (loadingSite) {
-    return <Loader />;
-  }
+  const onSubmit = (site: TFormCreateSite) => {
+    const newSite: TUpdateSite = {
+      ...site,
+      siteId: currentSite.siteId,
+      countryId: site.countryId.value,
+      cityId: site.cityId.value,
+      parentSiteId: site.parentSiteId.value,
+    };
+    
+    dispatch(updateSite(newSite));
+  };
 
   return (
-    <div>
-      <div className="padding_wrapper_page">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <HeaderSaveAction title="New Site" errors={errors} onCancelButton={backHistory} />
-          <div className="form_box">
-            <InputContainer title="Summary">
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <HeaderSaveAction title={currentSite.name} errors={errors} onCancelButton={backToPreview} />
+        <div className="form_box">
+        <InputContainer title="Summary">
               <CustomInput
                 errorText={errors.name?.message}
                 id="SiteName"
                 placeholder="Site name"
                 label="Site name"
-                required
+                defaultValue={currentSite.name}
+                statusActive
                 {...register('name')}
               />
               <CustomInput
@@ -101,7 +117,8 @@ const CreateSite: React.FC<CreateSiteProps> = () => {
                 id="SiteBarcode"
                 placeholder="Site Barcode"
                 label="Site Barcode"
-                required
+                defaultValue={currentSite.barcode}
+                statusActive
                 {...register('barcode')}
               />
               <CustomInput
@@ -109,7 +126,8 @@ const CreateSite: React.FC<CreateSiteProps> = () => {
                 id="SiteCode"
                 placeholder="Site code"
                 label="Site code"
-                required
+                defaultValue={currentSite.siteCode}
+                statusActive
                 {...register('siteCode')}
               />
               <CustomSelect
@@ -123,37 +141,44 @@ const CreateSite: React.FC<CreateSiteProps> = () => {
                 optionLabel="name"
                 isLoading={loadingSite}
                 isDisabled={loadingSite}
+                setValue={setValue}
+                defaultValue={parentDefaultValue}
+                statusActive
               />
             </InputContainer>
             <Divider margin="50px 0 30px 0" />
             <div className="markup_helper-box">
               <InputContainer title="Location">
                 <CustomSelect
+                  options={countriesList}
+                  defaultValue={countryDefaultValue}
                   label="Country"
                   id="Country"
                   name="countryId"
                   control={memoizedControl}
                   placeholder="Choose country"
-                  options={countriesList}
                   optionValue="countryId"
                   optionLabel="name"
                   isLoading={loadingDefinition}
                   isDisabled={loadingDefinition}
                   getSelectValue={getCountryValue}
-                  required
+                  setValue={setValue}
+                  statusActive
                 />
                 <CustomSelect
-                  label="City"
-                  id="City"
+                  options={filterCitiesList()}
+                  defaultValue={cityDefaultValue}
                   name="cityId"
                   control={memoizedControl}
+                  label="City"
+                  id="City"
                   placeholder="Choose city"
-                  options={filterCity()}
                   optionValue="cityId"
                   optionLabel="name"
-                  isDisabled={loadingDefinition || !filterCity().length}
                   isLoading={loadingDefinition}
-                  required
+                  isDisabled={!filterCitiesList().length || loadingDefinition}
+                  setValue={setValue}
+                  statusActive
                 />
 
                 <CustomInput
@@ -161,6 +186,8 @@ const CreateSite: React.FC<CreateSiteProps> = () => {
                   id="Town"
                   placeholder="Text"
                   label="Town"
+                  defaultValue={currentSite.town}
+                  statusActive
                   {...register('town')}
                 />
                 <CustomInput
@@ -168,6 +195,8 @@ const CreateSite: React.FC<CreateSiteProps> = () => {
                   id="Area"
                   placeholder="Area"
                   label="Area"
+                  defaultValue={currentSite.area}
+                  statusActive
                   {...register('area')}
                 /> 
               </InputContainer>
@@ -177,17 +206,17 @@ const CreateSite: React.FC<CreateSiteProps> = () => {
                   id="Address"
                   placeholder="Add address"
                   label="Address"
-                  required
+                  defaultValue={currentSite.address}
+                  statusActive
                   {...register('address')}
                 />
                 
               </InputContainer>
-            </div>
           </div>
-        </form>
-      </div>
-    </div>
+        </div>
+      </form>
+    </>
   );
 };
 
-export default memo(CreateSite);
+export default Edit;

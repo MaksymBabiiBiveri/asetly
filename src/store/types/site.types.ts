@@ -30,7 +30,7 @@ export type Site = {
   modifiedId: number;
   name: string;
   nonCurrAssets: any[];
-  parentSite: null | object;
+  parentSite: Site;
   parentSiteId: number;
   postCode: string;
   prdCountPlanSites: any[];
@@ -61,9 +61,10 @@ export type TCreateSite = {
   postCode: string;
   area: string;
 };
-export type TFormCreateSite = Omit<TCreateSite, 'countryId' | 'cityId'> & {
+export type TFormCreateSite = Omit<TCreateSite, 'countryId' | 'cityId' | 'parentSiteId'> & {
   countryId: TSelectValue<number>;
   cityId: TSelectValue<number>;
+  parentSiteId: TSelectValue<number>;
 };
 
 export type TUpdateSite = TCreateSite & Pick<Site, 'siteId'>;

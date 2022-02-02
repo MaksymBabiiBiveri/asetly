@@ -93,7 +93,7 @@ const SiteList: React.FC<SiteListProps> = () => {
         <CustomTable
           data={siteList}
           dataKey={dataKeySiteList}
-          currentDataKey="partnerId"
+          currentDataKey="siteId"
           setCheckedItemsList={setCheckedItemsList}
         />
       </div>
